@@ -1,0 +1,14 @@
+@function strip-unit($number)
+  @if type-of($number) == 'number' and not unitless($number)
+    @return $number / ($number * 0 + 1)
+  @return $number
+
+@function px2em($px, $fz: $font-size)
+  @return strip-unit($px) / strip-unit($fz) * 1em
+
+@function adaptive($value-from, $value-to, $media-from, $media-to)
+  @return calc(#{$value-from} + (#{strip-unit($value-to) - strip-unit($value-from)}) * (100vw - #{$media-from}) / (#{strip-unit($media-to) - strip-unit($media-from)}))
+
+@function translate-media-condition($c)
+  $condMap: ( ">small": "(min-width: 768px)", "<small": "(max-width: 767px)", ">medium": "(min-width: 1024px)", "<medium": "(max-width: 1023px)", ">large": "(min-width: 1280px)", "<large": "(max-width: 1279px)", ">xlarge": "(min-width: 1600px)", "<xlarge": "(max-width: 1599px)")
+  @return map-get($condMap, $c)
