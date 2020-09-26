@@ -1,6 +1,6 @@
 <?php
-add_filter( 'wpcf7_load_js', '__return_false' );
-add_filter( 'wpcf7_load_css', '__return_false' );
+add_filter('wpcf7_load_js', '__return_false');
+add_filter('wpcf7_load_css', '__return_false');
 
 add_filter('style_loader_tag', 'sj_remove_type_attr', 10, 2);
 add_filter('script_loader_tag', 'sj_remove_type_attr', 10, 2);
@@ -8,24 +8,23 @@ function sj_remove_type_attr ($tag) {
 	return preg_replace("/type=['\"]text\/(javascript|css)['\"]/", '', $tag);
 }
 
-add_post_type_support( 'page', 'excerpt' );
+add_post_type_support('page', 'excerpt');
 
 add_action('after_setup_theme', function() {
 	register_nav_menus([
-		'mainmenu' => 'Основное меню',
-		'aboutmenu' => 'Меню о компании',
-		'sitemap' => 'Карта сайта'
+		'header_menu' => 'Меню в шапке',
+		'main_menu' => 'Основное меню'
 	]);
 });
 
 add_theme_support('post-thumbnails', array('post', 'page', 'project'));
-add_image_size('w150h100', 150, 100, true);
-add_image_size('w468h364', 468, 364, true);
-add_image_size('w468h500', 468, 500, true);
-add_image_size('w800h600', 800, 600, true);
-add_image_size('w800h480', 800, 480, true);
-add_image_size('w560h308', 560, 308, false);
-add_image_size('w400h400', 400, 400, true);
+// add_image_size('w150h100', 150, 100, true);
+// add_image_size('w468h364', 468, 364, true);
+// add_image_size('w468h500', 468, 500, true);
+// add_image_size('w800h600', 800, 600, true);
+// add_image_size('w800h480', 800, 480, true);
+// add_image_size('w560h308', 560, 308, false);
+// add_image_size('w400h400', 400, 400, true);
 
 function srcset($image, $wh) {
 	$wh = !empty($wh) ? $wh : ['thumbnail', 'medium', 'large', 'w150h100', 'w560h308', 'w468h364', 'w560h308', 'w468h500', 'w800h600', 'w800h480'];
@@ -48,7 +47,7 @@ function srcset($image, $wh) {
 function icon($name, $scale = 1) {
 	$width = $scale * 20;
 	$height = $scale * 20;
-	echo '<svg class="inline-svg-icon" width="' . $width . '" height="' . $height . '"><use xlink:href="' . get_bloginfo('template_url') . '/dist/img/sprite.svg#' . $name . '"></use></svg>';
+	echo '<svg class="ui-icon" width="' . $width . '" height="' . $height . '"><use xlink:href="' . get_bloginfo('template_url') . '/dist/images/sprite.svg#' . $name . '"></use></svg>';
 }
 
 if (function_exists('acf_add_options_page')) {

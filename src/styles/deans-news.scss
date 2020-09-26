@@ -1,0 +1,145 @@
+.deans-news-primary {
+  position: relative;
+}
+
+.deans-news-primary__date {
+  color: #828fa0;
+  font-size: 11px;
+  line-height: 1;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: -18px;
+  width: 100%;
+}
+
+.deans-news-primary__figure {
+  margin-bottom: 40px;
+}
+
+.deans-news-primary__figure-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.deans-news-primary__title {
+  font-family: $font-family-alt;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.09px;
+  display: inline-block;
+  text-decoration: none;
+  &:hover {
+    color: #f03325;    
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.deans-news-primary__desc {
+  margin-top: 17px;
+  color: #7a7a7a;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.deans-news-hr {
+  background: url('../images/hr.png') no-repeat 50% 50%;
+  width: 561px;
+  height: 37px;
+  margin: 40px auto;
+}
+
+.deans-news-list {
+
+}
+
+.deans-news-item {
+  position: relative;
+  margin: 44px 0;
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.deans-news-item__figure {
+  width: 80px;
+  float: left;
+  margin-right: 15px;
+}
+
+.deans-news-item__info {
+  overflow: hidden;
+}
+
+.deans-news-item__figure-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.deans-news-item__headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.deans-news-item__date {
+  color: #9097a0;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.deans-news-item__rubrics {
+  position: relative;
+  z-index: 20;
+  a {
+    display: inline-block;
+    color: #9097a0;
+    font-size: 10px;
+    line-height: 16px;
+    text-transform: uppercase;
+    padding: 0 6px;
+    background-color: #f1e3de;
+    text-decoration: none;
+    &:hover {
+      background-color: #fdddd1;
+      color: #000000;
+    }
+  }
+}
+
+.deans-news-item__title {
+  color: #000000;
+  font-family: $font-family-alt;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.33;
+  text-decoration: none;
+  display: inline-block;
+  &:hover {
+    color: #f03325;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
