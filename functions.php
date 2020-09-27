@@ -589,3 +589,61 @@ function callback_block_assets() {
 		filemtime(dirname(__FILE__) . '/blocks/calculation.css')
 	);
 }
+
+
+add_action('wp_enqueue_scripts', function () {
+	wp_deregister_script('jquery');
+	wp_enqueue_script('theme_main', get_template_directory_uri() . '/dist/main.js', [], false, true);
+
+	wp_localize_script('theme_main', 'myajax', [
+		'url' => admin_url('admin-ajax.php')
+	]);
+}, 99);
+
+
+add_action('wp_ajax_get_day_info', 'ajax_get_day_info', 10, 2);
+add_action('wp_ajax_nopriv_get_day_info', 'ajax_get_day_info', 10, 2);
+function ajax_get_day_info() {
+	$year = $_POST['year'];
+	$day = $_POST['day'];
+	$month = $_POST['month'];
+
+	if (!$year || !$day || !$month) {
+		wp_die();
+	}
+
+	$url = 'https://azbyka.ru/days/api/day/' . $year . '-'. $month . '-' . $day . '.json';
+	
+	$cache_key = $url;
+	$data = wp_cache_get($cache_key);
+
+	if (!$data) {
+		$response = json_decode(file_get_contents($url));
+
+		$texts = [];
+		foreach ($response->texts as $item) {
+			$texts[] = $item->text;
+		}
+	
+		$saints = [];
+		foreach ($response->saints as $item) {
+			$saints[] = $item->title;
+		}
+
+		$data = [
+			'is_fasting' => !empty($response->fasting),
+			'is_holidays' => !empty($response->holidays),
+			'is_solid_weeks' => false,
+			'is_commemoration' => false,
+			'saints' => implode(', ', $texts),
+			'texts' => implode(', ', $texts),
+			'fasting' => $response->fasting->round_week
+		];
+
+		wp_cache_set($cache_key, $data);
+	}
+
+	echo json_encode($data);
+
+	wp_die();
+}

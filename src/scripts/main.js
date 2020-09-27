@@ -1,5 +1,7 @@
 import Swiper, { Navigation, Pagination } from 'swiper'
 import 'swiper/swiper-bundle.css'
+import './archive-calendar'
+import ECalendar from './ecalendar'
 
 Swiper.use([Navigation, Pagination])
 
@@ -74,8 +76,8 @@ const latestNewsSwiper = new Swiper('.js-latest-news-swiper', {
 const deansBannersSwiper = new Swiper('.js-deans-banners-swiper', {
   simulateTouch: false,
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
+    nextEl: '.js-deans-banners-swiper-next',
+    prevEl: '.js-deans-banners-swiper-prev'
   }
 })
 
@@ -106,3 +108,8 @@ const tiledInterviewsSwiper = new Swiper('.js-tiled-swiper-interviews', {
     prevEl: '.js-tiled-swiper-interviews-prev'
   }
 })
+
+const ecalendars = document.querySelectorAll('[data-ecalendar]')
+if (ecalendars.length > 0) {
+  ecalendars.forEach(el => new ECalendar(el).init())
+}

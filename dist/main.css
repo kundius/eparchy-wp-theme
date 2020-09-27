@@ -1905,6 +1905,40 @@ img {
   overflow: hidden;
 }
 
+.ui-hr {
+  height: 37px;
+  position: relative;
+  width: 100%;
+  background: url(/wp-content/themes/eparchy/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchy/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%, url(/wp-content/themes/eparchy/dist/images/hr-center.png?86734da790b3df8c8465cd1c7a634660) no-repeat 50% 50%;
+}
+.ui-hr::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, transparent 0, transparent 19px, #dadada 19px, #dadada calc(50% - 73px), transparent calc(50% - 73px), transparent calc(50% + 73px), #dadada calc(50% + 73px), #dadada calc(100% - 19px), transparent calc(100% - 19px));
+}
+.ui-hr_small {
+  height: 5px;
+  background: url(/wp-content/themes/eparchy/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchy/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%;
+}
+.ui-hr_small::after {
+  top: 2px;
+  background: linear-gradient(to right, transparent 0, transparent 19px, #dadada 19px, #dadada calc(100% - 19px), transparent calc(100% - 19px));
+}
+
+.ui-text-small {
+  color: #7f7f7f;
+  font-size: 12px;
+  line-height: 1.15;
+  letter-spacing: 0.12px;
+}
+.ui-text-small em {
+  font-weight: 700;
+}
+
 .ui-icon {
   display: inline-block;
   width: 1em;
@@ -2053,7 +2087,6 @@ img {
 }
 
 .pagination {
-  border-bottom: 1px solid #dadada;
   line-height: 1;
   padding: 16px 0;
 }
@@ -2656,54 +2689,57 @@ img {
   margin-top: -28px;
 }
 
-.home-page-latest-news {
-  margin: 53px 0 65px;
-}
-
-.home-page-others-news {
-  margin: 65px 0 134px;
-}
-
-.home-publications__more {
+.home-news {
+  margin-top: 53px;
+  margin-bottom: 134px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 65px;
+  flex-wrap: wrap;
+  margin-left: -32px;
 }
 
-.latest-publication__figure-image {
-  display: block;
+.home-news__relevant-title {
+  padding-left: 32px;
+  width: 50%;
+  margin-left: 50%;
+  margin-bottom: 40px;
+  order: 1;
+}
+
+.home-news__relevant-body {
+  margin-bottom: 65px;
+  padding-left: 32px;
   width: 100%;
-  height: auto;
-  margin-bottom: 25px;
+  order: 2;
 }
 
-.latest-publication__date {
-  color: #b6b6b6;
-  font-size: 10px;
-  line-height: 1;
-  margin-bottom: 8px;
+.home-news__eparchy-title {
+  margin-bottom: 40px;
+  padding-left: 32px;
+  width: 50%;
+  order: 3;
 }
 
-.latest-publication__title {
-  font-family: "Georgia", cursive;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: 0.16px;
-  color: #373737;
-  text-decoration: none;
-}
-.latest-publication__title:hover {
-  color: #f03325;
+.home-news__eparchy-body {
+  padding-left: 32px;
+  width: 50%;
+  order: 5;
 }
 
-.latest-publication__desc {
-  color: #7a7a7a;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.6;
-  margin-top: 16px;
+.home-news__deans-title {
+  margin-bottom: 40px;
+  padding-left: 32px;
+  width: 50%;
+  order: 4;
+}
+
+.home-news__deans-body {
+  padding-left: 32px;
+  width: 50%;
+  order: 6;
+}
+
+.home-news__deans-hr {
+  margin: 40px auto;
 }
 
 .home-publications {
@@ -2720,10 +2756,17 @@ img {
   margin-bottom: 40px;
 }
 
-.home-publications__latest {
+.home-publications__articles-latest {
   padding-left: 32px;
   width: 33.33%;
   order: 3;
+}
+
+.home-publications__articles-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 65px;
 }
 
 .home-publications__sliders {
@@ -2757,13 +2800,22 @@ img {
 
 .home-publications__calendar-desc {
   margin-top: 48px;
-  color: #7f7f7f;
-  font-size: 12px;
-  line-height: 1.15;
-  letter-spacing: 0.12px;
 }
-.home-publications__calendar-desc em {
-  font-weight: 700;
+
+.home-ecalendar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 80px;
+  margin-bottom: 110px;
+}
+
+.home-ecalendar__title {
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.home-ecalendar__body {
+  width: 100%;
 }
 
 .intro-news {
@@ -3415,13 +3467,6 @@ img {
   line-height: 1.6;
 }
 
-.deans-news-hr {
-  background: url(/wp-content/themes/eparchy/dist/images/hr.png?c846e541ab99fd0464021a8397fad568) no-repeat 50% 50%;
-  width: 561px;
-  height: 37px;
-  margin: 40px auto;
-}
-
 .deans-news-item {
   position: relative;
   margin: 44px 0;
@@ -3509,8 +3554,8 @@ img {
   min-height: 100%;
 }
 
-.deans-banners-swiper .swiper-container {
-  padding-bottom: 20px;
+.deans-banners-swiper {
+  position: relative;
 }
 
 .deans-banners-swiper-item {
@@ -3547,7 +3592,7 @@ img {
 
 .deans-banners-swiper__nav {
   position: absolute;
-  bottom: 0;
+  bottom: -20px;
   right: 4px;
   display: flex;
 }
@@ -3599,7 +3644,7 @@ img {
 .deans-banners-union {
   background: #89a066;
   flex-grow: 1;
-  margin-top: 20px;
+  margin-top: 40px;
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -3939,9 +3984,10 @@ img {
 .archive-calendar__months {
   width: 25%;
   min-width: 25%;
+  display: flex;
+  flex-direction: column;
 }
-
-.archive-calendar__months-row {
+.archive-calendar__months button {
   display: block;
   width: 100%;
   background: #eff4f4;
@@ -3951,21 +3997,22 @@ img {
   text-transform: uppercase;
   color: #404040;
   font-size: 10px;
-  line-height: 45px;
+  line-height: 1.25;
   text-transform: uppercase;
   letter-spacing: -0.05px;
+  flex-grow: 1;
   cursor: pointer;
 }
-.archive-calendar__months-row:hover {
+.archive-calendar__months button.active, .archive-calendar__months button:hover {
   background: #f3e3de;
 }
 
 .archive-calendar__days {
   flex-grow: 1;
   overflow: hidden;
+  min-height: 495px;
 }
-
-.archive-calendar__days-row {
+.archive-calendar__days button {
   color: #3c3c3c;
   font-size: 12px;
   padding: 0 2px;
@@ -3978,6 +4025,389 @@ img {
   min-width: 33.33%;
   cursor: pointer;
 }
-.archive-calendar__days-row:hover {
+.archive-calendar__days button:hover {
   background: #f3e3de;
+}
+
+.latest-publication {
+  position: relative;
+}
+
+.latest-publication__figure-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 25px;
+}
+
+.latest-publication__date {
+  color: #b6b6b6;
+  font-size: 10px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.latest-publication__title {
+  font-family: "Georgia", cursive;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.16px;
+  color: #373737;
+  text-decoration: none;
+  display: inline-block;
+}
+.latest-publication__title:hover {
+  color: #f03325;
+}
+.latest-publication__title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.latest-publication__desc {
+  color: #7a7a7a;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+.ecalendar {
+  max-width: 75%;
+}
+@media (max-width: 1023px) {
+  .ecalendar {
+    max-width: 90%;
+  }
+}
+
+.ecalendar__headline {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 4px solid #f4987f;
+}
+
+.ecalendar__headline-tab {
+  background-color: #e8ebeb;
+  margin-right: 10px;
+  padding: 10px 20px;
+  color: #787a82;
+  letter-spacing: 0.01em;
+  line-height: 1.33;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  min-height: 69px;
+  max-width: 360px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5);
+}
+.ecalendar__headline-tab:last-child {
+  margin-right: 0;
+}
+.ecalendar__headline-tab:hover {
+  background: #fff0cf;
+}
+
+.ecalendar__headline-tab span {
+  width: 8px;
+  height: 8px;
+  display: none;
+  position: relative;
+  margin-left: 10px;
+  overflow: hidden;
+}
+.ecalendar__headline-tab span::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+}
+.ecalendar__headline-tab span::after {
+  content: "";
+  width: 200%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  height: 2px;
+  background-color: currentColor;
+}
+
+.ecalendar__headline-tab.active {
+  color: #ffffff;
+  text-shadow: 0.5px 0.866px 0px rgba(90, 58, 46, 0.3);
+  background-color: #f49176;
+  box-shadow: none;
+  min-height: 80px;
+  padding-top: 21px;
+}
+.ecalendar__headline-tab.active span {
+  display: block;
+}
+
+.ecalendar__body {
+  display: flex;
+  align-items: center;
+  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
+  padding-top: 46px;
+  padding-bottom: 60px;
+  padding-left: 25px;
+  padding-right: 0;
+}
+@media (max-width: 1023px) {
+  .ecalendar__body {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+}
+
+.ecalendar__legend-and-control {
+  display: flex;
+  align-items: center;
+  margin-right: 60px;
+}
+@media (max-width: 1023px) {
+  .ecalendar__legend-and-control {
+    flex-direction: column;
+    margin-right: 30px;
+  }
+}
+
+.ecalendar-legend {
+  margin-right: 15px;
+}
+
+.ecalendar-legend__row {
+  font-size: 12px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: #999999;
+  padding-left: 18px;
+  position: relative;
+  margin: 8px 0;
+}
+.ecalendar-legend__row::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 3px;
+  background: #999999;
+}
+.ecalendar-legend__row_current::before {
+  background: #8ae8ff;
+}
+.ecalendar-legend__row_primary::before {
+  background: #fffe8a;
+}
+.ecalendar-legend__row_weeks::before {
+  background: #ffcccc;
+}
+.ecalendar-legend__row_post::before {
+  background: #33cc00;
+}
+.ecalendar-legend__row_memorial::before {
+  background: #999966;
+}
+
+.ecalendar-content {
+  flex-grow: 1;
+  background-color: #fff0cf;
+  box-shadow: 1.414px 1.414px 3px 0px rgba(0, 0, 0, 0.1);
+  margin-right: calc((((100vw - 1145px) / 2) - ((100vw - 1400px) / 2) + (1145px * 0.25) - 60px) * -1);
+}
+@media (max-width: 1400px) {
+  .ecalendar-content {
+    margin-right: calc((((100vw - 1145px) / 2) + (1145px * 0.25) - 60px) * -1);
+  }
+}
+@media (max-width: 1279px) {
+  .ecalendar-content {
+    margin-right: calc((((100vw - 24px) * 0.25) - 12px) * -1);
+  }
+}
+@media (max-width: 1023px) {
+  .ecalendar-content {
+    margin-right: calc((((100vw - 24px) * 0.1) - 12px) * -1);
+  }
+}
+
+.ecalendar-control {
+  width: 294px;
+  min-width: 294px;
+  max-width: 294px;
+}
+
+.ecalendar-control__headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ecalendar-control__headline-prev::after {
+  content: "prev";
+}
+
+.ecalendar-control__headline-next::after {
+  content: "next";
+}
+
+.ecalendar-control__headline-prev,
+.ecalendar-control__headline-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  min-height: 42px;
+}
+.ecalendar-control__headline-prev::after,
+.ecalendar-control__headline-next::after {
+  font-family: swiper-icons;
+  font-size: 20px;
+}
+.ecalendar-control__headline-prev:hover,
+.ecalendar-control__headline-next:hover {
+  text-decoration: none;
+  color: #e4c686;
+}
+
+.ecalendar-control__headline-year {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+  line-height: 1;
+}
+
+.ecalendar-control__body table {
+  border-collapse: collapse;
+  border: none;
+}
+.ecalendar-control__body th {
+  padding: 0;
+  width: 42ex;
+  height: 42px;
+  border-bottom: 1px solid #9a9b9d;
+  background: #e4c686;
+  color: #666666;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 42px;
+}
+.ecalendar-control__body th:nth-child(2n) {
+  background: #ffffff;
+}
+.ecalendar-control__body td {
+  padding: 0;
+  border-bottom: 1px solid #9a9b9d;
+  background: #ededed;
+}
+.ecalendar-control__body td:last-child {
+  background: #cdddee;
+}
+.ecalendar-control__body tr:nth-child(2n) td {
+  background: #b6b6b8;
+}
+.ecalendar-control__body tr:nth-child(2n) td:last-child {
+  background: #cdddee;
+}
+
+.ecalendar-control__day {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: center;
+  line-height: 42px;
+  color: #000000;
+  font-size: 12px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.ecalendar-control__day_current {
+  font-weight: bold;
+}
+.ecalendar-control__day_past {
+  color: #999999;
+}
+.ecalendar-control__day_future {
+  color: #999999;
+}
+.ecalendar-control__day::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  border: 2px solid #f4987f;
+  background-color: #fff0cf;
+  border-radius: 50%;
+  display: none;
+  z-index: -1;
+}
+.ecalendar-control__day:hover::before {
+  display: block;
+}
+
+.ecalendar-control__markers {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 4px;
+  display: flex;
+}
+.ecalendar-control__markers > * {
+  margin: 0 1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #8b8b8c;
+}
+
+.ecalendar-control__marker-current {
+  background: #8ae8ff;
+}
+
+.ecalendar-control__marker-primary {
+  background: #fffe8a;
+}
+
+.ecalendar-control__marker-weeks {
+  background: #ffcccc;
+}
+
+.ecalendar-control__marker-post {
+  background: #33cc00;
+}
+
+.ecalendar-control__marker-memorial {
+  background: #999966;
 }

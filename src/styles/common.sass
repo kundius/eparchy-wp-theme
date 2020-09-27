@@ -33,6 +33,35 @@ img
 .wrapper
   overflow: hidden
 
+.ui-hr
+  height: 37px
+  position: relative
+  width: 100%
+  background: url('../images/hr-left.png') no-repeat 0 50%, url('../images/hr-right.png') no-repeat 100% 50%, url('../images/hr-center.png') no-repeat 50% 50%
+  &::after
+    content: ''
+    position: absolute
+    top: 18px
+    left: 0
+    height: 1px
+    width: 100%
+    background: linear-gradient(to right, transparent 0, transparent 19px, #dadada 19px, #dadada calc(50% - 73px), transparent calc(50% - 73px), transparent calc(50% + 73px), #dadada calc(50% + 73px), #dadada calc(100% - 19px), transparent calc(100% - 19px))
+  &_small
+    height: 5px
+    background: url('../images/hr-left.png') no-repeat 0 50%, url('../images/hr-right.png') no-repeat 100% 50%
+    &::after
+      top: 2px
+      background: linear-gradient(to right, transparent 0, transparent 19px, #dadada 19px, #dadada calc(100% - 19px), transparent calc(100% - 19px))
+
+
+.ui-text-small
+  color: #7f7f7f
+  font-size: 12px
+  line-height: 1.15
+  letter-spacing: 0.12px
+  em
+    font-weight: 700
+
 .ui-icon
   display: inline-block
   width: 1em
@@ -161,7 +190,6 @@ img
       width: 100%
 
 .pagination
-  border-bottom: 1px solid #dadada
   line-height: 1
   padding: 16px 0
   .nav-links

@@ -1,0 +1,322 @@
+.ecalendar {
+  max-width: 75%;
+  @include below(medium) {
+    max-width: 90%;
+  }
+}
+
+.ecalendar__headline {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 4px solid #f4987f;
+}
+
+.ecalendar__headline-tab {
+  background-color: #e8ebeb;
+  margin-right: 10px;
+  padding: 10px 20px;
+  color: #787a82;
+  letter-spacing: 0.01em;
+  line-height: 1.33;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  min-height: 69px;
+  max-width: 360px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5);
+  &:last-child {
+    margin-right: 0;
+  }
+  &:hover {
+    background: #fff0cf;
+  }
+}
+
+.ecalendar__headline-tab span {
+  width: 8px;
+  height: 8px;
+  display: none;
+  position: relative;
+  margin-left: 10px;
+  overflow: hidden;
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+  }
+  &::after {
+    content: '';
+    width: 200%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    height: 2px;
+    background-color: currentColor;
+  }
+}
+
+.ecalendar__headline-tab.active {
+  color: #ffffff;
+  text-shadow: 0.5px 0.866px 0px rgba(90, 58, 46, 0.3);
+  background-color: #f49176;
+  box-shadow: none;
+  min-height: 80px;
+  padding-top: 21px;
+  span {
+    display: block;
+  }
+}
+
+.ecalendar__body {
+  display: flex;
+  align-items: center;
+  background: url('../images/bg-pattern-gray.jpg');
+  padding-top: 46px;
+  padding-bottom: 60px;
+  padding-left: 25px;
+  padding-right: 0;
+  @include below(medium) {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+}
+
+.ecalendar__legend-and-control {
+  display: flex;
+  align-items: center;
+  margin-right: 60px;
+  @include below(medium) {
+    flex-direction: column;
+    margin-right: 30px;
+  }
+}
+
+.ecalendar-legend {
+  margin-right: 15px;
+}
+
+.ecalendar-legend__row {
+  font-size: 12px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: #999999;
+  padding-left: 18px;
+  position: relative;
+  margin: 8px 0;
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 3px;
+    background: #999999;
+  }
+  &_current::before {
+    background: #8ae8ff;
+  }
+  &_primary::before {
+    background: #fffe8a;
+  }
+  &_weeks::before {
+    background: #ffcccc;
+  }
+  &_post::before {
+    background: #33cc00;
+  }
+  &_memorial::before {
+    background: #999966;
+  }
+}
+
+.ecalendar-content {
+  flex-grow: 1;
+  background-color: rgb(255, 240, 207);
+  box-shadow: 1.414px 1.414px 3px 0px rgba(0, 0, 0, 0.1);
+  margin-right: calc((((100vw - 1145px) / 2) - ((100vw - 1400px) / 2) + (1145px * 0.25) - 60px) * -1);
+  @media (max-width: 1400px) {
+    margin-right: calc((((100vw - 1145px) / 2) + (1145px * 0.25) - 60px) * -1);
+  }
+  @include below(large) {
+    margin-right: calc((((100vw - 24px) * 0.25) - 12px) * -1);
+  }
+  @include below(medium) {
+    margin-right: calc((((100vw - 24px) * 0.1) - 12px) * -1);
+  }
+}
+
+.ecalendar-control {
+  width: 294px;
+  min-width: 294px;
+  max-width: 294px;
+}
+
+.ecalendar-control__headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ecalendar-control__headline-prev::after {
+  content: 'prev';
+}
+
+.ecalendar-control__headline-next::after {
+  content: 'next';
+}
+
+.ecalendar-control__headline-prev,
+.ecalendar-control__headline-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  min-height: 42px;
+  &::after {
+    font-family: swiper-icons;
+    font-size: 20px;
+  }
+  &:hover {
+    text-decoration: none;
+    color: #e4c686;
+  }
+}
+
+.ecalendar-control__headline-year {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+  line-height: 1;
+}
+
+.ecalendar-control__body {
+  table {
+    border-collapse: collapse;
+    border: none;
+  }
+  th {
+    padding: 0;
+    width: 42ex;
+    height: 42px;
+    border-bottom: 1px solid #9a9b9d;
+    background: #e4c686;
+    color: #666666;
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 42px;
+    &:nth-child(2n) {
+      background: #ffffff;
+    }
+  }
+  td {
+    padding: 0;
+    border-bottom: 1px solid #9a9b9d;
+    background: #ededed;
+    &:last-child {
+      background: #cdddee;
+    }
+  }
+  tr:nth-child(2n) td {
+    background: #b6b6b8;
+    &:last-child {
+      background: #cdddee;
+    }
+  }
+}
+
+.ecalendar-control__day {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: center;
+  line-height: 42px;
+  color: #000000;
+  font-size: 12px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  &_current {
+    font-weight: bold;
+  }
+  &_past {
+    color: #999999;
+  }
+  &_future {
+    color: #999999;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border: 2px solid #f4987f;
+    background-color: #fff0cf;
+    border-radius: 50%;
+    display: none;
+    z-index: -1;
+  }
+  &:hover::before {
+    display: block;
+  }
+}
+
+.ecalendar-control__markers {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 4px;
+  display: flex;
+  > * {
+    margin: 0 1px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #8b8b8c;
+  }
+}
+
+.ecalendar-control__marker-current {
+  background: #8ae8ff;
+}
+
+.ecalendar-control__marker-primary {
+  background: #fffe8a;
+}
+
+.ecalendar-control__marker-weeks {
+  background: #ffcccc;
+}
+
+.ecalendar-control__marker-post {
+  background: #33cc00;
+}
+
+.ecalendar-control__marker-memorial {
+  background: #999966;
+}

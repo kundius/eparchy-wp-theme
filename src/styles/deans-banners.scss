@@ -5,9 +5,7 @@
 }
 
 .deans-banners-swiper {
-  .swiper-container {
-    padding-bottom: 20px;
-  }
+  position: relative;
 }
 
 .deans-banners-swiper-item {
@@ -44,7 +42,7 @@
 
 .deans-banners-swiper__nav {
   position: absolute;
-  bottom: 0;
+  bottom: -20px;
   right: 4px;
   display: flex;
   .swiper-button-prev,
@@ -89,7 +87,7 @@
 .deans-banners-union {
   background: #89a066;
   flex-grow: 1;
-  margin-top: 20px;
+  margin-top: 40px;
   text-decoration: none;
   display: flex;
   flex-direction: column;

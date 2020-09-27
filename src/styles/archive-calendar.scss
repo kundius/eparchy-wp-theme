@@ -63,45 +63,48 @@
 .archive-calendar__months {
   width: 25%;
   min-width: 25%;
-}
-
-.archive-calendar__months-row {
-  display: block;
-  width: 100%;
-  background: #eff4f4;
-  border: none;
-  border-right: 1px solid #dddfe7;
-  padding: 0 2px;
-  text-transform: uppercase;
-  color: #404040;
-  font-size: 10px;
-  line-height: 45px;
-  text-transform: uppercase;
-  letter-spacing: -0.05px;
-  cursor: pointer;
-  &:hover {
-    background: #f3e3de;
+  display: flex;
+  flex-direction: column;
+  button {
+    display: block;
+    width: 100%;
+    background: #eff4f4;
+    border: none;
+    border-right: 1px solid #dddfe7;
+    padding: 0 2px;
+    text-transform: uppercase;
+    color: #404040;
+    font-size: 10px;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: -0.05px;
+    flex-grow: 1;
+    cursor: pointer;
+    &.active,
+    &:hover {
+      background: #f3e3de;
+    }
   }
 }
 
 .archive-calendar__days {
   flex-grow: 1;
   overflow: hidden;
-}
-
-.archive-calendar__days-row {
-  color: #3c3c3c;
-  font-size: 12px;
-  padding: 0 2px;
-  border: none;
-  background: #fdfefe;
-  line-height: 44px;
-  margin-bottom: 1px;
-  float: left;
-  width: 33.33%;
-  min-width: 33.33%;
-  cursor: pointer;
-  &:hover {
-    background: #f3e3de;
+  min-height: 495px; // 11 рядов дней
+  button {
+    color: #3c3c3c;
+    font-size: 12px;
+    padding: 0 2px;
+    border: none;
+    background: #fdfefe;
+    line-height: 44px;
+    margin-bottom: 1px;
+    float: left;
+    width: 33.33%;
+    min-width: 33.33%;
+    cursor: pointer;
+    &:hover {
+      background: #f3e3de;
+    }
   }
 }
