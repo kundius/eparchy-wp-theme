@@ -7,12 +7,16 @@ class ECalendar {
       date: wrapper.querySelector('[data-ecalendar-date]'),
       forward: wrapper.querySelector('[data-ecalendar-forward]'),
       backward: wrapper.querySelector('[data-ecalendar-backward]'),
-      body: wrapper.querySelector('[data-ecalendar-body]')
+      body: wrapper.querySelector('[data-ecalendar-body]'),
+      content: wrapper.querySelector('[data-ecalendar-content]')
     }
+
+    this.data = {}
+    this.loading = 0
+    this.activeDay = null
 
     this.handleBackward = this.handleBackward.bind(this)
     this.handleForward = this.handleForward.bind(this)
-    this.handleDayClick = this.handleDayClick.bind(this)
   }
 
   init () {
@@ -25,58 +29,44 @@ class ECalendar {
     this.renderCalendar()
   }
 
-  async renderCalendar () {
+  renderCalendar () {
+    let dates = []
     let mon = this.month
     let d = new Date(this.year, mon)
-   
     let table = '<table><thead><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></thead></tr><tbody><tr>'
+
+    this.elements.date.innerHTML = `${d.toLocaleDateString('ru-RU', { month: 'long' })} ${this.year}`
    
     for (let i = 0; i < this.getDay(d); i++) {
       const prevDate = new Date(d.getTime())
       prevDate.setDate(prevDate.getDate() - (this.getDay(prevDate) - i))
-      table += '<td><button class="ecalendar-control__day ecalendar-control__day_past">' + prevDate.getDate() + '</button></td>'
+      table += '<td><button data-ecalendar-day="' + this.formatDateKey(prevDate) + '" class="ecalendar-control__day ecalendar-control__day_past">' + prevDate.getDate() + '<span class="ecalendar-control__markers"></span></button></td>'
+      dates.push(this.formatDateKey(prevDate))
     }
    
     while (d.getMonth() == mon) {
-      const info = await this.loadDayInfo(d.getDate())
       const is_current = d.getDate() === new Date().getDate() && d.getMonth() === new Date().getMonth()
 
-      const markers = []
+      table += '<td>'
+      table += '<button data-ecalendar-day="' + this.formatDateKey(d) + '" class="ecalendar-control__day'
       if (is_current) {
-        markers.push('<span class="ecalendar-control__marker-current"></span>')
+        table += ' ecalendar-control__day_current'
       }
-      if (info.is_holidays) {
-        markers.push('<span class="ecalendar-control__marker-primary"></span>')
-      }
-      if (info.is_fasting) {
-        markers.push('<span class="ecalendar-control__marker-post"></span>')
-      }
-      if (info.is_solid_weeks) {
-        markers.push('<span class="ecalendar-control__marker-weeks"></span>')
-      }
-      if (info.is_commemoration) {
-        markers.push('<span class="ecalendar-control__marker-memorial"></span>')
-      }
-
-      const button = document.createElement('button')
-      button.dataset.info = info
-      button.classList.add('ecalendar-control__day')
+      table += '">'
+      table += d.getDate()
+      table += '<span class="ecalendar-control__markers">'
       if (is_current) {
-        button.classList.add('ecalendar-control__day_current')
+        table += '<span class="ecalendar-control__marker-current"></span>'
       }
-      button.innerHTML = d.getDate()
-      if (markers.length > 0) {
-        const markersEl = document.createElement('span')
-        markersEl.classList.add('ecalendar-control__markers')
-        markersEl.innerHTML = markers.join('')
-        button.appendChild(markersEl)
-      }
-
-      table += '<td>' + button.outerHTML + '</td>'
+      table += '</span>'
+      table += '</button>'
+      table += '</td>'
 
       if (this.getDay(d) % 7 == 6) { 
         table += '</tr><tr>'
       }
+
+      dates.push(this.formatDateKey(d))
    
       d.setDate(d.getDate() + 1)
     }
@@ -85,16 +75,23 @@ class ECalendar {
       for (let i = this.getDay(d); i < 7; i++) {
         const futureDate = new Date(d.getTime())
         futureDate.setDate(futureDate.getDate() + (i - this.getDay(d)))
-        table += '<td><button class="ecalendar-control__day ecalendar-control__day_future">' + futureDate.getDate() + '</button></td>'
+        table += '<td><button data-ecalendar-day="' + this.formatDateKey(futureDate) + '" class="ecalendar-control__day ecalendar-control__day_future">' + futureDate.getDate() + '<span class="ecalendar-control__markers"></span></button></td>'
+        dates.push(this.formatDateKey(futureDate))
       }
     }
    
     table += '</tr></tbody></table>'
    
     this.elements.body.innerHTML = table
-    this.elements.date.innerHTML = `${d.toLocaleDateString('ru-RU', { month: 'long' })} ${this.year}`
-    // this.loadDaysInfo()
-    // this.elements.body.querySelectorAll('[data-ecalendar-day]').forEach(el => el.addEventListener('click', this.handleDayClick))
+    this.elements.body.querySelectorAll('[data-ecalendar-day]').forEach(el => {
+      el.addEventListener('click', () => this.showDay(el.dataset.ecalendarDay))
+    })
+
+    this.loadCalendarData(dates)
+  }
+
+  formatDateKey (date) {
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
   }
 
   getDay (date) {
@@ -103,27 +100,48 @@ class ECalendar {
     return day - 1
   }
 
-  async loadDayInfo (day) {
-  //   const days = this.elements.body.querySelectorAll('[data-ecalendar-day]')
-  //   for (let i = 0; i < days.length; i++) {
-      const formData = new FormData()
-      formData.append('day', day)
-      formData.append('year', this.year)
-      formData.append('month', this.month)
-      formData.append('action', 'get_day_info')
-      const response = await fetch(myajax.url, {
-        method: 'POST',
-        body: formData
+  loadCalendarData (dates) {
+    this.loading += 1
+    if (this.loading > 0) {
+      this.elements.wrapper.classList.add('loading')
+    }
+    const formData = new FormData()
+    formData.append('dates', dates)
+    formData.append('action', 'get_calendar_data')
+    fetch(myajax.url, {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(json => {
+        this.data = {...this.data, ...json}
+        
+        this.elements.body.querySelectorAll('[data-ecalendar-day]').forEach(el => {
+          const markers = el.querySelector('.ecalendar-control__markers')
+    
+          if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_holidays && !markers.querySelector('.ecalendar-control__marker-primary')) {
+            markers.innerHTML += '<span class="ecalendar-control__marker-primary"></span>'
+          }
+          if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_fasting && !markers.querySelector('.ecalendar-control__marker-post')) {
+            markers.innerHTML += '<span class="ecalendar-control__marker-post"></span>'
+          }
+          if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_weeks && !markers.querySelector('.ecalendar-control__marker-weeks')) {
+            markers.innerHTML += '<span class="ecalendar-control__marker-weeks"></span>'
+          }
+          if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_commemoration && !markers.querySelector('.ecalendar-control__marker-memorial')) {
+            markers.innerHTML += '<span class="ecalendar-control__marker-memorial"></span>'
+          }
+        })
       })
-      const json = await response.json()
-      return json
-  //     console.log(json)
-  //     // .then(response => response.json())
-  //     // .then(json => {
-  //     //   console.log(json)
-  //     // })
-  //   }
-  //   // this.elements.body.querySelectorAll('[data-ecalendar-day]')
+      .finally(() => {
+        this.loading -= 1
+        if (this.loading === 0) {
+          this.elements.wrapper.classList.remove('loading')
+        }
+        if (!this.activeDay && this.data[this.formatDateKey(new Date())]) {
+          this.showDay(this.formatDateKey(new Date()))
+        }
+      })
   }
 
   handleForward () {
@@ -148,55 +166,42 @@ class ECalendar {
     this.renderCalendar()
   }
 
-  handleDayClick (e) {
-    let formData = new FormData()
-    formData.append('day', e.target.dataset.ecalendarDay)
-    formData.append('year', this.year)
-    formData.append('month', this.month)
-    formData.append('action', 'get_day_info')
-    fetch(myajax.url, {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.json())
-    .then(json => {
-      console.log(json)
-    })
+  showDay (day) {
+    const data = this.data[day]
+    const dayDate = new Date(day)
+    const dayDateOld = new Date(dayDate.getTime() - (60 * 60 * 24 * 13 * 1000))
 
-    // axios.get(`https://script.pravoslavie.ru/cache_calendar_php/var=varname&php=1&hrams=0&hram=0&date=${e.target.dataset.ecalendarDay}.ls`)
-    // .then(function (response) {
-    //   // handle success
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   // handle error
-    //   console.log(error);
-    // })
-    // .then(function () {
-    //   // always executed
-    // });
-
-    // fetch(`https://script.pravoslavie.ru/cache_calendar_php/var=varname&php=1&hrams=0&hram=0&date=${e.target.dataset.ecalendarDay}.ls`, {
-    //   mode: 'no-cors',
-    //   // headers: {
-    //   //   'Access-Control-Allow-Origin':'*'
-    //   // }
-    // })
-    // .then(response => {
-    //   console.log(response)
-    // })
-    // .catch(response => {
-    //   console.log(response)
-    // })
-
-    // if (response.ok) { // если HTTP-статус в диапазоне 200-299
-    //   // получаем тело ответа (см. про этот метод ниже)
-    //   let json = await response.json();
-    // } else {
-    //   alert("Ошибка HTTP: " + response.status);
-    // }
-    // 
-    // console.log(e.target.dataset.ecalendarDay)
+    let html = ''
+    html += '<div class="ecalendar-dates">'
+    html += '<div class="ecalendar-dates__row">'
+    html += '<div class="ecalendar-dates__row-value">'
+    html += dayDate.toLocaleDateString('ru-RU', { month: 'long', day: 'numeric' })
+    html += '</div>'
+    html += '<div class="ecalendar-dates__row-label">'
+    html += 'по новому стилю'
+    html += '</div>'
+    html += '</div>'
+    html += '<div class="ecalendar-dates__row">'
+    html += '<div class="ecalendar-dates__row-value">'
+    html += dayDateOld.toLocaleDateString('ru-RU', { month: 'long', day: 'numeric' })
+    html += '</div>'
+    html += '<div class="ecalendar-dates__row-label">'
+    html += 'по старому стилю'
+    html += '</div>'
+    html += '</div>'
+    html += '</div>'
+    if (data.texts) {
+      html += '<div>'
+      html += data.texts
+      html += '</div>'
+    }
+    if (data.saints) {
+      html += '<div>'
+      html += data.saints
+      html += '</div>'
+    }
+    this.elements.content.innerHTML = html
+    this.activeDay = day
   }
 }
 

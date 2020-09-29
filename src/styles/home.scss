@@ -137,5 +137,9 @@
 }
 
 .home-ecalendar__body {
-  width: 100%;
+  // width: 100%;
+  width: 75%;
+  @include below(medium) {
+    width: 90%;
+  }
 }

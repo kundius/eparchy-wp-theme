@@ -638,46 +638,6 @@ Template Name: Главная
             </div>
           </div>
 
-          <pre>
-          <?php
-
-// $homepage = unserialize(file_get_contents('https://script.pravoslavie.ru/cache_calendar_php/var=varname&encoding=u&advanced=1&php=1&hrams=0&hram=0&date=0105.ls'));
-// print_r($homepage);
-
-// $homepage = json_decode(file_get_contents('https://azbyka.ru/days/api/day/2020-09-27.json'));
-// print_r($homepage);
-
-
-// print_r('server_output');
-// $ch = curl_init();
-
-// curl_setopt($ch, CURLOPT_URL, "https://script.pravoslavie.ru/cache_calendar_php/var=varname&php=1&hrams=0&hram=0&date=0927.ls");
-// // curl_setopt($ch, CURLOPT_POST, 1);
-// // curl_setopt($ch, CURLOPT_POSTFIELDS,
-// //             "postvar1=value1&postvar2=value2&postvar3=value3");
-
-// // In real life you should use something like:
-// // curl_setopt($ch, CURLOPT_POSTFIELDS, 
-// //          http_build_query(array('postvar1' => 'value1')));
-
-// // Receive server response ...
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-// $server_output = curl_exec($ch);
-
-// curl_close ($ch);
-
-// print_r($server_output);
-
-// // Further processing ...
-// if ($server_output == "OK") {
-  
-// } else {
-  
-// }
-          ?>
-          </pre>
-
           <div class="home-ecalendar">
             <div class="home-ecalendar__title">
               <div class="section-headline section-headline_gray">
@@ -686,41 +646,46 @@ Template Name: Главная
             </div>
 
             <div class="home-ecalendar__body">
-              <div class="ecalendar" data-ecalendar>
-                <div class="ecalendar__headline">
-                  <div class="ecalendar__headline-tab active">
+              <div class="tabs-panel" data-tabs>
+                <div class="tabs-panel__head">
+                  <div class="tabs-panel__head-item active" data-tabs-switch="first">
                     Месяцеслов
                     <span></span>
                   </div>
-                  <div class="ecalendar__headline-tab">
+                  <div class="tabs-panel__head-item" data-tabs-switch="second">
                     Церковные праздники, епархиальные памятные даты, торжества
                     <span></span>
                   </div>
                 </div>
-                <div class="ecalendar__body">
-                  <div class="ecalendar__legend-and-control">
-                    <div class="ecalendar-legend">
-                      <div class="ecalendar-legend__row ecalendar-legend__row_current">Текущая дата</div>
-                      <div class="ecalendar-legend__row ecalendar-legend__row_primary">Главные праздники</div>
-                      <div class="ecalendar-legend__row ecalendar-legend__row_weeks">Сплошные седмицы</div>
-                      <div class="ecalendar-legend__row ecalendar-legend__row_post">Дни поста</div>
-                      <div class="ecalendar-legend__row ecalendar-legend__row_memorial">Дни особого<br />поминовения<br />усопших</div>
-                    </div>
-                    
-                    <div class="ecalendar-control">
-                      <div class="ecalendar-control__headline">
-                        <button class="ecalendar-control__headline-prev" data-ecalendar-backward></button>
-                        <div class="ecalendar-control__headline-year" data-ecalendar-date></div>
-                        <button class="ecalendar-control__headline-next" data-ecalendar-forward></button>
-                      </div>
-                      <div class="ecalendar-control__body" data-ecalendar-body>
+                <div class="tabs-panel__body">
+                  <div class="tabs-panel__body-item active" data-tabs-body="first">
+                    <div class="ecalendar" data-ecalendar>
+                      <div class="ecalendar__legend-and-control">
+                        <div class="ecalendar-legend">
+                          <div class="ecalendar-legend__row ecalendar-legend__row_current">Текущая дата</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_primary">Главные праздники</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_weeks">Сплошные седмицы</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_post">Дни поста</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_memorial">Дни особого<br />поминовения<br />усопших</div>
+                        </div>
+                        
+                        <div class="ecalendar-control">
+                          <div class="ecalendar-control__headline">
+                            <button class="ecalendar-control__headline-prev" data-ecalendar-backward></button>
+                            <div class="ecalendar-control__headline-year" data-ecalendar-date></div>
+                            <button class="ecalendar-control__headline-next" data-ecalendar-forward></button>
+                          </div>
+                          <div class="ecalendar-control__body" data-ecalendar-body>
 
+                          </div>
+                        </div>
                       </div>
+
+                      <div class="ecalendar-content" data-ecalendar-content></div>
                     </div>
                   </div>
-
-                  <div class="ecalendar-content">
-                    ecalendar-content
+                  <div class="tabs-panel__body-item" data-tabs-body="second">
+                    second
                   </div>
                 </div>
               </div>

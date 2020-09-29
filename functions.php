@@ -601,49 +601,140 @@ add_action('wp_enqueue_scripts', function () {
 }, 99);
 
 
-add_action('wp_ajax_get_day_info', 'ajax_get_day_info', 10, 2);
-add_action('wp_ajax_nopriv_get_day_info', 'ajax_get_day_info', 10, 2);
-function ajax_get_day_info() {
-	$year = $_POST['year'];
-	$day = $_POST['day'];
-	$month = $_POST['month'];
+function is_weeks($datetime, $data) {
+	// это Святки, дата фиксированна
+	if ($datetime->format('m') == 1 && ($datetime->format('d') > 7 && $datetime->format('d') < 18)) {
+		return true;
+	}
 
-	if (!$year || !$day || !$month) {
+	// в описании есть слова "Седмица сплошная"
+	if (strpos($data->fasting->weeks, 'Седмица сплошная') !== false) {
+		return true;
+	}
+
+	// в описании есть слова "Седмица cырная (мясопустная) - сплошная"
+	if (strpos($data->fasting->weeks, 'Седмица cырная (мясопустная) - сплошная') !== false) {
+		return true;
+	}
+
+	// в описании есть слова "Светлая седмица – сплошная"
+	if (strpos($data->fasting->weeks, 'Светлая седмица – сплошная') !== false) {
+		return true;
+	}
+
+	// в описании есть слова "Троицкая"
+	if (strpos($data->fasting->weeks, 'Троицкая') !== false) {
+		return true;
+	}
+
+	// ничего не найдено
+	return false;
+}
+
+function is_commemoration($datetime, $data) {
+	// дата 9 мая фиксированна
+	if ($datetime->format('m') == 5 && $datetime->format('d') == 9) {
+		return true;
+	}
+
+	// в описании есть слова "Поминовение усопших"
+	if (strpos($data->fasting->weeks, 'Поминовение усопших') !== false) {
+		return true;
+	}
+
+	// в описании есть слова "Вселенская родительская (мясопустная) суббота"
+	if (strpos($data->fasting->weeks, 'Вселенская родительская (мясопустная) суббота') !== false) {
+		return true;
+	}
+
+	// в описании есть слова "Троицкая родительская суббота"
+	if (strpos($data->fasting->weeks, 'Троицкая родительская суббота') !== false) {
+		return true;
+	}
+
+	// определяем по празднику
+	foreach ($data->holidays as $item) {
+		if ($item->title == 'Димитриевская родительская суббота') {
+			return true;
+		}
+	}
+
+	// ничего не найдено
+	return false;
+}
+
+function is_holidays($datetime, $data) {
+	if (empty($data->holidays)) {
+		return false;
+	}
+
+	if (!is_array($data->holidays)) {
+		return false;
+	}
+
+	return count(array_filter($data->holidays, function ($row) {
+		return $row->marked == 1;
+	})) > 0;
+}
+
+function is_fasting($datetime, $data) {
+	if (!empty($data->fasting->fasting)) {
+		return true;
+	}
+
+	return false;
+}
+
+
+add_action('wp_ajax_get_calendar_data', 'ajax_get_calendar_data', 10, 2);
+add_action('wp_ajax_nopriv_get_calendar_data', 'ajax_get_calendar_data', 10, 2);
+function ajax_get_calendar_data() {
+	$dates = $_POST['dates'];
+
+	if (!$dates) {
 		wp_die();
 	}
 
-	$url = 'https://azbyka.ru/days/api/day/' . $year . '-'. $month . '-' . $day . '.json';
+	$dates_array = explode(',', $dates);
+	$output = [];
+
+	foreach ($dates_array as $date) {
+		$datetime = DateTime::createFromFormat('Y-m-d', $date);
+		$cache_key = 'ecalendar-' . $datetime->format('Y-m-d');
+
+		$data = get_transient($cache_key);
+		if (empty($data)) {
+			$url = 'https://azbyka.ru/days/api/day/' . $datetime->format('Y-m-d') . '.json';
 	
-	$cache_key = $url;
-	$data = wp_cache_get($cache_key);
-
-	if (!$data) {
-		$response = json_decode(file_get_contents($url));
-
-		$texts = [];
-		foreach ($response->texts as $item) {
-			$texts[] = $item->text;
-		}
+			$response = json_decode(file_get_contents($url));
 	
-		$saints = [];
-		foreach ($response->saints as $item) {
-			$saints[] = $item->title;
+			$texts = [];
+			foreach ($response->texts as $item) {
+				$texts[] = $item->text;
+			}
+		
+			$saints = [];
+			foreach ($response->saints as $item) {
+				$saints[] = $item->title;
+			}
+
+			$data = [
+				'is_fasting' => is_fasting($datetime, $response),
+				'is_holidays' => is_holidays($datetime, $response),
+				'is_weeks' => is_weeks($datetime, $response),
+				'is_commemoration' => is_commemoration($datetime, $response),
+				'saints' => implode(', ', $saints),
+				'texts' => implode(', ', $texts),
+				'fasting' => $response->fasting->round_week
+			];
+
+			set_transient($cache_key, $data, MONTH_IN_SECONDS);
 		}
 
-		$data = [
-			'is_fasting' => !empty($response->fasting),
-			'is_holidays' => !empty($response->holidays),
-			'is_solid_weeks' => false,
-			'is_commemoration' => false,
-			'saints' => implode(', ', $texts),
-			'texts' => implode(', ', $texts),
-			'fasting' => $response->fasting->round_week
-		];
-
-		wp_cache_set($cache_key, $data);
+		$output[$date] = $data;
 	}
 
-	echo json_encode($data);
+	echo json_encode($output);
 
 	wp_die();
 }

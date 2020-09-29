@@ -2,6 +2,7 @@ import Swiper, { Navigation, Pagination } from 'swiper'
 import 'swiper/swiper-bundle.css'
 import './archive-calendar'
 import ECalendar from './ecalendar'
+import Tabs from './Tabs'
 
 Swiper.use([Navigation, Pagination])
 
@@ -112,4 +113,9 @@ const tiledInterviewsSwiper = new Swiper('.js-tiled-swiper-interviews', {
 const ecalendars = document.querySelectorAll('[data-ecalendar]')
 if (ecalendars.length > 0) {
   ecalendars.forEach(el => new ECalendar(el).init())
+}
+
+const tabs = document.querySelectorAll('[data-tabs]')
+if (tabs.length > 0) {
+  tabs.forEach(el => new Tabs(el).init())
 }
