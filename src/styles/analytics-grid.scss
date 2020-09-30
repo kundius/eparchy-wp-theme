@@ -1,0 +1,195 @@
+.analytics-grid {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.analytics-grid-item {
+  background: #f5f5f5;
+  position: relative;
+  z-index: 1;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: box-shadow .5s ease;
+  &:hover {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.analytics-grid-item__image {
+  display: block;
+}
+
+.analytics-grid-item__title {
+  text-decoration: none;
+  display: block;
+  font-family: $font-family-alt;
+  font-size: 16px;
+  line-height: 1.375;
+  display: block;
+  font-style: italic;
+  color: #000000;
+  padding: 20px 8%;
+}
+
+.analytics-grid-item__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.analytics-grid-item:nth-child(2) {
+  background-color: #b92a53;
+}
+
+.analytics-grid-item:nth-child(2) .analytics-grid-item__title {
+  color: #ffffff;
+}
+
+.analytics-grid-item:nth-child(4) .analytics-grid-item__title {
+  color: #ffffff;
+}
+
+.analytics-grid-item:nth-child(5) {
+  grid-column: span 2;
+  background-color:#64c1e7;
+}
+
+.analytics-grid-item:nth-child(5) .analytics-grid-item__title {
+  color: #ffffff;
+}
+
+.analytics-grid-item:nth-child(6) {
+  background-color:#6a5937;
+}
+
+.analytics-grid-item:nth-child(6) .analytics-grid-item__title {
+  color: #ffffff;
+}
+
+.analytics-grid-item:nth-child(7) {
+  background-color:#505054;
+}
+
+.analytics-grid-item:nth-child(7) .analytics-grid-item__title {
+  color: #ffffff;
+}
+
+.analytics-grid-item:nth-child(8) {
+  background-color:#d7e8f9;
+}
+
+.analytics-grid-item:nth-child(8) .analytics-grid-item__title {
+  color: #000000;
+}
+
+.analytics-grid-item:nth-child(9) {
+  background-color:#fbe667;
+}
+
+.analytics-grid-item:nth-child(9) .analytics-grid-item__title {
+  color: #000000;
+}
+
+.analytics-grid-item:nth-child(2) .analytics-grid-item__title::before,
+.analytics-grid-item:nth-child(4) .analytics-grid-item__title::before,
+.analytics-grid-item:nth-child(5) .analytics-grid-item__title::before,
+.analytics-grid-item:nth-child(9) .analytics-grid-item__title::before {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background-color: currentColor;
+  margin-bottom: 20px;
+  margin-top: 48px;
+  display: block;
+}
+
+.analytics-grid-item:nth-child(2) .analytics-grid-item__image,
+.analytics-grid-item:nth-child(4) .analytics-grid-item__image,
+.analytics-grid-item:nth-child(5) .analytics-grid-item__image,
+.analytics-grid-item:nth-child(9) .analytics-grid-item__image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.analytics-banners {
+  grid-row: 2 / span 2;
+  grid-column: 4 / span 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.analytics-banner-union {
+  background: #009000;
+  flex-grow: 1;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  font-style: italic;
+  font-family: $font-family-alt;
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow .5s ease;
+  &:hover {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  }
+  &::before {
+    content: '';
+    width: 74px;
+    height: 71px;
+    display: inline-block;
+    background: url('../images/banner-union.png') no-repeat 50% 50%;
+    background-size: cover;
+    margin-bottom: 18px;
+  }
+}
+
+.analytics-banner-routes {
+  margin-top: 30px;
+  flex-grow: 4;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-style: italic;
+  font-family: $font-family-alt;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  background: #4b4b4f;
+  transition: box-shadow .5s ease;
+  &:hover {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/banner-ways.png') no-repeat 50% 50%;
+    background-size: cover;
+    opacity: 0.4;
+    z-index: -1;
+  }
+}

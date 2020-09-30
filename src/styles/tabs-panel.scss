@@ -38,7 +38,7 @@
   height: 8px;
   min-width: 8px;
   min-height: 8px;
-  display: none;
+  display: block;
   position: relative;
   margin-left: 10px;
   overflow: hidden;
@@ -71,9 +71,6 @@
   box-shadow: none;
   min-height: 80px;
   padding-top: 21px;
-  span {
-    display: block;
-  }
 }
 
 .tabs-panel__body-item {

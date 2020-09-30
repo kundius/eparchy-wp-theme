@@ -654,7 +654,6 @@ Template Name: Главная
                   </div>
                   <div class="tabs-panel__head-item" data-tabs-switch="second">
                     Церковные праздники, епархиальные памятные даты, торжества
-                    <span></span>
                   </div>
                 </div>
                 <div class="tabs-panel__body">
@@ -692,15 +691,61 @@ Template Name: Главная
             </div>
           </div>
 
-          <div class="help-hr"></div>
+          <div class="home-analytics">
+            <div class="home-analytics__title">
+              <div class="section-headline section-headline_yellow">
+                <div class="section-headline__title">Актуальная аналитика</div>
+                <a href="#" class="section-headline__link">смотреть все</a>
+                <div></div>
+              </div>
+            </div>
 
-          Главная<br />
-          Главная<br />
-          Главная<br />
-          Главная<br />
-          Главная<br />
-          Главная<br />
-          Главная<br />
+            <div class="home-analytics__body">
+              <div class="analytics-grid">
+                <div class="analytics-grid-item">
+                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
+                  <a href="#" class="analytics-grid-item__title">Чтобы люди нашли Церковь, Церковь должна искать Христа</a>
+                </div>
+                <div class="analytics-grid-item">
+                  <a href="#" class="analytics-grid-item__title">Церковь занимается не прогнозами, а людьми</a>
+                </div>
+                <div class="analytics-grid-item">
+                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
+                  <a href="#" class="analytics-grid-item__title">Владимир Легойда: Верую, ибо достойно. Рождественское</a>
+                </div>
+                <div class="analytics-grid-item">
+                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
+                  <a href="#" class="analytics-grid-item__title">Монастырь во имя преподобного Серафима Саровского <br /><br />с. Новомакарово</a>
+                </div>
+                <div class="analytics-grid-item">
+                  <a href="#" class="analytics-grid-item__title">«Екатеринбургские останки»: об истине и сенсациях</a>
+                </div>
+                <div class="analytics-grid-item">
+                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
+                  <a href="#" class="analytics-grid-item__title">Святейший Патриарх Кирилл призвал паству к участию в выборах</a>
+                </div>
+                <div class="analytics-grid-item">
+                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
+                  <a href="#" class="analytics-grid-item__title">Рождество: почему и зачем Бог стал Человеком?</a>
+                </div>
+                <div class="analytics-grid-item">
+                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
+                  <a href="#" class="analytics-grid-item__title">О церковном браке и «церковном разводе»</a>
+                </div>
+                <div class="analytics-grid-item">
+                  <a href="#" class="analytics-grid-item__title">Название статьи, может быть не в одну строку, а в две, три, четыре или больше строк, если длина названия блока превышает данный, его высота увеличивается</a>
+                </div>
+                <div class="analytics-banners">
+                  <a href="#" class="analytics-banner-union">
+                    Православный телеканал<br> «Союз»
+                  </a>
+                  <a href="#" class="analytics-banner-routes">
+                    Маршруты<br> паломничества
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <?php get_template_part('partials/footer'); ?>
