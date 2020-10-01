@@ -21,6 +21,9 @@
   &.loading .ecalendar-control__body::before {
     display: block;
   }
+  @include below(medium) {
+    align-items: flex-start;
+  }
 }
 
 .ecalendar__legend-and-control {
@@ -38,6 +41,15 @@
   width: 140px;
   min-width: 140px;
   max-width: 140px;
+  @include below(medium) {
+    order: 1;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    margin-top: 30px;
+    column-count: 2;
+  }
 }
 
 .ecalendar-legend__row {
@@ -48,6 +60,9 @@
   padding-left: 18px;
   position: relative;
   margin: 8px 0;
+  @include below(medium) {
+    margin: 0 0 15px;
+  }
   &::before {
     content: '';
     width: 6px;
@@ -94,6 +109,7 @@
   }
   @include below(medium) {
     margin-right: calc((((100vw - 24px) * 0.1) - 12px) * -1);
+    padding: 30px;
   }
 }
 
@@ -274,7 +290,6 @@
 
 .ecalendar-dates {
   display: flex;
-  flex-wrap: wrap;
   margin-bottom: 45px;
 }
 
@@ -284,6 +299,7 @@
   margin-left: 20px;
   padding-left: 20px;
   border-left: 1px solid #b9b9bb;
+  flex-wrap: wrap;
   &:first-child {
     margin-left: 0;
     padding-left: 0;

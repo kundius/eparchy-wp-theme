@@ -135,13 +135,14 @@ img
   align-items: center
   justify-content: space-between
   padding: 17px 0
-  // margin-bottom: 40px
+  +below(medium)
+    padding: 7px 0
 
 .section-headline__title
   color: #4a3726
   font-size: 14px
   font-weight: 700
-  line-height: 24px
+  line-height: 26px
   text-transform: uppercase
   letter-spacing: 0.07px
   position: relative
@@ -164,6 +165,13 @@ img
     background-color: #dbebfc
   .section-headline_yellow &::before
     background-color: #f9f1e2
+  +below(medium)
+    font-size: 12px
+    padding-left: 12px
+    &::before
+      width: 40px
+      height: 40px
+      top: -8px
 
 .section-headline__link
   color: #de8366
@@ -194,6 +202,8 @@ img
 .pagination
   line-height: 1
   padding: 16px 0
+  +below(medium)
+    padding: 8px 0
   .nav-links
     display: flex
     align-items: center

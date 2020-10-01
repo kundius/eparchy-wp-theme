@@ -31,6 +31,9 @@
   &:hover {
     background: #fff0cf;
   }
+  @include below(medium) {
+    width: auto;
+  }
 }
 
 .tabs-panel__head-item span {

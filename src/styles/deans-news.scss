@@ -11,10 +11,17 @@
   position: absolute;
   top: -18px;
   width: 100%;
+  @include below(medium) {
+    font-size: 9px;
+    top: -12px;
+  }
 }
 
 .deans-news-primary__figure {
   margin-bottom: 40px;
+  @include below(medium) {
+    margin-bottom: 15px;
+  }
 }
 
 .deans-news-primary__figure-image {
@@ -43,6 +50,9 @@
     bottom: 0;
     left: 0;
   }
+  @include below(medium) {
+    font-size: 14px;
+  }
 }
 
 .deans-news-primary__desc {
@@ -50,6 +60,10 @@
   color: #7a7a7a;
   font-size: 14px;
   line-height: 1.6;
+  @include below(medium) {
+    font-size: 12px;
+    margin-top: 12px;
+  }
 }
 
 .deans-news-list {
@@ -65,12 +79,19 @@
   &:last-child {
     margin-bottom: 0;
   }
+  @include below(medium) {
+    margin: 30px 0;
+  }
 }
 
 .deans-news-item__figure {
   width: 80px;
   float: left;
   margin-right: 15px;
+  @include below(medium) {
+    width: 54px;
+    margin-right: 6px;
+  }
 }
 
 .deans-news-item__info {
@@ -89,26 +110,39 @@
   align-items: center;
   line-height: 1;
   margin-bottom: 10px;
+  @include below(medium) {
+    margin-bottom: 8px;
+  }
 }
 
 .deans-news-item__date {
   color: #9097a0;
   font-size: 10px;
   line-height: 1;
+  @include below(medium) {
+    font-size: 9px;
+  }
 }
 
 .deans-news-item__rubrics {
   position: relative;
   z-index: 20;
+  font-size: 10px;
+  line-height: 16px;
+  @include below(medium) {
+    font-size: 9px;
+    line-height: 1;
+  }
   a {
     display: inline-block;
     color: #9097a0;
-    font-size: 10px;
-    line-height: 16px;
     text-transform: uppercase;
     padding: 0 6px;
     background-color: #f1e3de;
     text-decoration: none;
+    @include below(medium) {
+      padding: 0 2px;
+    }
     &:hover {
       background-color: #fdddd1;
       color: #000000;
@@ -134,5 +168,9 @@
     top: 0;
     bottom: 0;
     right: 0;
+  }
+  @include below(medium) {
+    font-size: 11px;
+    line-height: 1.15;
   }
 }

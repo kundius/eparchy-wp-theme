@@ -13,6 +13,9 @@
     bottom: auto;
     left: auto;
     display: flex;
+    @include below(medium) {
+      margin-top: calc(64% - calc(40px * 0.64));
+    }
   }
   .swiper-pagination-bullet {
     background-color: #ffffff;
@@ -69,6 +72,9 @@
   &:hover {
     background-color: #f4987f;
   }
+  @include below(medium) {
+    bottom: 8px;
+  }
 }
 
 .tiled-slider__prev.swiper-button-prev.swiper-button-disabled,
@@ -113,13 +119,22 @@
 .tiled-slider-item {
   position: relative;
   display: flex;
+  height: initial;
+  @include below(medium) {
+    flex-direction: column;
+  }
 }
 
 .tiled-slider-item__head {
   min-height: 100%;
   width: 68px;
-  min-width: 68px;
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  @include below(medium) {
+    width: 40px;
+  }
 }
 
 .tiled-slider-item__head-date {
@@ -135,6 +150,7 @@
 
 .tiled-slider-item__head-label {
   color: #ffffff;
+  font-size: 16px;
   font-family: $font-family-alt;
   font-weight: 700;
   text-transform: uppercase;
@@ -144,26 +160,49 @@
   top: 50%;
   transform-origin: 50% 50%;
   transform: translate(-50%, -50%) rotate(-90deg);
+  @include below(medium) {
+    font-size: 14px;
+  }
+}
+
+.tiled-slider-item__body {
+  display: flex;
+  margin-left: 68px;
+  flex-grow: 1;
+  @include below(medium) {
+    margin-left: 40px;
+    flex-direction: column;
+    .tiled-slider_has-nav &::after {
+      content: '';
+      display: block;
+      height: 56px;
+      background: #53545c;
+      display: block;
+      width: 100%;
+    }
+  }
 }
 
 .tiled-slider-item__figure {
   flex-grow: 1;
   min-height: 100%;
-  padding-bottom: 37%;
+  padding-bottom: 42%;
   overflow: hidden;
   position: relative;
+  @include below(medium) {
+    min-height: auto;
+    padding-bottom: 64%;
+  }
 }
 
 .tiled-slider-item__figure-image {
   display: block;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .tiled-slider-item__title {
@@ -186,6 +225,11 @@
     right: 0;
     bottom: 0;
   }
+  @include below(medium) {
+    width: 100%;
+    min-height: auto;
+    padding: 40px 15px;
+  }
 }
 
 .tiled-slider-item__video {
@@ -193,6 +237,9 @@
   position: relative;
   overflow: hidden;
   padding-bottom: 50%;
+  @include below(medium) {
+    padding-bottom: 69%;
+  }
 }
 
 .tiled-slider-item__video-iframe {

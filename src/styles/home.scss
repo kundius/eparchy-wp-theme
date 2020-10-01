@@ -1,7 +1,23 @@
 .home-intro {
-  padding: 120px 0 167px;
+  padding: 120px 0 140px;
   background: #9fc5e5 url('../images/bg-intro.jpg') no-repeat 100% 100%;
   background-size: auto 100%;
+  &::after {
+    content: '';
+    display: block;
+    height: 28px;
+  }
+  @include below(large) {
+    padding-top: adaptive(30px, 120px, $breakpoint-small, $breakpoint-large);
+    padding-bottom: adaptive(30px, 140px, $breakpoint-small, $breakpoint-large);
+  }
+}
+
+.home-intro__body {
+  max-width: 655px;
+  @include below(medium) {
+    margin: 0 auto;
+  }
 }
 
 .home-page-sheet {
@@ -14,6 +30,10 @@
   display: flex;
   flex-wrap: wrap;
   margin-left: -32px;
+  @include below(medium) {
+    margin-top: 17px;
+    margin-bottom: 50px;
+  }
 }
 
 .home-news__relevant-title {
@@ -22,6 +42,9 @@
   margin-left: 50%;
   margin-bottom: 40px;
   order: 1;
+  @include below(medium) {
+    margin-bottom: 34px;
+  }
 }
 
 .home-news__relevant-body {
@@ -29,13 +52,22 @@
   padding-left: 32px;
   width: 100%;
   order: 2;
+  @include below(medium) {
+    margin-bottom: 45px;
+  }
 }
 
 .home-news__eparchy-title {
   margin-bottom: 40px;
   padding-left: 32px;
-  width: 50%;
+  width: 33.33%;
   order: 3;
+  margin-right: 16.66%;
+  @include below(medium) {
+    width: 50%;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
 }
 
 .home-news__eparchy-body {
@@ -49,22 +81,60 @@
   padding-left: 32px;
   width: 50%;
   order: 4;
+  @include below(medium) {
+    margin-bottom: 30px;
+    padding-left: 15px;
+  }
 }
 
 .home-news__deans-body {
   padding-left: 32px;
   width: 50%;
   order: 6;
+  @include below(medium) {
+    padding-left: 15px;
+  }
 }
 
 .home-news__deans-hr {
   margin: 40px auto;
+  @include below(medium) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.home-news__deans-news-and-bunners {
+  display: flex;
+  margin-left: -32px;
+  @include below(medium) {
+    margin-left: -15px;
+  }
+}
+
+.home-news__deans-news {
+  padding-left: 32px;
+  width: 66.66%;
+  @include below(medium) {
+    padding-left: 15px;
+  }
+}
+
+.home-news__deans-bunners {
+  padding-left: 32px;
+  width: 33.33%;
+  @include below(medium) {
+    padding-left: 15px;
+  }
 }
 
 .home-publications {
   display: flex;
   flex-wrap: wrap;
   margin-left: -32px;
+  @include below(medium) {
+    margin-left: -15px;
+  }
 }
 
 .home-publications__articles-title {
@@ -73,12 +143,20 @@
   order: 1;
   margin-right: 50%;
   margin-bottom: 40px;
+  @include below(medium) {
+    padding-left: 15px;
+    width: 50%;
+    margin-right: 33.33%;
+  }
 }
 
 .home-publications__articles-latest {
   padding-left: 32px;
   width: 33.33%;
   order: 3;
+  @include below(medium) {
+    padding-left: 15px;
+  }
 }
 
 .home-publications__articles-more {
@@ -94,6 +172,9 @@
   padding-left: 32px;
   width: 50%;
   order: 4;
+  @include below(medium) {
+    padding-left: 15px;
+  }
 }
 
 .home-publications__talks {
@@ -112,12 +193,18 @@
   padding-left: 32px;
   order: 2;
   margin-bottom: 40px;
+  @include below(medium) {
+    padding-left: 15px;
+  }
 }
 
 .home-publications__calendar-body {
   order: 5;
   width: 16.66%;
   padding-left: 32px;
+  @include below(medium) {
+    padding-left: 15px;
+  }
 }
 
 .home-publications__calendar-desc {
@@ -129,11 +216,18 @@
   flex-wrap: wrap;
   margin-top: 80px;
   margin-bottom: 110px;
+  @include below(medium) {
+    margin-top: 65px;
+    margin-bottom: 62px;
+  }
 }
 
 .home-ecalendar__title {
   margin-bottom: 40px;
   width: 100%;
+  @include below(medium) {
+    margin-bottom: 10px;
+  }
 }
 
 .home-ecalendar__body {
@@ -150,15 +244,25 @@
   margin-top: 110px;
   margin-bottom: 95px;
   margin-left: -32px;
+  @include below(medium) {
+    margin-left: -15px;
+    margin-top: 62px;
+  }
 }
 
 .home-analytics__title {
   margin-bottom: 40px;
   width: 50%;
   padding-left: 32px;
+  @include below(medium) {
+    padding-left: 15px;
+  }
 }
 
 .home-analytics__body {
   padding-left: 32px;
   width: 100%;
+  @include below(medium) {
+    padding-left: 15px;
+  }
 }

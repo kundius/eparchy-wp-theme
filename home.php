@@ -14,60 +14,58 @@ Template Name: Главная
 
       <div class="home-intro">
         <div class="container">
-          <div class="ui-grid">
-            <div class="ui-width-3-5">
-              <div class="intro-news">
-                <div class="intro-news__title">Новости</div>
-                <div class="intro-news__list">
-                  <div class="swiper-container js-intro-news-swiper">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                        <div class="intro-news-list">
-                          <div class="ui-grid">
-                            <div class="ui-width-1-2">
-                              <div class="intro-news-item-s">
-                                <div class="intro-news-item-s__figure">
-                                  <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="intro-news-item-s__figure-image" />
-                                </div>
-                                <div class="intro-news-item-s__date">24.05.2018</div>
-                                <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+          <div class="home-intro__body">
+            <div class="intro-news">
+              <div class="intro-news__title">Новости</div>
+              <div class="intro-news__list">
+                <div class="swiper-container js-intro-news-swiper">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <div class="intro-news-list">
+                        <div class="ui-grid">
+                          <div class="ui-width-1-2">
+                            <div class="intro-news-item-s">
+                              <div class="intro-news-item-s__figure">
+                                <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="intro-news-item-s__figure-image" />
                               </div>
-                              <div class="intro-news-item-s">
-                                <div class="intro-news-item-s__figure">
-                                  <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="intro-news-item-s__figure-image" />
-                                </div>
-                                <div class="intro-news-item-s__date">24.05.2018</div>
-                                <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                              </div>
-                              <div class="intro-news-item-s">
-                                <div class="intro-news-item-s__figure">
-                                  <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="intro-news-item-s__figure-image" />
-                                </div>
-                                <div class="intro-news-item-s__date">24.05.2018</div>
-                                <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                              </div>
+                              <div class="intro-news-item-s__date">24.05.2018</div>
+                              <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
                             </div>
-                            <div class="ui-width-1-2">
-                              <div class="intro-news-item-m">
-                                <div class="intro-news-item-m__figure">
-                                  <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="intro-news-item-m__figure-image" />
-                                </div>
-                                <a class="intro-news-item-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                                <div class="intro-news-item-m__footer">
-                                  <div class="intro-news-item-m__date">24.05.2018</div>
-                                  <div class="intro-news-item-m__ago">1 час назад</div>
-                                </div>
+                            <div class="intro-news-item-s">
+                              <div class="intro-news-item-s__figure">
+                                <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="intro-news-item-s__figure-image" />
+                              </div>
+                              <div class="intro-news-item-s__date">24.05.2018</div>
+                              <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                            </div>
+                            <div class="intro-news-item-s">
+                              <div class="intro-news-item-s__figure">
+                                <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="intro-news-item-s__figure-image" />
+                              </div>
+                              <div class="intro-news-item-s__date">24.05.2018</div>
+                              <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                            </div>
+                          </div>
+                          <div class="ui-width-1-2">
+                            <div class="intro-news-item-m">
+                              <div class="intro-news-item-m__figure">
+                                <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="intro-news-item-m__figure-image" />
+                              </div>
+                              <a class="intro-news-item-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                              <div class="intro-news-item-m__footer">
+                                <div class="intro-news-item-m__date">24.05.2018</div>
+                                <div class="intro-news-item-m__ago">1 час назад</div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="ui-grid">
-                      <div class="ui-width-1-2"></div>
-                      <div class="ui-width-1-2">
-                        <div class="swiper-pagination"></div>
-                      </div>
+                  </div>
+                  <div class="ui-grid">
+                    <div class="ui-width-1-2"></div>
+                    <div class="ui-width-1-2">
+                      <div class="swiper-pagination"></div>
                     </div>
                   </div>
                 </div>
@@ -93,7 +91,7 @@ Template Name: Главная
                 <div class="swiper-container js-latest-news-swiper">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                      <div class="ui-grid ui-grid-large">
+                      <div class="ui-grid ui-grid-large@m">
                         <div class="ui-width-1-3">
                           <div class="latest-news-m">
                             <div class="latest-news-m__head">
@@ -145,7 +143,7 @@ Template Name: Главная
                       </div>
                     </div>
                     <div class="swiper-slide">
-                      <div class="ui-grid ui-grid-large">
+                      <div class="ui-grid ui-grid-large@m">
                         <div class="ui-width-1-3">
                           <div class="latest-news-m">
                             <div class="latest-news-m__head">
@@ -210,7 +208,6 @@ Template Name: Главная
               <div class="section-headline section-headline_blue">
                 <div class="section-headline__title">Новости епархии</div>
                 <a href="#" class="section-headline__link">смотреть все</a>
-                <div></div>
               </div>
             </div>
 
@@ -310,8 +307,8 @@ Template Name: Главная
                 <div class="ui-hr"></div>
               </div>
 
-              <div class="ui-grid ui-grid-large">
-                <div class="ui-width-2-3">
+              <div class="home-news__deans-news-and-bunners">
+                <div class="home-news__deans-news">
                   <div class="deans-news-list">
                     <div class="deans-news-item">
                       <div class="deans-news-item__figure">
@@ -413,7 +410,7 @@ Template Name: Главная
                     </div>
                   </div>
                 </div>
-                <div class="ui-width-1-3">
+                <div class="home-news__deans-bunners">
                   <div class="deans-banners">
                     <div class="deans-banners-swiper">
                       <div class="swiper-container js-deans-banners-swiper">
@@ -481,33 +478,39 @@ Template Name: Главная
                     <div class="swiper-wrapper">
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
                           <div class="tiled-slider-item__head-label">Беседы</div>
                         </div>
-                        <div class="tiled-slider-item__figure">
-                          <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__figure">
+                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                          </div>
+                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                         </div>
-                        <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                       </div>
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
                           <div class="tiled-slider-item__head-label">Беседы</div>
                         </div>
-                        <div class="tiled-slider-item__figure">
-                          <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__figure">
+                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                          </div>
+                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                         </div>
-                        <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                       </div>
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
                           <div class="tiled-slider-item__head-label">Беседы</div>
                         </div>
-                        <div class="tiled-slider-item__figure">
-                          <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__figure">
+                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                          </div>
+                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                         </div>
-                        <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                       </div>
                     </div>
                     <div class="swiper-pagination"></div>
@@ -521,33 +524,39 @@ Template Name: Главная
                     <div class="swiper-wrapper">
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
-                          <div class="tiled-slider-item__head-label">Публикации</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
+                          <div class="tiled-slider-item__head-label">ПУБЛИКАЦИИ</div>
                         </div>
-                        <div class="tiled-slider-item__figure">
-                          <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__figure">
+                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                          </div>
+                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                         </div>
-                        <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                       </div>
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
-                          <div class="tiled-slider-item__head-label">Публикации</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
+                          <div class="tiled-slider-item__head-label">ПУБЛИКАЦИИ</div>
                         </div>
-                        <div class="tiled-slider-item__figure">
-                          <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__figure">
+                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                          </div>
+                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                         </div>
-                        <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                       </div>
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
-                          <div class="tiled-slider-item__head-label">Публикации</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
+                          <div class="tiled-slider-item__head-label">ПУБЛИКАЦИИ</div>
                         </div>
-                        <div class="tiled-slider-item__figure">
-                          <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__figure">
+                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                          </div>
+                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                         </div>
-                        <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
                       </div>
                     </div>
                     <div class="swiper-pagination"></div>
@@ -556,40 +565,46 @@ Template Name: Главная
               </div>
 
               <div class="home-publications__interviews">
-                <div class="tiled-slider tiled-slider_green">
+                <div class="tiled-slider tiled-slider_green tiled-slider_has-nav">
                   <div class="swiper-container js-tiled-swiper-interviews">
                     <div class="swiper-wrapper">
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
                           <div class="tiled-slider-item__head-label">Интервью</div>
                         </div>
-                        <div class="tiled-slider-item__video">
-                          <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                          <button class="tiled-slider-item__video-play"></button>
-                          <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__video">
+                            <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <button class="tiled-slider-item__video-play"></button>
+                            <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                          </div>
                         </div>
                       </div>
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
                           <div class="tiled-slider-item__head-label">Интервью</div>
                         </div>
-                        <div class="tiled-slider-item__video">
-                          <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                          <button class="tiled-slider-item__video-play"></button>
-                          <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__video">
+                            <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <button class="tiled-slider-item__video-play"></button>
+                            <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                          </div>
                         </div>
                       </div>
                       <div class="swiper-slide tiled-slider-item">
                         <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.2018</div>
+                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
                           <div class="tiled-slider-item__head-label">Интервью</div>
                         </div>
-                        <div class="tiled-slider-item__video">
-                          <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                          <button class="tiled-slider-item__video-play"></button>
-                          <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                        <div class="tiled-slider-item__body">
+                          <div class="tiled-slider-item__video">
+                            <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <button class="tiled-slider-item__video-play"></button>
+                            <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -736,10 +751,10 @@ Template Name: Главная
                   <a href="#" class="analytics-grid-item__title">Название статьи, может быть не в одну строку, а в две, три, четыре или больше строк, если длина названия блока превышает данный, его высота увеличивается</a>
                 </div>
                 <div class="analytics-banners">
-                  <a href="#" class="analytics-banner-union">
+                  <a href="#" class="analytics-banners__union">
                     Православный телеканал<br> «Союз»
                   </a>
-                  <a href="#" class="analytics-banner-routes">
+                  <a href="#" class="analytics-banners__routes">
                     Маршруты<br> паломничества
                   </a>
                 </div>
