@@ -1,27 +1,10 @@
 .ecalendar {
   display: flex;
   align-items: center;
-  .ecalendar-control__body::before {
-    content: '';
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 20;
-    animation-duration: 8s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: placeHolderShimmer;
-    animation-timing-function: linear;
-    background: #fff;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 8%, rgba(255, 255, 255, 0.6) 18%, rgba(255, 255, 255, 0.2) 33%);
-  }
   &.loading .ecalendar-control__body::before {
     display: block;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     align-items: flex-start;
   }
 }
@@ -30,7 +13,7 @@
   display: flex;
   align-items: center;
   margin-right: 60px;
-  @include below(medium) {
+  @media (--below-medium) {
     flex-direction: column;
     margin-right: 30px;
   }
@@ -41,7 +24,7 @@
   width: 140px;
   min-width: 140px;
   max-width: 140px;
-  @include below(medium) {
+  @media (--below-medium) {
     order: 1;
     width: 100%;
     min-width: 100%;
@@ -60,7 +43,7 @@
   padding-left: 18px;
   position: relative;
   margin: 8px 0;
-  @include below(medium) {
+  @media (--below-medium) {
     margin: 0 0 15px;
   }
   &::before {
@@ -73,21 +56,22 @@
     top: 3px;
     background: #999999;
   }
-  &_current::before {
-    background: #8ae8ff;
-  }
-  &_primary::before {
-    background: #fffe8a;
-  }
-  &_weeks::before {
-    background: #ffcccc;
-  }
-  &_post::before {
-    background: #33cc00;
-  }
-  &_memorial::before {
-    background: #999966;
-  }
+}
+
+.ecalendar-legend__row_current::before {
+  background: #8ae8ff;
+}
+.ecalendar-legend__row_primary::before {
+  background: #fffe8a;
+}
+.ecalendar-legend__row_weeks::before {
+  background: #ffcccc;
+}
+.ecalendar-legend__row_post::before {
+  background: #33cc00;
+}
+.ecalendar-legend__row_memorial::before {
+  background: #999966;
 }
 
 .ecalendar-content {
@@ -104,10 +88,10 @@
   @media (max-width: 1400px) {
     margin-right: calc((((100vw - 1145px) / 2) + (1145px * 0.25) - 60px) * -1);
   }
-  @include below(large) {
+  @media (--below-large) {
     margin-right: calc((((100vw - 24px) * 0.25) - 12px) * -1);
   }
-  @include below(medium) {
+  @media (--below-medium) {
     margin-right: calc((((100vw - 24px) * 0.1) - 12px) * -1);
     padding: 30px;
   }
@@ -177,39 +161,64 @@
 
 .ecalendar-control__body {
   position: relative;
-  table {
-    border-collapse: collapse;
-    border: none;
-  }
-  th {
-    padding: 0;
-    width: 42ex;
-    height: 42px;
-    border-bottom: 1px solid #9a9b9d;
-    background: #e4c686;
-    color: #666666;
-    font-size: 11px;
-    font-weight: 400;
-    text-transform: uppercase;
-    line-height: 42px;
-    &:nth-child(2n) {
-      background: #ffffff;
-    }
-  }
-  td {
-    padding: 0;
-    border-bottom: 1px solid #9a9b9d;
-    background: #ededed;
-    &:last-child {
-      background: #cdddee;
-    }
-  }
-  tr:nth-child(2n) td {
-    background: #b6b6b8;
-    &:last-child {
-      background: #cdddee;
-    }
-  }
+}
+
+.ecalendar-control__body::before {
+  content: '';
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #fff;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 8%, rgba(255, 255, 255, 0.6) 18%, rgba(255, 255, 255, 0.2) 33%);
+}
+
+.ecalendar-control__body table {
+  border-collapse: collapse;
+  border: none;
+}
+
+.ecalendar-control__body table th {
+  padding: 0;
+  width: 42ex;
+  height: 42px;
+  border-bottom: 1px solid #9a9b9d;
+  background: #e4c686;
+  color: #666666;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 42px;
+}
+
+.ecalendar-control__body table th:nth-child(2n) {
+  background: #ffffff;
+}
+
+.ecalendar-control__body table td {
+  padding: 0;
+  border-bottom: 1px solid #9a9b9d;
+  background: #ededed;
+}
+
+.ecalendar-control__body table td:last-child {
+  background: #cdddee;
+}
+
+.ecalendar-control__body table tr:nth-child(2n) td {
+  background: #b6b6b8;
+}
+
+.ecalendar-control__body table tr:nth-child(2n) td:last-child {
+  background: #cdddee;
 }
 
 .ecalendar-control__day {
@@ -225,15 +234,6 @@
   position: relative;
   z-index: 1;
   cursor: pointer;
-  &_current {
-    font-weight: bold;
-  }
-  &_past {
-    color: #999999;
-  }
-  &_future {
-    color: #999999;
-  }
   &::before {
     content: '';
     position: absolute;
@@ -253,19 +253,32 @@
   }
 }
 
+.ecalendar-control__day_current {
+  font-weight: bold;
+}
+
+.ecalendar-control__day_past {
+  color: #999999;
+}
+
+.ecalendar-control__day_future {
+  color: #999999;
+}
+
 .ecalendar-control__markers {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 4px;
   display: flex;
-  > * {
-    margin: 0 1px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    border: 1px solid #8b8b8c;
-  }
+}
+
+.ecalendar-control__markers > * {
+  margin: 0 1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #8b8b8c;
 }
 
 .ecalendar-control__marker-current {
@@ -309,7 +322,7 @@
 
 .ecalendar-dates__row-value {
   color: #000000;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   font-size: 16px;
   font-weight: 700;
   line-height: 1;

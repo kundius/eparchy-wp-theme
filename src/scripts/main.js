@@ -1,6 +1,6 @@
 import Swiper, { Navigation, Pagination } from 'swiper'
-import 'swiper/swiper-bundle.css'
 import './archive-calendar'
+import './off-canvas'
 import ECalendar from './ecalendar'
 import Tabs from './Tabs'
 

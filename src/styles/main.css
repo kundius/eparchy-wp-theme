@@ -1,0 +1,56 @@
+@custom-media --below-xsmall (max-width: 319px);
+@custom-media --below-small (max-width: 767px);
+@custom-media --below-medium (max-width: 1023px);
+@custom-media --below-large (max-width: 1279px);
+@custom-media --below-xlarge (max-width: 1599px);
+@custom-media --above-xsmall (min-width: 320px);
+@custom-media --above-small (min-width: 768px);
+@custom-media --above-medium (min-width: 1024px);
+@custom-media --above-large (min-width: 1280px);
+@custom-media --above-xlarge (min-width: 1600px);
+
+:root {
+  --breakpoint-xsmall: 320px;
+  --breakpoint-small: 768px;
+  --breakpoint-medium: 1024px;
+  --breakpoint-large: 1280px;
+  --breakpoint-xlarge: 1600px;
+  --breakpoint-xsmall-max: 767px;
+  --breakpoint-small-max: 1023px;
+  --breakpoint-medium-max: 1279px;
+  --breakpoint-large-max: 1599px;
+  --font-size: 16px;
+  --font-family: 'Open Sans', sans-serif;
+  --font-family-alt: 'Georgia', cursive;
+}
+
+/* Global */
+
+@import 'fonts.css';
+
+/* Vendor */
+
+@import '../../node_modules/normalize.css/normalize.css';
+@import '../../node_modules/swiper/swiper-bundle.css';
+
+/* Blocks */
+
+@import 'grid.css';
+@import 'visibility.css';
+@import 'common.css';
+@import 'header.css';
+@import 'footer.css';
+@import 'breadcrumbs.css';
+@import 'home.css';
+@import 'intro-news.css';
+@import 'latest-news.css';
+@import 'eparchy-news.css';
+@import 'deans-news.css';
+@import 'deans-banners.css';
+@import 'tiled-slider.css';
+@import 'archive-calendar.css';
+@import 'latest-publication.css';
+@import 'ecalendar.css';
+@import 'tabs-panel.css';
+@import 'analytics-grid.css';
+@import 'drawer.css';

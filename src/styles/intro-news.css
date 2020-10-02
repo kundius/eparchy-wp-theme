@@ -5,13 +5,13 @@
   padding-right: 40px;
   padding-bottom: 20px;
   position: relative;
-  @include below(medium) {
+  @media (--below-medium) {
     padding-top: 20px;
   }
 }
 
 .intro-news__title {
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   color: #4a3726;
   font-weight: bold;
   text-transform: uppercase;
@@ -34,7 +34,7 @@
     display: block;
     margin-right: 10px;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     transform: rotate(-90deg) translate(-20px, 24px);
   }
 }
@@ -89,12 +89,12 @@
   position: relative;
   overflow: hidden;
   margin-top: 37px;
-  @include below(medium) {
+  @media (--below-medium) {
     margin-top: 20px;
   }
   &:first-child {
     margin-top: 8px;
-    @include below(medium) {
+    @media (--below-medium) {
       margin-top: 0;
     }
   }
@@ -134,7 +134,7 @@
   font-size: 12px;
   letter-spacing: 0.01em;
   font-weight: bold;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   line-height: 1.4;
   margin-top: 9px;
   &::after {
@@ -180,7 +180,7 @@
   color: #de7858;
   font-size: 18px;
   font-weight: bold;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   margin-top: 19px;
   line-height: 1.15;
   &::after {
@@ -191,7 +191,7 @@
     width: 100%;
     height: 100%;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 16px;
     margin-top: 12px;
   }
@@ -206,7 +206,7 @@
   font-size: 10px;
   line-height: 1;
   margin-top: 17px;
-  @include below(medium) {
+  @media (--below-medium) {
     margin-top: 12px;
   }
 }

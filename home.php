@@ -9,7 +9,34 @@ Template Name: Главная
     <?php get_template_part('partials/head'); ?>
   </head>
   <body>
-    <div class="wrapper">
+    <div class="off-canvas-bar">
+      <button class="off-canvas-bar__close" data-off-canvas-toggle></button>
+
+      <div class="off-canvas-bar__body">
+        <a href="/" class="drawer-logo">
+          <img src="<?php echo get_bloginfo('template_url') ?>/dist/images/logo.svg" alt="" class="drawer-logo__image" />
+          <span class="drawer-logo__first">Русская Православная Церковь</span>
+          <span class="drawer-logo__second">Борисоглебская&nbsp;&nbsp;Епархия</span>
+          <span class="drawer-logo__third">Московский Патриархат Воронежская Митрополия</span>
+        </a>
+
+        <?php wp_nav_menu([
+          'theme_location' => 'main_menu',
+          'container' => false,
+          'menu_class' => 'drawer-mainmenu'
+        ]) ?>
+
+        <?php wp_nav_menu([
+          'theme_location' => 'header_menu',
+          'container' => false,
+          'menu_class' => 'drawer-secondmenu'
+        ]) ?>
+      </div>
+    </div>
+
+    <div class="off-canvas-page">
+      <div class="off-canvas-page__overlay" data-off-canvas-toggle></div>
+
       <?php get_template_part('partials/header'); ?>
 
       <div class="home-intro">

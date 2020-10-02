@@ -22,7 +22,7 @@
 
 .deans-banners-swiper-item__title {
   color: #ffffff;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.33;
@@ -38,7 +38,7 @@
     display: block;
     margin-bottom: 20px;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 11px;
     left: 9px;
     top: 18px;
@@ -53,39 +53,41 @@
   bottom: -20px;
   right: 4px;
   display: flex;
-  @include below(medium) {
+  @media (--below-medium) {
     right: -4px;
   }
-  .swiper-button-prev,
-  .swiper-button-next {
-    position: relative;
-    right: initial;
-    left: initial;
-    top: initial;
-    bottom: initial;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
-    color: #ffffff;
-    margin: 0;
-    background-color: #dadada;
-    border-radius: 50%;
-    margin: 0 4px;
-    &::after {
-      font-size: 16px;
-    }
-    &:hover {
-      background-color: #f4987f;
-    }
+}
+
+.deans-banners-swiper__nav .swiper-button-prev,
+.deans-banners-swiper__nav .swiper-button-next {
+  position: relative;
+  right: initial;
+  left: initial;
+  top: initial;
+  bottom: initial;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  color: #ffffff;
+  margin: 0;
+  background-color: #dadada;
+  border-radius: 50%;
+  margin: 0 4px;
+  &::after {
+    font-size: 16px;
   }
-  .swiper-button-prev.swiper-button-disabled,
-  .swiper-button-next.swiper-button-disabled {
-    opacity: 1;
-    pointer-events: auto;
-    &:hover {
-      background-color: #dadada;
-    }
+  &:hover {
+    background-color: #f4987f;
+  }
+}
+
+.deans-banners-swiper__nav .swiper-button-prev.swiper-button-disabled,
+.deans-banners-swiper__nav .swiper-button-next.swiper-button-disabled {
+  opacity: 1;
+  pointer-events: auto;
+  &:hover {
+    background-color: #dadada;
   }
 }
 
@@ -106,7 +108,7 @@
   justify-content: center;
   text-align: center;
   color: #ffffff;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   font-size: 16px;
   line-height: 1.15;
   &::before {
@@ -118,7 +120,7 @@
     background-size: cover;
     margin-bottom: 18px;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 11px;
     margin-top: 25px;
     &::before {
@@ -138,13 +140,13 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   font-size: 16px;
   line-height: 1.15;
   text-align: center;
   background: #9c9ca4 url('../images/banner-ways.png') no-repeat 50% 50%;
   background-size: cover;
-  @include below(medium) {
+  @media (--below-medium) {
     margin-top: 15px;
     font-size: 11px;
   }

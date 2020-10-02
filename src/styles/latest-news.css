@@ -12,7 +12,7 @@
   line-height: 1;
   color: #828fa0;
   font-size: 11px;
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 9px;
   }
 }
@@ -30,7 +30,7 @@
   margin-top: 7px;
   margin-bottom: 24px;
   background-color: #000000;
-  @include below(medium) {
+  @media (--below-medium) {
     margin-top: 4px;
     margin-bottom: 16px;
   }
@@ -43,7 +43,7 @@
 
 .latest-news-m__title {
   color: #de7e60;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   font-size: 16px;
   line-height: 1.15;
   text-decoration: none;
@@ -59,7 +59,7 @@
     right: 0;
     bottom: 0;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 13px;
   }
 }
@@ -75,7 +75,7 @@
   line-height: 1;
   color: #828fa0;
   font-size: 11px;
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 9px;
   }
 }
@@ -94,7 +94,7 @@
   width: 100%;
   margin-top: 7px;
   background-color: #000000;
-  @include below(medium) {
+  @media (--below-medium) {
     margin-top: 4px;
   }
 }
@@ -125,7 +125,7 @@
   letter-spacing: -18px;
   margin-right: 25px;
   line-height: 1;
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 59px;
     letter-spacing: -10px;
     margin-right: 15px;
@@ -141,14 +141,14 @@
   overflow: hidden;
   margin-top: 18px;
   line-height: 1;
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 11px;
   }
 }
 
 .latest-news-l__info-title {
   color: #ffffff;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   font-size: 16px;
   letter-spacing: 0.1px;
   overflow: hidden;
@@ -165,7 +165,7 @@
     right: 0;
     bottom: 0;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 13px;
   }
 }
@@ -178,7 +178,7 @@
   line-height: 1;
   color: #828fa0;
   font-size: 11px;
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 9px;
   }
 }
@@ -190,7 +190,7 @@
   margin-bottom: 13px;
   height: auto;
   background-color: #000000;
-  @include below(medium) {
+  @media (--below-medium) {
     margin-top: 4px;
     margin-bottom: 9px;
   }
@@ -203,7 +203,7 @@
 
 .latest-news-s__title {
   color: #de7e60;
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   font-size: 16px;
   line-height: 1.15;
   text-decoration: none;
@@ -219,7 +219,7 @@
     right: 0;
     bottom: 0;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     font-size: 13px;
   }
 }
@@ -229,102 +229,108 @@
   align-items: center;
   justify-content: center;
   margin-top: 38px;
-  @include below(medium) {
+  @media (--below-medium) {
     margin-top: 16px;
   }
-  .swiper-pagination {
-    position: relative;
-    bottom: initial;
-    left: initial;
-    display: flex;
-    justify-content: center;
+}
+
+.latest-news__nav .swiper-pagination {
+  position: relative;
+  bottom: initial;
+  left: initial;
+  display: flex;
+  justify-content: center;
+}
+
+.latest-news__nav .swiper-pagination-bullet {
+  margin: 0 8px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  opacity: 1;
+  position: relative;
+  cursor: pointer;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #dcdcdc;
+    transition: .3s ease;
+    transition-property: transform, background-color, width, height;
   }
-  .swiper-pagination-bullet {
-    margin: 0 8px;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: transparent;
-    opacity: 1;
-    position: relative;
-    cursor: pointer;
-    &::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(0.5);
-      border-radius: 50%;
-      width: 12px;
-      height: 12px;
-      background-color: #dcdcdc;
-      transition: .3s ease;
-      transition-property: transform, background-color, width, height;
-    }
-    &:hover::before {
-      transform: translate(-50%, -50%) scale(0.8);
-      background-color: #bebebe;
-    }
+  &:hover::before {
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: #bebebe;
   }
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    &::before {
-      transform: translate(-50%, -50%) scale(1);
-      background-color: #de7257;
-    }
-    &:hover::before {
-      transform: translate(-50%, -50%) scale(1);
-    }
+}
+
+.latest-news__nav .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  &::before {
+    transform: translate(-50%, -50%) scale(1);
+    background-color: #de7257;
   }
-  .swiper-pagination-bullets-dynamic {
-    .swiper-pagination-bullet {
-      transform: scale(1);
-      &::before {
-        transform: translate(-50%, -50%) scale(0.3);
-      }
-      &:hover::before {
-        transform: translate(-50%, -50%) scale(0.8);
-      }
-    }
-    .swiper-pagination-bullet-active-prev {
-      transform: scale(1);
-      &::before {
-        transform: translate(-50%, -50%) scale(0.5);
-      }
-      &:hover::before {
-        transform: translate(-50%, -50%) scale(0.8);
-      }
-    }
-    .swiper-pagination-bullet-active-next {
-      transform: scale(1);
-      &::before {
-        transform: translate(-50%, -50%) scale(0.5);
-      }
-      &:hover::before {
-        transform: translate(-50%, -50%) scale(0.8);
-      }
-    }
-    .swiper-pagination-bullet.swiper-pagination-bullet-active {
-      &::before {
-        transform: translate(-50%, -50%) scale(1);
-      }
-      &:hover::before {
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
+  &:hover::before {
+    transform: translate(-50%, -50%) scale(1);
   }
-  .swiper-button-prev,
-  .swiper-button-next {
-    position: relative;
-    right: initial;
-    left: initial;
-    top: initial;
-    bottom: initial;
-    width: 28px;
-    height: 28px;
-    color: #000000;
-    margin: 0;
-    &::after {
-      font-size: 20px;
-    }
+}
+
+.latest-news__nav .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
+  transform: scale(1);
+  &::before {
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  &:hover::before {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+.latest-news__nav .swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev {
+  transform: scale(1);
+  &::before {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  &:hover::before {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+.latest-news__nav .swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next {
+  transform: scale(1);
+  &::before {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  &:hover::before {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+.latest-news__nav .swiper-pagination-bullets-dynamic .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  &::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  &:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.latest-news__nav .swiper-button-prev,
+.latest-news__nav .swiper-button-next {
+  position: relative;
+  right: initial;
+  left: initial;
+  top: initial;
+  bottom: initial;
+  width: 28px;
+  height: 28px;
+  color: #000000;
+  margin: 0;
+  &::after {
+    font-size: 20px;
   }
 }

@@ -21,7 +21,7 @@
 }
 
 .latest-publication__title {
-  font-family: $font-family-alt;
+  font-family: var(--font-family-alt);
   font-size: 16px;
   font-weight: 700;
   line-height: 1.25;

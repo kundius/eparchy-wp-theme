@@ -16,7 +16,7 @@ module.exports = {
   entry: {
     main: [
       PATHS.source + 'scripts/main.js',
-      PATHS.source + 'styles/main.scss',
+      PATHS.source + 'styles/main.css',
       PATHS.source + 'images/sprite.svg',
       PATHS.source + 'images/logo.svg',
       PATHS.source + 'images/vk-group.png',
@@ -50,19 +50,36 @@ module.exports = {
         }
       },
       {
-        test: /\.(css|sass|scss)$/,
+        test: /\.(css)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {importLoaders: 1},
+          },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: ['postcss-preset-env', 'autoprefixer']
+                plugins: [
+                  require('postcss-preset-env')({
+                    features: {
+                      'nesting-rules': true,
+                      'custom-media-queries': true
+                    }
+                  }),
+                  require('postcss-functions')({
+                    functions: {
+                      adaptive: function (valueFrom, valueTo, mediaFrom, mediaTo) {
+                        return `calc(${valueFrom} + (${parseInt(valueTo) - parseInt(valueFrom)} * ((100vw - ${mediaFrom}) / ${parseInt(mediaTo) - parseInt(mediaFrom)})))`
+                      }
+                    }
+                  }),
+                  'postcss-em'
+                ]
               }
             }
-          },
-          'sass-loader'
+          }
         ]
       },
       {

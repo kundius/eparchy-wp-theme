@@ -1,5 +1,7 @@
 <div class="header">
   <div class="container header__container">
+    <button class="haader__toggle" data-off-canvas-toggle><span></span><span></span><span></span></button>
+
     <a href="/" class="haader-logo">
       <img src="<?php echo get_bloginfo('template_url') ?>/dist/images/logo.svg" alt="" class="haader-logo__image" />
       <span class="haader-logo__first">Русская Православная Церковь</span>

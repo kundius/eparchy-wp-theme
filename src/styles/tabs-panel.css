@@ -31,7 +31,7 @@
   &:hover {
     background: #fff0cf;
   }
-  @include below(medium) {
+  @media (--below-medium) {
     width: auto;
   }
 }
@@ -84,7 +84,7 @@
   padding-left: 25px;
   padding-right: 25px;
   display: none;
-  @include below(medium) {
+  @media (--below-medium) {
     padding-top: 36px;
     padding-bottom: 36px;
   }
