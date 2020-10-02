@@ -13,24 +13,25 @@ Template Name: Главная
       <button class="off-canvas-bar__close" data-off-canvas-toggle></button>
 
       <div class="off-canvas-bar__body">
-        <a href="/" class="drawer-logo">
-          <img src="<?php echo get_bloginfo('template_url') ?>/dist/images/logo.svg" alt="" class="drawer-logo__image" />
-          <span class="drawer-logo__first">Русская Православная Церковь</span>
-          <span class="drawer-logo__second">Борисоглебская&nbsp;&nbsp;Епархия</span>
-          <span class="drawer-logo__third">Московский Патриархат Воронежская Митрополия</span>
-        </a>
+        <div class="drawer">
+          <a href="/" class="drawer-logo">
+            <span class="drawer-logo__first">Русская Православная Церковь</span>
+            <span class="drawer-logo__second">Борисоглебская&nbsp;&nbsp;Епархия</span>
+            <span class="drawer-logo__third">Московский Патриархат Воронежская Митрополия</span>
+          </a>
 
-        <?php wp_nav_menu([
-          'theme_location' => 'main_menu',
-          'container' => false,
-          'menu_class' => 'drawer-mainmenu'
-        ]) ?>
+          <?php wp_nav_menu([
+            'theme_location' => 'main_menu',
+            'container' => false,
+            'menu_class' => 'drawer-mainmenu'
+          ]) ?>
 
-        <?php wp_nav_menu([
-          'theme_location' => 'header_menu',
-          'container' => false,
-          'menu_class' => 'drawer-secondmenu'
-        ]) ?>
+          <?php wp_nav_menu([
+            'theme_location' => 'header_menu',
+            'container' => false,
+            'menu_class' => 'drawer-secondmenu'
+          ]) ?>
+        </div>
       </div>
     </div>
 
@@ -44,57 +45,93 @@ Template Name: Главная
           <div class="home-intro__body">
             <div class="intro-news">
               <div class="intro-news__title">Новости</div>
-              <div class="intro-news__list">
-                <div class="swiper-container js-intro-news-swiper">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <div class="intro-news-list">
-                        <div class="ui-grid">
-                          <div class="ui-width-1-2">
-                            <div class="intro-news-item-s">
-                              <div class="intro-news-item-s__figure">
-                                <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="intro-news-item-s__figure-image" />
-                              </div>
-                              <div class="intro-news-item-s__date">24.05.2018</div>
-                              <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+              <div class="intro-news-swiper swiper-container js-intro-news-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="intro-news-grid">
+                      <div class="intro-news-grid__secondary">
+                        <div class="intro-news-grid-secondary">
+                          <div class="intro-news-item-s">
+                            <div class="intro-news-item-s__figure">
+                              <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="intro-news-item-s__figure-image" />
                             </div>
-                            <div class="intro-news-item-s">
-                              <div class="intro-news-item-s__figure">
-                                <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="intro-news-item-s__figure-image" />
-                              </div>
-                              <div class="intro-news-item-s__date">24.05.2018</div>
-                              <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                            </div>
-                            <div class="intro-news-item-s">
-                              <div class="intro-news-item-s__figure">
-                                <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="intro-news-item-s__figure-image" />
-                              </div>
-                              <div class="intro-news-item-s__date">24.05.2018</div>
-                              <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                            </div>
+                            <div class="intro-news-item-s__date">24.05.2018</div>
+                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
                           </div>
-                          <div class="ui-width-1-2">
-                            <div class="intro-news-item-m">
-                              <div class="intro-news-item-m__figure">
-                                <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="intro-news-item-m__figure-image" />
-                              </div>
-                              <a class="intro-news-item-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                              <div class="intro-news-item-m__footer">
-                                <div class="intro-news-item-m__date">24.05.2018</div>
-                                <div class="intro-news-item-m__ago">1 час назад</div>
-                              </div>
+                          <div class="intro-news-item-s">
+                            <div class="intro-news-item-s__figure">
+                              <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="intro-news-item-s__figure-image" />
                             </div>
+                            <div class="intro-news-item-s__date">24.05.2018</div>
+                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                          </div>
+                          <div class="intro-news-item-s">
+                            <div class="intro-news-item-s__figure">
+                              <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="intro-news-item-s__figure-image" />
+                            </div>
+                            <div class="intro-news-item-s__date">24.05.2018</div>
+                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="intro-news-grid__primary">
+                        <div class="intro-news-item-m">
+                          <div class="intro-news-item-m__figure">
+                            <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="intro-news-item-m__figure-image" />
+                          </div>
+                          <a class="intro-news-item-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                          <div class="intro-news-item-m__footer">
+                            <div class="intro-news-item-m__date">24.05.2018</div>
+                            <div class="intro-news-item-m__ago">1 час назад</div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="ui-grid">
-                    <div class="ui-width-1-2"></div>
-                    <div class="ui-width-1-2">
-                      <div class="swiper-pagination"></div>
+                  <div class="swiper-slide">
+                    <div class="intro-news-grid">
+                      <div class="intro-news-grid__secondary">
+                        <div class="intro-news-grid-secondary">
+                          <div class="intro-news-item-s">
+                            <div class="intro-news-item-s__figure">
+                              <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="intro-news-item-s__figure-image" />
+                            </div>
+                            <div class="intro-news-item-s__date">24.05.2018</div>
+                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                          </div>
+                          <div class="intro-news-item-s">
+                            <div class="intro-news-item-s__figure">
+                              <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="intro-news-item-s__figure-image" />
+                            </div>
+                            <div class="intro-news-item-s__date">24.05.2018</div>
+                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                          </div>
+                          <div class="intro-news-item-s">
+                            <div class="intro-news-item-s__figure">
+                              <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="intro-news-item-s__figure-image" />
+                            </div>
+                            <div class="intro-news-item-s__date">24.05.2018</div>
+                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="intro-news-grid__primary">
+                        <div class="intro-news-item-m">
+                          <div class="intro-news-item-m__figure">
+                            <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="intro-news-item-m__figure-image" />
+                          </div>
+                          <a class="intro-news-item-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                          <div class="intro-news-item-m__footer">
+                            <div class="intro-news-item-m__date">24.05.2018</div>
+                            <div class="intro-news-item-m__ago">1 час назад</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+                <div class="intro-news-swiper__pagination">
+                  <div class="swiper-pagination"></div>
                 </div>
               </div>
             </div>
@@ -109,7 +146,7 @@ Template Name: Главная
                 <div class="section-headline section-headline_gray">
                   <div class="section-headline__title">Актуальные новости</div>
                   <a href="#" class="section-headline__link">смотреть все</a>
-                  <div></div>
+                  <div class="ui-visible@s"></div>
                 </div>
             </div>
 
@@ -118,8 +155,8 @@ Template Name: Главная
                 <div class="swiper-container js-latest-news-swiper">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                      <div class="ui-grid ui-grid-large@m">
-                        <div class="ui-width-1-3">
+                      <div class="ui-grid ui-grid-small ui-grid-medium@s ui-grid-large@m">
+                        <div class="ui-width-1-1 ui-width-1-3@s">
                           <div class="latest-news-m">
                             <div class="latest-news-m__head">
                               <div class="latest-news-m__head-date">24.05.2018</div>
@@ -131,7 +168,7 @@ Template Name: Главная
                             <a class="latest-news-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
                           </div>
                         </div>
-                        <div class="ui-width-1-3">
+                        <div class="ui-width-1-1 ui-width-1-3@s">
                           <div class="latest-news-l">
                             <div class="latest-news-l__head">
                               <div class="latest-news-l__head-date">24.05.2018</div>
@@ -149,7 +186,7 @@ Template Name: Главная
                             </div>
                           </div>
                         </div>
-                        <div class="ui-width-1-6">
+                        <div class="ui-width-1-2 ui-width-1-6@s">
                           <div class="latest-news-s">
                             <div class="latest-news-s__date">24.05.2018</div>
                             <div class="latest-news-s__figure">
@@ -158,7 +195,7 @@ Template Name: Главная
                             <a class="latest-news-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
                           </div>
                         </div>
-                        <div class="ui-width-1-6">
+                        <div class="ui-width-1-2 ui-width-1-6@s">
                           <div class="latest-news-s">
                             <div class="latest-news-s__date">24.05.2018</div>
                             <div class="latest-news-s__figure">
@@ -170,8 +207,8 @@ Template Name: Главная
                       </div>
                     </div>
                     <div class="swiper-slide">
-                      <div class="ui-grid ui-grid-large@m">
-                        <div class="ui-width-1-3">
+                      <div class="ui-grid ui-grid-small ui-grid-medium@s ui-grid-large@m">
+                        <div class="ui-width-1-1 ui-width-1-3@s">
                           <div class="latest-news-m">
                             <div class="latest-news-m__head">
                               <div class="latest-news-m__head-date">24.05.2018</div>
@@ -183,7 +220,7 @@ Template Name: Главная
                             <a class="latest-news-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
                           </div>
                         </div>
-                        <div class="ui-width-1-3">
+                        <div class="ui-width-1-1 ui-width-1-3@s">
                           <div class="latest-news-l">
                             <div class="latest-news-l__head">
                               <div class="latest-news-l__head-date">24.05.2018</div>
@@ -201,7 +238,7 @@ Template Name: Главная
                             </div>
                           </div>
                         </div>
-                        <div class="ui-width-1-6">
+                        <div class="ui-width-1-2 ui-width-1-6@s">
                           <div class="latest-news-s">
                             <div class="latest-news-s__date">24.05.2018</div>
                             <div class="latest-news-s__figure">
@@ -210,7 +247,7 @@ Template Name: Главная
                             <a class="latest-news-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
                           </div>
                         </div>
-                        <div class="ui-width-1-6">
+                        <div class="ui-width-1-2 ui-width-1-6@s">
                           <div class="latest-news-s">
                             <div class="latest-news-s__date">24.05.2018</div>
                             <div class="latest-news-s__figure">
@@ -334,7 +371,7 @@ Template Name: Главная
                 <div class="ui-hr"></div>
               </div>
 
-              <div class="home-news__deans-news-and-bunners">
+              <div class="home-news__deans-news-and-banners">
                 <div class="home-news__deans-news">
                   <div class="deans-news-list">
                     <div class="deans-news-item">
@@ -437,7 +474,7 @@ Template Name: Главная
                     </div>
                   </div>
                 </div>
-                <div class="home-news__deans-bunners">
+                <div class="home-news__deans-banners">
                   <div class="deans-banners">
                     <div class="deans-banners-swiper">
                       <div class="swiper-container js-deans-banners-swiper">
@@ -738,7 +775,7 @@ Template Name: Главная
               <div class="section-headline section-headline_yellow">
                 <div class="section-headline__title">Актуальная аналитика</div>
                 <a href="#" class="section-headline__link">смотреть все</a>
-                <div></div>
+                <div class="ui-visible@s"></div>
               </div>
             </div>
 

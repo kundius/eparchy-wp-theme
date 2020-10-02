@@ -48,7 +48,7 @@
 }
 
 .eparchy-news-item-m {
-  margin: 15px 0;
+  margin-top: 15px;
   display: flex;
   position: relative;
   transition: box-shadow .3s ease;
@@ -58,6 +58,9 @@
   }
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  @media (--below-small) {
+    margin-top: 8px;
   }
 }
 
@@ -96,6 +99,9 @@
   @media (--below-medium) {
     font-size: 9px;
   }
+  @media (--below-medium) {
+    font-size: 8px;
+  }
 }
 
 .eparchy-news-item-m__rubrics a {
@@ -130,6 +136,10 @@
     font-size: 12px;
     margin-top: 18px;
   }
+  @media (--below-small) {
+    font-size: 11px;
+    margin-top: 12px;
+  }
 }
 
 .eparchy-news-item-m__date {
@@ -143,5 +153,9 @@
   @media (--below-medium) {
     font-size: 9px;
     margin-top: 18px;
+  }
+  @media (--below-small) {
+    font-size: 8px;
+    margin-top: 12px;
   }
 }

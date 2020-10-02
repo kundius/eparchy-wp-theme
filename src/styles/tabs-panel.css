@@ -34,6 +34,11 @@
   @media (--below-medium) {
     width: auto;
   }
+  @media (--below-small) {
+    font-size: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .tabs-panel__head-item span {
@@ -87,6 +92,9 @@
   @media (--below-medium) {
     padding-top: 36px;
     padding-bottom: 36px;
+  }
+  @media (--below-small) {
+    padding: 20px 10px;
   }
 }
 

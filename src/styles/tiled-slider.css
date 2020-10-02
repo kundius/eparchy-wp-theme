@@ -183,7 +183,7 @@
 }
 
 @media (--below-medium) {
-  .tiled-slider_has-nav &::after {
+  .tiled-slider_has-nav .tiled-slider-item__body::after {
     content: '';
     display: block;
     height: 56px;

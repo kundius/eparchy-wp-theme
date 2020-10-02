@@ -1,55 +1,12 @@
 import Swiper, { Navigation, Pagination } from 'swiper'
 import './archive-calendar'
 import './off-canvas'
+import './mainmenu'
+import './drawermenu'
 import ECalendar from './ecalendar'
 import Tabs from './Tabs'
 
 Swiper.use([Navigation, Pagination])
-
-const isVisible = elem => !!elem && !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length ) // source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js 
-
-/* Основное меню */
-const menuItems = document.querySelectorAll('.menu-item-has-children')
-if (menuItems.length > 0) {
-  menuItems.forEach(el => {
-    let timer = null
-
-    const outsideClickListener = event => {
-      if (!el.contains(event.target) && isVisible(el)) {
-        el.classList.remove('menu-item-clicked')
-        document.removeEventListener('click', outsideClickListener)
-      }
-    }
-
-    el.addEventListener('mouseenter', e => {
-      clearTimeout(timer)
-      timer = setTimeout(() => {
-        el.classList.add('menu-item-hovered')
-      }, 300)
-    })
-
-    el.addEventListener('mouseleave', e => {
-      clearTimeout(timer)
-      timer = setTimeout(() => {
-        el.classList.remove('menu-item-hovered')
-      }, 300)
-    })
-
-    const arrow = document.createElement('button')
-    arrow.classList.add('menu-item-arrow')
-    arrow.addEventListener('click', e => {
-      e.preventDefault()
-      if (el.classList.contains('menu-item-clicked')) {
-        el.classList.remove('menu-item-clicked')
-        document.removeEventListener('click', outsideClickListener)
-      } else {
-        el.classList.add('menu-item-clicked')
-        document.addEventListener('click', outsideClickListener)
-      }
-    })
-    el.appendChild(arrow)
-  })
-}
 
 /* Новости на первом экране главной */
 const introNewsSwiper = new Swiper('.js-intro-news-swiper', {

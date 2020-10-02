@@ -92,6 +92,9 @@
   flex-grow: 1;
   overflow: hidden;
   min-height: 495px; /* 11 рядов дней */
+  @media (--below-small) {
+    min-height: 270px;  /* 6 рядов дней */
+  }
 }
 
 .archive-calendar__days button {
@@ -108,5 +111,9 @@
   cursor: pointer;
   &:hover {
     background: #f3e3de;
+  }
+  @media (--below-small) {
+    width: 16.66%;
+    min-width: 16.66%;
   }
 }

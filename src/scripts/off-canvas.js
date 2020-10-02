@@ -8,7 +8,6 @@ const show = () => {
   if (timer) {
     clearTimeout(timer)
   }
-  // overlay.style.display = 'block'
   html.style.overflow = 'hidden'
   html.classList.add('off-canvas-opened')
   opened = true
@@ -20,7 +19,6 @@ const hide = () => {
   }
   timer = setTimeout(() => {
     html.style.overflow = null
-    // overlay.style.display = 'none'
   }, 500)
   html.classList.remove('off-canvas-opened')
   opened = false

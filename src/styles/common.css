@@ -71,6 +71,8 @@ img {
 .ui-hr_small {
   height: 5px;
   background: url('../images/hr-left.png') no-repeat 0 50%, url('../images/hr-right.png') no-repeat 100% 50%;
+  margin-top: -2px;
+  margin-bottom: -2px;
 }
 
 .ui-hr_small::after {
@@ -102,6 +104,9 @@ img {
   margin: 0 auto;
   padding: 0 12px;
   max-width: 1169px;
+  @media (--below-small) {
+    padding: 0 8px;
+  }
 }
 
 .page-sheet {
@@ -179,11 +184,11 @@ img {
   align-items: center;
   justify-content: space-between;
   padding: 17px 0;
-}
-
-@media (--below-medium) {
-  .section-headline {
+  @media (--below-medium) {
     padding: 7px 0
+  }
+  @media (--below-small) {
+    padding: 11px 0
   }
 }
 
@@ -197,6 +202,14 @@ img {
   position: relative;
   z-index: 1;
   padding-left: 15px;
+  @media (--below-medium) {
+    font-size: 12px;
+    padding-left: 12px;
+  }
+  @media (--below-small) {
+    font-size: 14px;
+    padding-left: 18px;
+  }
 }
 
 .section-headline__title::before {
@@ -208,6 +221,16 @@ img {
   background-color: transparent;
   left: 0;
   top: -18px;
+  @media (--below-medium) {
+    width: 40px;
+    height: 40px;
+    top: -8px;
+  }
+  @media (--below-small) {
+    width: 48px;
+    height: 48px;
+    top: -12px;
+  }
 }
 
 .section-headline_gray .section-headline__title::before {
@@ -224,18 +247,6 @@ img {
 
 .section-headline_yellow .section-headline__title::before {
   background-color: #f9f1e2;
-}
-
-@media (--below-medium) {
-  .section-headline__title {
-    font-size: 12px;
-    padding-left: 12px;
-  }
-  .section-headline__title::before {
-    width: 40px;
-    height: 40px;
-    top: -8px;
-  }
 }
 
 .section-headline__link {
@@ -278,7 +289,7 @@ img {
 
 @media (--below-medium) {
   .pagination {
-    padding: 8px 0
+    padding: 10px 0
   }
 }
 
@@ -343,7 +354,7 @@ img {
 }
 
 .off-canvas-bar {
-  background-color: #ecf4f6;
+  background-color: #e6ecec;
   position: fixed;
   left: 0;
   top: 0;
@@ -357,6 +368,11 @@ img {
 .off-canvas-opened .off-canvas-bar {
   transform: translateX(0);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.off-canvas-bar__body {
+  overflow: auto;
+  height: 100%;
 }
 
 .off-canvas-page {

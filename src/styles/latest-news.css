@@ -3,6 +3,9 @@
 
 .latest-news-m {
   position: relative;
+  @media (--below-small) {
+    margin-bottom: 16px;
+  }
 }
 
 .latest-news-m__head {
@@ -14,6 +17,9 @@
   font-size: 11px;
   @media (--below-medium) {
     font-size: 9px;
+  }
+  @media (--below-small) {
+    font-size: 11px;
   }
 }
 
@@ -33,6 +39,9 @@
   @media (--below-medium) {
     margin-top: 4px;
     margin-bottom: 16px;
+  }
+  @media (--below-small) {
+    margin-bottom: 8px;
   }
 }
 
@@ -62,10 +71,16 @@
   @media (--below-medium) {
     font-size: 13px;
   }
+  @media (--below-small) {
+    font-size: 14px;
+  }
 }
 
 .latest-news-l {
   position: relative;
+  @media (--below-small) {
+    margin-bottom: 16px;
+  }
 }
 
 .latest-news-l__head {
@@ -77,6 +92,9 @@
   font-size: 11px;
   @media (--below-medium) {
     font-size: 9px;
+  }
+  @media (--below-small) {
+    font-size: 11px;
   }
 }
 
@@ -180,6 +198,9 @@
   font-size: 11px;
   @media (--below-medium) {
     font-size: 9px;
+  }
+  @media (--below-small) {
+    font-size: 11px;
   }
 }
 
