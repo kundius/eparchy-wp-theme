@@ -286,9 +286,7 @@
   position: sticky;
   top: 80px;
   @media (--below-medium) {
-    top: 68px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    top: 61px;
   }
   @media (--below-small) {
     display: none;
