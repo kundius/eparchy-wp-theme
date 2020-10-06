@@ -50,6 +50,25 @@ function icon($name, $scale = 1) {
 	echo '<svg class="ui-icon" width="' . $width . '" height="' . $height . '"><use xlink:href="' . get_bloginfo('template_url') . '/dist/images/sprite.svg#' . $name . '"></use></svg>';
 }
 
+function print_oembed($iframe) {
+	preg_match('/src="(.+?)"/', $iframe, $matches);
+	$src = $matches[1];
+	$params = array(
+			'controls' => 0,
+			'hd' => 1,
+			'autohide' => 1
+	);
+	$new_src = add_query_arg($params, $src);
+	$iframe = str_replace($src, $new_src, $iframe);
+	$attributes = 'frameborder="0"';
+	$iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe);
+	echo $iframe;
+}
+
+function print_time_ago($post) {
+	echo human_time_diff(get_the_time('U', $post), current_time('timestamp')) . ' назад';
+}
+
 if (function_exists('acf_add_options_page')) {
 	acf_add_options_page(array(
 		'page_title' 	=> 'Параметры',
@@ -61,16 +80,16 @@ if (function_exists('acf_add_options_page')) {
 }
 
 function template_part( $atts, $content = null ){
-	$tp_atts = shortcode_atts(array( 
+	$tp_atts = shortcode_atts(array(
 		 'path' =>  null,
-	), $atts);         
-	ob_start();  
-	get_template_part($tp_atts['path']);  
-	$ret = ob_get_contents();  
-	ob_end_clean();  
-	return $ret;    
+	), $atts);
+	ob_start();
+	get_template_part($tp_atts['path']);
+	$ret = ob_get_contents();
+	ob_end_clean();
+	return $ret;
 }
-add_shortcode('template_part', 'template_part');  
+add_shortcode('template_part', 'template_part');
 
 remove_action('wp_head', 'rel_canonical');
 
@@ -255,14 +274,14 @@ function ajax_get_calendar_data() {
 		$data = get_transient($cache_key);
 		if (empty($data)) {
 			$url = 'https://azbyka.ru/days/api/day/' . $datetime->format('Y-m-d') . '.json';
-	
+
 			$response = json_decode(file_get_contents($url));
-	
+
 			$texts = [];
 			foreach ($response->texts as $item) {
 				$texts[] = $item->text;
 			}
-		
+
 			$saints = [];
 			foreach ($response->saints as $item) {
 				$saints[] = $item->title;
@@ -287,4 +306,86 @@ function ajax_get_calendar_data() {
 	echo json_encode($output);
 
 	wp_die();
+}
+
+add_action('init', 'register_video_post_type_init');
+function register_video_post_type_init() {
+	$labels = [
+		'name' => 'Видео',
+		'singular_name' => 'Видео',
+		'add_new' => 'Добавить видео',
+		'add_new_item' => 'Добавить новое видео',
+		'edit_item' => 'Редактировать видео',
+		'new_item' => 'Новое видео',
+		'all_items' => 'Все видео',
+		'view_item' => 'Просмотр видео на сайте',
+		'search_items' => 'Искать видео',
+		'not_found' =>  'Видео не найдено.',
+		'not_found_in_trash' => 'В корзине нет видео.',
+		'menu_name' => 'Видео'
+	];
+	$args = [
+		'labels' => $labels,
+		'public' => true,
+		'has_archive' => true,
+		'menu_icon' => 'dashicons-format-video',
+		'menu_position' => 20,
+		'supports' => ['title'],
+		'taxonomies' => ['video_tag', 'video_category']
+	];
+	register_post_type('video', $args);
+}
+
+add_action('init', 'register_video_tag_taxonomy');
+function register_video_tag_taxonomy() {
+	register_taxonomy('video_tag', ['video'], [
+		'label' => '',
+		'labels' => [
+			'name' => 'Теги',
+			'singular_name' => 'Тег',
+			'search_items' => 'Поиск тегов',
+			'all_items' => 'Все теги',
+			'view_item ' => 'Смотреть тег',
+			'parent_item' => 'Родительский тег',
+			'parent_item_colon' => 'Родительский тег:',
+			'edit_item' => 'Редактировать тег',
+			'update_item' => 'Изменить тег',
+			'add_new_item' => 'Добавить новый тег',
+			'new_item_name' => 'Название нового тега',
+			'menu_name' => 'Теги'
+		],
+		'description' => '',
+		'public' => true,
+		'hierarchical' => false,
+		'rewrite' => true,
+		'capabilities' => [],
+		'meta_box_cb' => null,
+		'show_admin_column' => false,
+		'show_in_rest' => null,
+		'rest_base' => null
+	]);
+	register_taxonomy('video_category', ['video'], [
+    'label' => 'Рубрики видео',
+    'labels' => [
+      'name' => 'Рубрики видео',
+      'singular_name' => 'Рубрики видео',
+      'search_items' => 'Искать рубрики',
+      'all_items' => 'Все рубрики',
+      'parent_item' => 'Родит. рубрика',
+      'parent_item_colon' => 'Родит. рубрика:',
+      'edit_item' => 'Редактировать рубрику',
+      'update_item' => 'Обновить рубрику',
+      'add_new_item' => 'Добавить рубрику',
+      'new_item_name' => 'Заголовок',
+      'menu_name' => 'Рубрики видео',
+    ],
+    'description' => 'Рубрики для видео',
+    'public' => true,
+    'show_in_nav_menus' => true,
+    'show_ui' => true,
+    'show_tagcloud' => false,
+    'hierarchical' => true,
+    'rewrite' => ['hierarchical' => true],
+    'show_admin_column' => true,
+  ]);
 }

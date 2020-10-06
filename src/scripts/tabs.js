@@ -14,7 +14,7 @@ class Tabs {
       this.setTab(el.dataset.tabsSwitch)
     }))
 
-    this.elements.switch[0].dispatchEvent(new Event('click'))
+    this.elements.switch[0].click()
   }
 
   setTab (name) {

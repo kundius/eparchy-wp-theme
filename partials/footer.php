@@ -32,7 +32,7 @@
         </div>
         <div class="footer-contacts__row">
           <div class="footer-contacts__value">
-          <a href="mailto:beu92944@mail.ru">beu92944@mail.ru</a>   
+          <a href="mailto:beu92944@mail.ru">beu92944@mail.ru</a>
           </div>
           <div class="footer-contacts__label">
           e-mail
@@ -80,7 +80,7 @@
         </li>
       </ul>
     </div>
-    
+
     <div class="footer__seconf-menu">
       <ul class="footer-menu">
         <li>
@@ -145,5 +145,3 @@
 </div>
 
 <button class="scrollup js-scroll"></button>
-
-<?php wp_footer() ?>

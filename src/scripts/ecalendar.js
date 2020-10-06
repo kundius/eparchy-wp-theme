@@ -1,4 +1,6 @@
-import 'regenerator-runtime/runtime'
+require('regenerator-runtime/runtime')
+require('es6-promise').polyfill()
+require('isomorphic-fetch')
 
 class ECalendar {
   constructor (wrapper) {
@@ -36,14 +38,14 @@ class ECalendar {
     let table = '<table><thead><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></thead></tr><tbody><tr>'
 
     this.elements.date.innerHTML = `${d.toLocaleDateString('ru-RU', { month: 'long' })} ${this.year}`
-   
+
     for (let i = 0; i < this.getDay(d); i++) {
       const prevDate = new Date(d.getTime())
       prevDate.setDate(prevDate.getDate() - (this.getDay(prevDate) - i))
       table += '<td><button data-ecalendar-day="' + this.formatDateKey(prevDate) + '" class="ecalendar-control__day ecalendar-control__day_past">' + prevDate.getDate() + '<span class="ecalendar-control__markers"></span></button></td>'
       dates.push(this.formatDateKey(prevDate))
     }
-   
+
     while (d.getMonth() == mon) {
       const is_current = d.getDate() === new Date().getDate() && d.getMonth() === new Date().getMonth()
 
@@ -62,15 +64,15 @@ class ECalendar {
       table += '</button>'
       table += '</td>'
 
-      if (this.getDay(d) % 7 == 6) { 
+      if (this.getDay(d) % 7 == 6) {
         table += '</tr><tr>'
       }
 
       dates.push(this.formatDateKey(d))
-   
+
       d.setDate(d.getDate() + 1)
     }
-   
+
     if (this.getDay(d) != 0) {
       for (let i = this.getDay(d); i < 7; i++) {
         const futureDate = new Date(d.getTime())
@@ -79,9 +81,9 @@ class ECalendar {
         dates.push(this.formatDateKey(futureDate))
       }
     }
-   
+
     table += '</tr></tbody></table>'
-   
+
     this.elements.body.innerHTML = table
     this.elements.body.querySelectorAll('[data-ecalendar-day]').forEach(el => {
       el.addEventListener('click', () => this.showDay(el.dataset.ecalendarDay))
@@ -115,10 +117,10 @@ class ECalendar {
       .then(response => response.json())
       .then(json => {
         this.data = {...this.data, ...json}
-        
+
         this.elements.body.querySelectorAll('[data-ecalendar-day]').forEach(el => {
           const markers = el.querySelector('.ecalendar-control__markers')
-    
+
           if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_holidays && !markers.querySelector('.ecalendar-control__marker-primary')) {
             markers.innerHTML += '<span class="ecalendar-control__marker-primary"></span>'
           }

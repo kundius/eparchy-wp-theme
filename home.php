@@ -746,7 +746,7 @@ Template Name: Главная
                           <div class="ecalendar-legend__row ecalendar-legend__row_post">Дни поста</div>
                           <div class="ecalendar-legend__row ecalendar-legend__row_memorial">Дни особого<br />поминовения<br />усопших</div>
                         </div>
-                        
+
                         <div class="ecalendar-control">
                           <div class="ecalendar-control__headline">
                             <button class="ecalendar-control__headline-prev" data-ecalendar-backward></button>
@@ -830,5 +830,7 @@ Template Name: Главная
         <?php get_template_part('partials/footer'); ?>
       </div>
     </div>
+
+    <?php wp_footer() ?>
   </body>
 </html>

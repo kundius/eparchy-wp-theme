@@ -28,41 +28,47 @@ Template Name: О епархии
               Борисоглебская епархия
             </div>
 
-            <div class="about-eparchy-blocks">
-              <div class="about-eparchy-blocks__documents">
-                <div class="about-eparchy-documents">
-                  <div class="about-eparchy-documents__body">
-                    <div class="about-eparchy-documents__title">Официальные документы епархии</div>
-                    <ul class="about-eparchy-documents__list">
-                      <li>
-                        <a href="#">Указы</a>
-                      </li>
-                      <li>
-                        <a href="#">Распоряжения</a>
-                      </li>
-                      <li>
-                        <a href="#">Циркуляры</a>
-                      </li>
-                      <li>
-                        <a href="#">Хиротонии</a>
-                      </li>
-                    </ul>
-                    <div></div>
-                  </div>
-                </div>
-              </div>
-              <div class="about-eparchy-blocks__history-and-management">
-                <div class="about-eparchy-blocks__history">
-                  <div class="about-eparchy-history">
-                    <div class="about-eparchy-history__body">
-                      <div class="about-eparchy-history__title">История</div>
+            <div class="about-eparchy__sections">
+              <div class="about-eparchy-grid">
+                <div class="about-eparchy-grid__cell">
+                  <div class="about-eparchy-documents">
+                    <div class="about-eparchy-documents__body">
+                      <div class="about-eparchy-documents__title">Официальные документы епархии</div>
+                      <ul class="about-eparchy-documents__list">
+                        <li>
+                          <a href="#">Указы</a>
+                        </li>
+                        <li>
+                          <a href="#">Распоряжения</a>
+                        </li>
+                        <li>
+                          <a href="#">Циркуляры</a>
+                        </li>
+                        <li>
+                          <a href="#">Хиротонии</a>
+                        </li>
+                      </ul>
+                      <div></div>
                     </div>
                   </div>
                 </div>
-                <div class="about-eparchy-blocks__management">
-                  <div class="about-eparchy-management">
-                    <div class="about-eparchy-management__body">
-                      <div class="about-eparchy-management__title">Епархиальное управление</div>
+
+                <div class="about-eparchy-grid__cell">
+                  <div class="about-eparchy-subgrid">
+                    <div class="about-eparchy-subgrid__cell">
+                      <div class="about-eparchy-history">
+                        <div class="about-eparchy-history__body">
+                          <div class="about-eparchy-history__title">История</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="about-eparchy-subgrid__cell">
+                      <div class="about-eparchy-management">
+                        <div class="about-eparchy-management__body">
+                          <div class="about-eparchy-management__title">Епархиальное управление</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -70,10 +76,6 @@ Template Name: О епархии
             </div>
 
             <div class="about-eparchy__content">
-              <div class="about-eparchy__content-title">Заголовок текстового блока</div>
-              <div class="about-eparchy__content-hr">
-                <div class="ui-hr ui-hr_small"></div>
-              </div>
               <?php the_content() ?>
             </div>
           </div>
@@ -83,5 +85,7 @@ Template Name: О епархии
         <?php get_template_part('partials/footer'); ?>
       </div>
     </div>
+
+    <?php wp_footer() ?>
   </body>
 </html>

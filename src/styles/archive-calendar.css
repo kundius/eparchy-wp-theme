@@ -109,6 +109,9 @@
   width: 33.33%;
   min-width: 33.33%;
   cursor: pointer;
+  &.active {
+    background: #f3e3de;
+  }
   &:hover {
     background: #f3e3de;
   }

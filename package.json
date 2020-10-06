@@ -28,6 +28,10 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "es6-promise": "^4.2.8",
+    "hystmodal": "git+https://github.com/AddMoreScripts/hystModal.git",
+    "isomorphic-fetch": "^3.0.0",
+    "micromodal": "^0.4.6",
     "normalize.css": "^8.0.1",
     "regenerator-runtime": "^0.13.7",
     "swiper": "^6.2.0"
