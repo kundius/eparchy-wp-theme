@@ -18,7 +18,8 @@ add_action('after_setup_theme', function() {
 });
 
 add_theme_support('post-thumbnails', array('post', 'page', 'project'));
-// add_image_size('w150h100', 150, 100, true);
+add_image_size('w400h260', 400, 260, true);
+add_image_size('w600h340', 600, 340, true);
 // add_image_size('w468h364', 468, 364, true);
 // add_image_size('w468h500', 468, 500, true);
 // add_image_size('w800h600', 800, 600, true);

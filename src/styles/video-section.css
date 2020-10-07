@@ -26,8 +26,8 @@
 }
 
 .video-section-headline {
-  max-width: 640px;
-  margin: 18px auto 62px;
+  margin-top: 18px;
+  margin-bottom: 62px;
   @media (--below-small) {
     margin-top: 20px;
     margin-bottom: 20px;

@@ -43,11 +43,14 @@ $query = new WP_Query($query_params);
 
       <div class="video-section">
         <div class="video-section__bg"></div>
-        <div class="video-section-headline">
-          <div class="breadcrumbs breadcrumbs_darken" typeof="BreadcrumbList" vocab="https://schema.org/">
-            <?php bcn_display() ?>
+
+        <div class="container">
+          <div class="video-section-headline">
+            <div class="breadcrumbs breadcrumbs_darken" typeof="BreadcrumbList" vocab="https://schema.org/">
+              <?php bcn_display() ?>
+            </div>
+            <h1 class="video-section-headline__title"><small>Видео по тегу:</small><br />«<?php echo $current_tag->name ?>»</h1>
           </div>
-          <h1 class="video-section-headline__title"><small>Видео по тегу:</small><br />«<?php echo $current_tag->name ?>»</h1>
         </div>
 
         <div class="page-sheet">

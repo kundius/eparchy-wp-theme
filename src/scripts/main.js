@@ -1,4 +1,4 @@
-import Swiper, { Navigation, Pagination } from 'swiper'
+import Swiper, { Navigation, Pagination, Thumbs } from 'swiper'
 import './polyfills'
 import './archive-calendar'
 import './off-canvas'
@@ -20,8 +20,8 @@ if (openModalButtons.length > 0) {
 
 
 
-Swiper.use([Navigation, Pagination])
-//
+Swiper.use([Navigation, Pagination, Thumbs])
+
 /* Новости на первом экране главной */
 const introNewsSwiper = new Swiper('.js-intro-news-swiper', {
   simulateTouch: false,
@@ -109,4 +109,73 @@ if (ecalendars.length > 0) {
 const tabs = document.querySelectorAll('[data-tabs]')
 if (tabs.length > 0) {
   tabs.forEach(el => new Tabs(el).init())
+}
+
+const swiperGalleryElements = document.querySelectorAll('[data-swiper-gallery]')
+if (swiperGalleryElements.length > 0) {
+  swiperGalleryElements.forEach(swiperGalleryElement => {
+    const html = document.querySelector('html')
+    const body = document.querySelector('body')
+    const parentElement = swiperGalleryElement.parentElement
+    const mainElement = swiperGalleryElement.querySelector('[data-swiper-gallery-main]')
+    const thumbsElement = swiperGalleryElement.querySelector('[data-swiper-gallery-thumbs]')
+    const closeElements = swiperGalleryElement.querySelectorAll('[data-swiper-gallery-close]')
+    const perView = Math.ceil(thumbsElement.offsetWidth / 100)
+    const windowPerView = Math.ceil(window.innerWidth / 100)
+  
+    const galleryThumbs = new Swiper(thumbsElement, {
+      allowTouchMove: false,
+      slidesPerView: perView,
+      freeMode: true,
+      loopedSlides: 6,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+      centerInsufficientSlides: true,
+      navigation: {
+        nextEl: '.slider-gallery-thumbs__next',
+        prevEl: '.slider-gallery-thumbs__prev',
+      }
+    });
+    const galleryTop = new Swiper(mainElement, {
+      slidesPerView: 1,
+      loop: true,
+      loopedSlides: 6, //looped slides should be the same
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      thumbs: {
+        swiper: galleryThumbs,
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+    });
+
+    const mainSlides = mainElement.querySelectorAll('.swiper-slide')
+    if (mainSlides.length > 0) {
+      mainSlides.forEach(el => el.addEventListener('click', () => {
+        html.style.overflow = 'hidden'
+        body.appendChild(swiperGalleryElement)
+        swiperGalleryElement.classList.add('is-lightbox');
+        galleryTop.update();
+        galleryThumbs.update();
+        galleryThumbs.params.slidesPerView = windowPerView;
+        galleryThumbs.update();
+      }))
+    }
+
+    if (closeElements.length > 0) {
+      closeElements.forEach(el => el.addEventListener('click', () => {
+        html.style.overflow = null
+        parentElement.appendChild(swiperGalleryElement)
+        swiperGalleryElement.classList.remove('is-lightbox');
+        galleryTop.update();
+        galleryThumbs.update();
+        galleryThumbs.params.slidesPerView = perView;
+        galleryThumbs.update();
+      }))
+    }
+  })
 }
