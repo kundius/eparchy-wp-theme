@@ -114,14 +114,15 @@ if (tabs.length > 0) {
 const swiperGalleryElements = document.querySelectorAll('[data-swiper-gallery]')
 if (swiperGalleryElements.length > 0) {
   swiperGalleryElements.forEach(swiperGalleryElement => {
+    const thumbSize = window.matchMedia('(max-width: 767px)').matches ? 48 : 100
     const html = document.querySelector('html')
     const body = document.querySelector('body')
     const parentElement = swiperGalleryElement.parentElement
     const mainElement = swiperGalleryElement.querySelector('[data-swiper-gallery-main]')
     const thumbsElement = swiperGalleryElement.querySelector('[data-swiper-gallery-thumbs]')
     const closeElements = swiperGalleryElement.querySelectorAll('[data-swiper-gallery-close]')
-    const perView = Math.ceil(thumbsElement.offsetWidth / 100)
-    const windowPerView = Math.ceil(window.innerWidth / 100)
+    const perView = Math.ceil(thumbsElement.offsetWidth / thumbSize)
+    const windowPerView = Math.ceil(window.innerWidth / thumbSize)
   
     const galleryThumbs = new Swiper(thumbsElement, {
       allowTouchMove: false,

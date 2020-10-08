@@ -182,6 +182,10 @@
   flex-wrap: wrap;
   margin-top: 85px;
   margin-bottom: 160px;
+  @media (--below-small) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }
 
 .page-temples-details__title {
@@ -193,6 +197,12 @@
   line-height: 1.5;
   text-align: center;
   order: 1;
+  @media (--below-small) {
+    margin-left: 0;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
+  }
 }
 
 .page-temples-details__parent {
@@ -201,6 +211,10 @@
   justify-content: center;
   align-items: center;
   order: 2;
+  @media (--below-small) {
+    order: 0;
+    width: 100%;
+  }
 }
 
 .page-temples-details__hr {
@@ -209,6 +223,11 @@
   width: 50%;
   margin-top: 40px;
   order: 3;
+  @media (--below-small) {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
 }
 
 .page-temples-details__share {
@@ -217,6 +236,14 @@
   width: 66.66%;
   margin-top: 50px;
   order: 4;
+  display: flex;
+  justify-content: center;
+  @media (--below-small) {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-top: 40px;
+  }
 }
 
 .page-temples-details__introtext {
@@ -226,25 +253,36 @@
   margin-top: 60px;
   margin-bottom: 25px;
   order: 5;
-}
-
-.page-temples-details__primary {
-  width: 100%;
-  margin-top: 25px;
+  @media (--below-small) {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }
 
 .page-temples-details__news {
   width: 100%;
   margin-top: 60px;
   order: 10;
+  @media (--below-small) {
+    margin-top: 40px;
+  }
 }
 
 .page-temples-details__pagination {
   margin-left: 16.66%;
   margin-right: 16.66%;
   width: 66.66%;
-  margin-top: 60px;
+  margin-top: 45px;
   order: 11;
+  @media (--below-small) {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-top: 40px;
+  }
 }
 
 .page-temples-details__content {
@@ -253,6 +291,12 @@
   width: 66.66%;
   margin-top: 90px;
   order: 12;
+  @media (--below-small) {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-top: 40px;
+  }
 }
 
 .page-temples-details__latest-title {
@@ -260,12 +304,23 @@
   padding-right: 15px;
   order: 6;
   margin-bottom: 46px;
+  @media (--below-small) {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 20px;
+    order: 8;
+  }
 }
 
 .page-temples-details__latest-body {
   width: 50%;
   padding-right: 15px;
   order: 8;
+  @media (--below-small) {
+    width: 100%;
+    padding-right: 0;
+    order: 9;
+  }
 }
 
 .page-temples-details__gallery-title {
@@ -273,10 +328,22 @@
   padding-left: 15px;
   order: 7;
   margin-bottom: 46px;
+  @media (--below-small) {
+    width: 100%;
+    padding-left: 0;
+    order: 6;
+    margin-bottom: 20px;
+  }
 }
 
 .page-temples-details__gallery-body {
   width: 50%;
   padding-left: 15px;
   order: 9;
+  @media (--below-small) {
+    width: 100%;
+    padding-left: 0;
+    order: 7;
+    margin-bottom: 40px;
+  }
 }

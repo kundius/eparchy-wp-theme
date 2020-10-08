@@ -41,15 +41,15 @@ $query = new WP_Query($query_params);
 
       <?php get_template_part('partials/header'); ?>
 
-      <div class="video-section">
-        <div class="video-section__bg"></div>
+      <div class="portray-section">
+        <div class="portray-section__bg"></div>
 
         <div class="container">
-          <div class="video-section-headline">
+          <div class="portray-section-headline">
             <div class="breadcrumbs breadcrumbs_darken" typeof="BreadcrumbList" vocab="https://schema.org/">
               <?php bcn_display() ?>
             </div>
-            <h1 class="video-section-headline__title"><small>Видео по тегу:</small><br />«<?php echo $current_tag->name ?>»</h1>
+            <h1 class="portray-section-headline__title"><?php echo $current_tag->name ?></h1>
           </div>
         </div>
 

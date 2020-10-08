@@ -44,24 +44,24 @@ $query = new WP_Query($query_params);
 
       <?php get_template_part('partials/header'); ?>
 
-      <div class="video-section">
-        <div class="video-section__bg"<?php if (!empty($background)):?> style="background-image: url('<?php echo $background['url'] ?>')"<?php endif; ?>></div>
+      <div class="portray-section">
+        <div class="portray-section__bg"<?php if (!empty($background)):?> style="background-image: url('<?php echo $background['url'] ?>')"<?php endif; ?>></div>
         
         <div class="container">
-          <div class="video-section-headline">
+          <div class="portray-section-headline">
             <div class="breadcrumbs breadcrumbs_darken" typeof="BreadcrumbList" vocab="https://schema.org/">
               <?php bcn_display() ?>
             </div>
-            <h1 class="video-section-headline__title"><?php echo $category->name ?></h1>
+            <h1 class="portray-section-headline__title"><?php echo $category->name ?></h1>
             <?php if (!empty($date) || !empty($tags)): ?>
-            <div class="video-section-headline__meta">
+            <div class="portray-section-headline__meta">
               <?php if (!empty($date)): ?>
-              <div class="video-section-headline__meta-date">
+              <div class="portray-section-headline__meta-date">
                 <?php echo $date ?>
               </div>
               <?php endif; ?>
               <?php if (!empty($tags)): ?>
-              <div class="video-section-headline__meta-tags">
+              <div class="portray-section-headline__meta-tags">
                 <?php foreach ($tags as $tag): ?>
                 <a href="<?php echo get_term_link($tag->term_id, $tag->taxonomy) ?>"><?php echo $tag->name ?></a>
                 <?php endforeach; ?>

@@ -18,9 +18,10 @@ $latest_query = new WP_Query([
 		]
   ]
 ]);
+$news_per_page = 11;
 $news = new WP_Query([
   'post_type' => 'post',
-  'posts_per_page' => 11,
+  'posts_per_page' => $news_per_page,
   'post__not_in' => $latest_query->posts ? [$latest_query->posts[0]->ID] : null,
   'order' => 'DESC',
   'orderby' => 'date',
@@ -55,7 +56,9 @@ $news = new WP_Query([
             <div class="breadcrumbs breadcrumbs_darken" typeof="BreadcrumbList" vocab="https://schema.org/">
               <?php bcn_display() ?>
             </div>
-            <h1 class="portray-section-headline__title"><?php the_title() ?></h1>
+            <h1 class="portray-section-headline__title">
+              <?php the_title() ?>
+            </h1>
           </div>
         </div>
 
@@ -94,21 +97,21 @@ $news = new WP_Query([
 
               <div class="page-temples-details__latest-body">
                 <?php foreach ($latest_query->posts as $item): ?>
-                <div class="news-textual-card">
-                  <div class="news-textual-card__date">
+                <div class="article-textual-card">
+                  <div class="article-textual-card__date">
                     <div><?php echo get_the_date('d.m.Y', $item) ?></div>
                     <div><?php print_time_ago($item) ?></div>
                   </div>
                   <?php if ($thumbnail = get_the_post_thumbnail($item, ['600', '340'])): ?>
-                  <div class="news-textual-card__figure">
+                  <div class="article-textual-card__figure">
                     <?php echo $thumbnail ?>
                   </div>
                   <?php endif; ?>
-                  <a href="<?php the_permalink($item) ?>" class="news-textual-card__title">
+                  <a href="<?php the_permalink($item) ?>" class="article-textual-card__title">
                     <?php echo get_the_title($item) ?>
                   </a>
                   <?php if ($excerpt = get_the_excerpt($item)): ?>
-                  <div class="news-textual-card__desc"><?php echo $excerpt ?></div>
+                  <div class="article-textual-card__desc"><?php echo $excerpt ?></div>
                   <?php endif; ?>
                 </div>
                 <?php endforeach; ?>
@@ -148,18 +151,45 @@ $news = new WP_Query([
                       </div>
                     </div>
                     <button class="slider-gallery-thumbs__next"></button>
+                    <div class="slider-gallery-thumbs__hr">
+                      <div class="ui-hr ui-hr_small"></div>
+                    </div>
                   </div>
                 </div>
               </div>
               <?php endif; ?>
 
+              <?php if ($news->have_posts()): ?>
               <div class="page-temples-details__news">
-                page-temples-details__materials
+                <div class="articles-grid">
+                  <?php foreach ($news->posts as $key => $item): ?>
+                  <div class="articles-grid__cell">
+                    <div class="articles-item articles-item_<?php echo $key + 1 ?>">
+                      <?php if ($thumbnail = get_the_post_thumbnail($item, ['600', '340'])): ?>
+                      <div class="articles-item__figure">
+                        <?php echo $thumbnail ?>
+                      </div>
+                      <?php endif; ?>
+                      <div class="articles-item__info">
+                        <a href="<?php the_permalink($item) ?>" class="articles-item__title">
+                          <?php echo get_the_title($item) ?>
+                        </a>
+                      </div>
+                      <div class="articles-item__date">
+                        <?php echo get_the_date('d.m.Y', $item) ?>
+                      </div>
+                    </div>
+                  </div>
+                  <?php endforeach; ?>
+                </div>
               </div>
+              <?php endif; ?>
 
+              <?php if (count($news->posts) > $news_per_page): ?>
               <div class="page-temples-details__pagination">
-                page-temples-details__materials
+                <?php wp_pagenavi(['query' => $news]) ?>
               </div>
+              <?php endif; ?>
 
               <?php if ('' !== get_post()->post_content): ?>
               <div class="page-temples-details__content content">

@@ -427,6 +427,13 @@
   text-decoration: none;
 }
 
+.mainmenu__list > .menu-item.menu-item-has-children.menu-item-311 > .sub-menu {
+  @media (--below-medium) {
+    right: 0;
+    left: auto;
+  }
+}
+
 .mainmenu__list > .menu-item.menu-item-has-children.menu-item-118 > .sub-menu {
   display: flex;
   flex-wrap: wrap;
