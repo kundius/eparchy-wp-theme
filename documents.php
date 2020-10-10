@@ -31,12 +31,12 @@ $query = new WP_Query([
             <div class="document-sections-grid">
               <?php foreach ($query->posts as $key => $post): ?>
               <div class="document-sections-grid__cell">
-                <div class="document-sections-item document-sections-item_<?php echo $key ?>">
-                  <div class="document-sections-item__body">
-                    <div class="document-sections-item__icon">
+                <div class="card-hestia card-hestia_<?php echo $key ?>">
+                  <div class="card-hestia__body">
+                    <div class="card-hestia__icon">
                       <?php icon('document', 2.5) ?>
                     </div>
-                    <a href="<?php the_permalink($post->ID) ?>" class="document-sections-item__title">
+                    <a href="<?php the_permalink($post->ID) ?>" class="card-hestia__title">
                       <?php echo $post->post_title ?>
                     </a>
                   </div>

@@ -4,7 +4,7 @@ $calendar_params = [
   'url' => get_term_link($current_tag->term_id, $current_tag->taxonomy) . '?date=%year%-%month%-%day%'
 ];
 $query_params = [
-  'post_type' => 'video',
+  'post_type' => 'post',
   'posts_per_page' => 10,
   'order' => 'DESC',
   'orderby' => 'date',
@@ -43,7 +43,7 @@ $query = new WP_Query($query_params);
 
       <div class="portray-section">
         <div class="portray-section__bg"></div>
-
+        
         <div class="container">
           <div class="portray-section-headline">
             <div class="breadcrumbs breadcrumbs_darken" typeof="BreadcrumbList" vocab="https://schema.org/">
@@ -55,37 +55,37 @@ $query = new WP_Query($query_params);
 
         <div class="page-sheet">
           <div class="container">
-            <div class="video-section-main">
+            <div class="page-articles-section">
               <?php if ($current_tag->description): ?>
-              <div class="video-section-main__excerpt">
+              <div class="page-articles-section__excerpt">
                 <?php echo $current_tag->description ?>
               </div>
               <?php endif; ?>
-              <div class="video-section-main__content">
+              <div class="page-articles-section__content">
                 <?php if ($current_tag->description): ?>
-                  <div class="video-section-main__content-hr">
+                  <div class="page-articles-section__content-hr">
                     <div class="ui-hr"></div>
                   </div>
                 <?php endif; ?>
                 <?php if ($query->have_posts()): ?>
-                <div class="video-section-main__content-list">
+                <div class="page-articles-section__content-list">
                   <div class="articles-wide-grid">
                     <?php while ($query->have_posts()): $query->the_post(); ?>
                     <div class="articles-wide-item">
-                      <div class="articles-wide-item__video">
-                        <?php the_field('video_source') ?>
+                      <div class="articles-wide-item__image">
+                        <?php the_post_thumbnail([800, 460]) ?>
                       </div>
                       <div class="articles-wide-item__date">
                         <?php the_date('d.m.Y') ?>
                       </div>
-                      <div class="articles-wide-item__title">
+                      <a href="<?php the_permalink() ?>" class="articles-wide-item__title">
                         <?php the_title() ?>
-                      </div>
-                      <?php $video_tags = get_the_terms(get_the_ID(), 'video_tag') ?>
-                      <?php if (is_array($video_tags)): ?>
+                      </a>
+                      <?php $post_tags = get_the_terms(get_the_ID(), 'post_tag') ?>
+                      <?php if (is_array($post_tags)): ?>
                         <div class="articles-wide-item__tags">
-                          <?php foreach($video_tags as $video_tag): ?>
-                          <a href="<?php echo get_term_link($video_tag->term_id, $video_tag->taxonomy) ?>"><?php echo $video_tag->name ?></a>
+                          <?php foreach($post_tags as $post_tag): ?>
+                          <a href="<?php echo get_term_link($post_tag->term_id, $post_tag->taxonomy) ?>"><?php echo $post_tag->name ?></a>
                           <?php endforeach; ?>
                         </div>
                       <?php endif; ?>
@@ -96,13 +96,13 @@ $query = new WP_Query($query_params);
                 </div>
                 <?php endif; ?>
               </div>
-              <div class="video-section-main__calendar">
-                <div class="video-section-main__calendar-title">
+              <div class="page-articles-section__calendar">
+                <div class="page-articles-section__calendar-title">
                   <div class="section-headline section-headline_gray">
-                    <div class="section-headline__title">Архив видео</div>
+                    <div class="section-headline__title">Архив статей</div>
                   </div>
                 </div>
-                <div class="video-section-main__calendar-body">
+                <div class="page-articles-section__calendar-body">
                   <div class="archive-calendar" data-archive-calendar='<?php echo json_encode($calendar_params) ?>'>
                     <div class="archive-calendar__headline">
                       <button class="archive-calendar__headline-prev" data-archive-calendar-prev-year></button>
@@ -127,7 +127,7 @@ $query = new WP_Query($query_params);
                       <div class="archive-calendar__days" data-archive-calendar-days></div>
                     </div>
                   </div>
-                  <div class="video-section-main__calendar-desc">
+                  <div class="page-articles-section__calendar-desc">
                     <div class="ui-text-small">Выберите <em>год, месяц и число</em>, чтобы посмотреть публикации</div>
                   </div>
                 </div>

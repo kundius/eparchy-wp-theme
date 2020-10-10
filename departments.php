@@ -28,11 +28,11 @@ $groups = array_chunk($query->posts, round(count($query->posts) / 2));
           <?php if (have_posts()): while (have_posts()): the_post(); ?>
           <?php get_template_part('partials/page-headline'); ?>
 
-          <div class="departaments">
-            <div class="departaments-grid">
-              <?php foreach ($groups as $group): ?>
-              <div class="departaments-grid__cell">
-                <ul class="departaments-list">
+          <div class="grid-departaments">
+            <?php foreach ($groups as $group): ?>
+            <div class="grid-departaments__cell">
+              <div class="card-theia">
+                <ul class="card-theia__list">
                   <?php foreach ($group as $post): ?>
                     <li>
                       <a href="<?php the_permalink($post->ID) ?>" data-open-modal="departament-<?php echo $post->ID ?>">
@@ -42,8 +42,8 @@ $groups = array_chunk($query->posts, round(count($query->posts) / 2));
                   <?php endforeach; ?>
                 </ul>
               </div>
-              <?php endforeach; ?>
             </div>
+            <?php endforeach; ?>
           </div>
 
           <?php the_content() ?>
@@ -60,29 +60,29 @@ $groups = array_chunk($query->posts, round(count($query->posts) / 2));
           <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="departament-<?php echo $post->ID ?>-title">
             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
 
-            <div class="departaments-dialog">
-              <div class="departaments-dialog__title"><?php echo $post->post_title ?></div>
+            <div class="dialog-departaments">
+              <div class="dialog-departaments__title"><?php echo $post->post_title ?></div>
               <?php if ($introtext = get_field('introtext', $post->ID)): ?>
-              <div class="departaments-dialog__introtext">
+              <div class="dialog-departaments__introtext">
                 <?php echo $introtext ?>
               </div>
               <?php endif; ?>
               <?php $administrator = get_field('administrator', $post->ID) ?>
               <?php if ($administrator['image'] || $administrator['description']): ?>
-              <div class="departaments-dialog__administrator">
+              <div class="dialog-departaments__administrator">
                 <?php if (!empty($administrator['image'])): ?>
-                <div class="departaments-dialog__administrator-figure">
+                <div class="dialog-departaments__administrator-figure">
                   <img src="<?php echo $administrator['image']['url'] ?>" alt="" />
                 </div>
                 <?php endif; ?>
-                <div class="departaments-dialog__administrator-info">
-                  <div class="departaments-dialog__administrator-title">
+                <div class="dialog-departaments__administrator-info">
+                  <div class="dialog-departaments__administrator-title">
                     Руководитель отдела
                   </div>
-                  <div class="departaments-dialog__administrator-description">
+                  <div class="dialog-departaments__administrator-description">
                     <?php echo $administrator['description'] ?>
                   </div>
-                  <div class="departaments-dialog__administrator-more">
+                  <div class="dialog-departaments__administrator-more">
                     <a href="<?php the_permalink($post->ID) ?>" class="more-button"><span></span>Больше</a>
                   </div>
                 </div>

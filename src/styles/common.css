@@ -502,7 +502,7 @@ img {
   margin-bottom: 42px;
   @media (--below-small) {
     margin-top: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 }
 
@@ -521,8 +521,8 @@ img {
   }
   @media (--below-small) {
     font-size: 36px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 26px;
+    margin-bottom: 25px;
   }
 }
 
@@ -664,8 +664,12 @@ img {
 .content {
   font-size: 18px;
   line-height: 1.6;
-  @media (--below-small) {
+  @media (--below-medium) {
     font-size: 16px;
+  }
+  @media (--below-small) {
+    font-size: 14px;
+    line-height: 1.75;
   }
 }
 
@@ -677,26 +681,35 @@ img {
   margin: 0;
   color: #030303;
   font-family: var(--font-family-alt);
-  font-size: 48px;
+  font-size: em(48px, 18px);
   font-weight: 400;
   line-height: 1.25;
+  /* @media (--below-small) {
+    font-size: 36px;
+  } */
 }
 
 .content h3 {
   margin: 0;
   color: #030303;
   font-family: var(--font-family-alt);
-  font-size: 36px;
+  font-size: em(36px, 18px);
   font-weight: 400;
   line-height: 1.333;
+  /* @media (--below-small) {
+    font-size: 24px;
+  } */
 }
 
 .content h4 {
   margin: 0;
   color: #373737;
-  font-size: 24px;
+  font-size: em(24px, 18px);
   font-weight: 700;
   line-height: 1.5;
+  /* @media (--below-small) {
+    font-size: 20px;
+  } */
 }
 
 .content .wp-block-separator {
@@ -749,51 +762,87 @@ img {
 }
 
 .content * + p {
-  margin-top: 30px;
+  margin-top: em(30px, 18px);
+  /* @media (--below-small) {
+    margin-top: 26px;
+  } */
 }
 
 .content * + h2 {
-  margin-top: 120px;
+  margin-top: em(120px, 18px);
+  /* @media (--below-small) {
+    margin-top: 90px;
+  } */
 }
 
 .content * + h3 {
-  margin-top: 90px;
+  margin-top: em(90px, 18px);
+  /* @media (--below-small) {
+    margin-top: 60px;
+  } */
 }
 
 .content * + h4 {
-  margin-top: 60px;
+  margin-top: em(60px, 18px);
+  /* @media (--below-small) {
+    margin-top: 40px;
+  } */
 }
 
 .content * + .wp-block-image {
-  margin-top: 60px;
+  margin-top: em(60px, 18px);
+  /* @media (--below-small) {
+    margin-top: 40px;
+  } */
 }
 
 .content * + .wp-block-separator {
-  margin-top: 40px;
+  margin-top: em(40px, 18px);
+  /* @media (--below-small) {
+    margin-top: 30px;
+  } */
 }
 
 .content h2 + .wp-block-separator {
-  margin-top: 90px;
+  margin-top: em(90px, 18px);
+  /* @media (--below-small) {
+    margin-top: 60px;
+  } */
 }
 
 .content h2 + .wp-block-separator + p {
-  margin-top: 90px;
+  margin-top: em(90px, 18px);
+  /* @media (--below-small) {
+    margin-top: 60px;
+  } */
 }
 
 .content h3 + .wp-block-separator {
-  margin-top: 70px;
+  margin-top: em(70px, 18px);
+  /* @media (--below-small) {
+    margin-top: 50px;
+  } */
 }
 
 .content h3 + .wp-block-separator + p {
-  margin-top: 70px;
+  margin-top: em(70px, 18px);
+  /* @media (--below-small) {
+    margin-top: 50px;
+  } */
 }
 
 .content h4 + .wp-block-separator {
-  margin-top: 50px;
+  margin-top: em(50px, 18px);
+  /* @media (--below-small) {
+    margin-top: 30px;
+  } */
 }
 
 .content h4 + .wp-block-separator + p {
-  margin-top: 50px;
+  margin-top: em(50px, 18px);
+  /* @media (--below-small) {
+    margin-top: 30px;
+  } */
 }
 
 .portray-section {
@@ -1088,4 +1137,302 @@ img {
 
 .slider-gallery-thumbs .swiper-slide img {
   display: block;
+}
+
+.card-hestia {
+  background-color: #ba375d;
+  position: relative;
+  padding-bottom: 50%;
+  transition: background .3s ease;
+  /* @media (--below-medium) {
+    font-size: adaptive(12px, 16px, 768px, 1024px);
+  }
+  @media (max-width: 479px) {
+    font-size: adaptive(11px, 14px, 320px, 479px);
+  } */
+}
+
+.card-hestia:hover {
+  background-color: #972d4c;
+}
+
+.card-hestia_0 {
+  background-color: #64c1e7;
+}
+
+.card-hestia_0:hover {
+  background-color: #4eafd6;
+}
+
+.card-hestia_1 {
+  background-color: #a46b55;
+}
+
+.card-hestia_1:hover {
+  background-color: #8f5d4a;
+}
+
+.card-hestia_2 {
+  background-color: #ba375d;
+}
+
+.card-hestia_2:hover {
+  background-color: #972d4c;
+}
+
+.card-hestia_3 {
+  background-color: #8ea073;
+}
+
+.card-hestia_3:hover {
+  background-color: #7a8a63;
+}
+
+.card-hestia_districts {
+  background-color: #8ea073;
+  background-image: url('../images/bg-card-hestia-districts.jpg');
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-hestia_districts:hover {
+  background-color: #7a8a63;
+}
+
+.card-hestia__body {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  padding-left: 40%;
+  align-items: center;
+}
+
+.card-hestia__title {
+  color: #ffffff;
+  font-family: var(--font-family-alt);
+  font-size: em(30px, 16px);
+  font-weight: 700;
+  letter-spacing: em(1.5px, 30px);
+  line-height: 1.2;
+  display: block;
+  text-decoration: none;
+}
+
+.card-hestia__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.card-hestia__title::before {
+  content: '';
+  width: em(60px, 30px);
+  height: 1px;
+  background-color: #ffffff;
+  display: block;
+  margin-bottom: em(24px, 30px);
+}
+
+.card-hestia__icon {
+  color: #ffffff;
+  margin-left: em(-50px, 16px);
+  transform: translateX(em(-32px, 16px));
+}
+
+.card-hestia__icon svg {
+  display: block;
+  width: em(50px, 16px);
+  height: em(50px, 16px);
+}
+
+.card-theia {
+  background-color: #a46b55;
+  padding: em(47px, 16px) em(28px, 16px) em(20px, 16px);
+}
+
+.card-theia__title {
+  font-size: em(48px, 16px);
+  font-family: var(--font-family-alt);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.58);
+  margin-bottom: em(12px, 48px);
+  margin-top: em(5px, 48px);
+}
+
+.card-theia__title::after {
+  content: '';
+  width: em(60px, 48px);
+  height: 1px;
+  background-color: #ffffff;
+  display: block;
+  margin-top: em(49px, 48px);
+}
+
+.card-theia__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: em(18px, 16px);
+}
+
+.card-theia__list > li {
+  border-top: 1px solid #bd856f;
+}
+
+.card-theia__list > li:first-child {
+  border-top: none;
+}
+
+.card-theia__list > li > a {
+  color: #fefefe;
+  font-family: var(--font-family-alt);
+  line-height: 1;
+  padding: em(9px, 18px) em(2px, 18px);
+  display: block;
+  position: relative;
+  font-style: italic;
+  text-decoration: none;
+  padding-right: em(40px, 18px);
+}
+
+.card-theia__list > li > a::before {
+  content: '';
+  position: absolute;
+  right: em(5px, 18px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: em(23px, 18px);
+  height: em(23px, 18px);
+  background-color: #f49176;
+  border-radius: 50%;
+}
+
+.card-theia__list > li > a::after {
+  content: '';
+  position: absolute;
+  right: em(14px, 18px);
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  width: em(8px, 18px);
+  height: em(8px, 18px);
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.card-theia__list > li > a:hover {
+  background: #945e49;
+}
+
+.card-theia__list > li > a:hover::before {
+  background: #f03325;
+}
+
+.card-ariadne {
+  background-color: #64c1e7;
+  padding: em(47px, 16px) em(28px, 16px) em(20px, 16px);
+}
+
+.card-ariadne_diocese {
+  background: #64c1e7 url('../images/bg-card-ariadne-diocese.jpg') no-repeat 50% 100%;
+}
+
+.card-ariadne__title {
+  font-size: em(48px, 16px);
+  font-family: var(--font-family-alt);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.58);
+  margin-bottom: em(12px, 48px);
+  margin-top: em(5px, 48px);
+}
+
+.card-ariadne__title::after {
+  content: '';
+  width: em(60px, 48px);
+  height: 1px;
+  background-color: #ffffff;
+  display: block;
+  margin-top: em(49px, 48px);
+}
+
+.card-ariadne__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: em(18px, 16px);
+  line-height: 1.667;
+  font-family: var(--font-family-alt);
+  color: rgb(254, 254, 254);
+  font-style: italic;
+}
+
+.card-ariadne__list > li {
+
+}
+
+.card-ariadne__list > li > a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-tisiphone {
+  background: url('../images/bg-pattern-gray.jpg');
+  padding: 56px 30px;
+  display: flex;
+}
+
+.card-tisiphone__title {
+  color: #ffffff;
+  font-family: var(--font-family-alt);
+  font-size: em(30px, 16px);
+  font-weight: 700;
+  letter-spacing: em(1.5px, 30px);
+  line-height: 1.2;
+  display: block;
+  text-decoration: none;
+  width: 33.33%;
+  padding-right: 30px;
+}
+
+.card-tisiphone__title::before {
+  content: '';
+  width: em(60px, 30px);
+  height: 1px;
+  background-color: #ffffff;
+  display: block;
+  margin-bottom: em(24px, 30px);
+}
+
+.card-tisiphone__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 18px;
+  line-height: 1.667;
+  font-family: var(--font-family-alt);
+  color: rgb(254, 254, 254);
+  font-style: italic;
+}
+
+.card-tisiphone__list > li {
+  margin-top: 13px;
+}
+
+.card-tisiphone__list > li:first-child {
+  margin-top: 0;
+}
+
+.card-tisiphone__list > li > a {
+  text-decoration: underline;
+  color: inherit;
 }

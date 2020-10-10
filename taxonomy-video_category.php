@@ -88,21 +88,21 @@ $query = new WP_Query($query_params);
                 <?php endif; ?>
                 <?php if ($query->have_posts()): ?>
                 <div class="video-section-main__content-list">
-                  <div class="video-list">
+                  <div class="articles-wide-grid">
                     <?php while ($query->have_posts()): $query->the_post(); ?>
-                    <div class="video-item">
-                      <div class="video-item__figure">
+                    <div class="articles-wide-item">
+                      <div class="articles-wide-item__video">
                         <?php the_field('video_source') ?>
                       </div>
-                      <div class="video-item__date">
+                      <div class="articles-wide-item__date">
                         <?php the_date('d.m.Y') ?>
                       </div>
-                      <div class="video-item__title">
+                      <div class="articles-wide-item__title">
                         <?php the_title() ?>
                       </div>
                       <?php $video_tags = get_the_terms(get_the_ID(), 'video_tag') ?>
                       <?php if (is_array($video_tags)): ?>
-                        <div class="video-item__tags">
+                        <div class="articles-wide-item__tags">
                           <?php foreach($video_tags as $video_tag): ?>
                           <a href="<?php echo get_term_link($video_tag->term_id, $video_tag->taxonomy) ?>"><?php echo $video_tag->name ?></a>
                           <?php endforeach; ?>

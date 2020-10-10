@@ -85,15 +85,19 @@ const tiledSwipers = document.querySelectorAll('[data-tiled-swiper]')
 if (tiledSwipers.length > 0) {
   tiledSwipers.forEach(el => {
     const container = el.querySelector('.swiper-container')
-    const pagination = el.querySelector('.swiper-pagination')
     const date = el.querySelector('.tiled-slider__date')
     const slider = new Swiper(container, {
       simulateTouch: false,
       pagination: {
         clickable: true,
-        el: pagination
+        el: el.querySelector('.swiper-pagination')
+      },
+      navigation: {
+        nextEl: el.querySelector('[data-tiled-swiper-next]'),
+        prevEl: el.querySelector('[data-tiled-swiper-prev]')
       }
     })
+    console.log(slider.slides[0])
     date.innerHTML = slider.slides[0].dataset.tiledSwiperDate
     slider.on('slideChange', function () {
       date.innerHTML = slider.slides[slider.activeIndex].dataset.tiledSwiperDate

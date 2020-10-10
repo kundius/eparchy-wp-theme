@@ -58,8 +58,10 @@
 @import 'drawer.css';
 @import 'about-eparchy.css';
 @import 'document-sections.css';
-@import 'departaments.css';
 @import 'modal.css';
 @import 'temples.css';
 @import 'articles.css';
 @import 'video.css';
+@import 'pontiff.css';
+@import 'grids.css';
+@import 'dialogs.css';

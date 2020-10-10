@@ -12,7 +12,7 @@ $latest_query = new WP_Query([
   'orderby' => 'date',
 	'meta_query' => [
 		[
-      'key' => 'temples',
+      'key' => 'related_temples',
       'compare' => 'LIKE',
 			'value' => '"' . get_the_ID() . '"'
 		]
@@ -28,7 +28,7 @@ $news = new WP_Query([
   'paged' => get_query_var('paged') ?: 1,
 	'meta_query' => [
 		[
-      'key' => 'temples',
+      'key' => 'related_temples',
       'compare' => 'LIKE',
 			'value' => '"' . get_the_ID() . '"'
 		]
