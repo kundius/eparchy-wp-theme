@@ -4,10 +4,10 @@
   &.loading .ecalendar-control__body::before {
     display: block;
   }
-  @media (--below-medium) {
+  @media (--below-l) {
     align-items: flex-start;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     flex-wrap: wrap;
   }
 }
@@ -16,11 +16,11 @@
   display: flex;
   align-items: center;
   margin-right: 60px;
-  @media (--below-medium) {
+  @media (--below-l) {
     flex-direction: column;
     margin-right: 30px;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     width: 100%;
     margin-right: 0;
     margin-bottom: 18px;
@@ -32,7 +32,7 @@
   width: 140px;
   min-width: 140px;
   max-width: 140px;
-  @media (--below-medium) {
+  @media (--below-l) {
     order: 1;
     width: 100%;
     min-width: 100%;
@@ -41,7 +41,7 @@
     margin-top: 30px;
     column-count: 2;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     order: -1;
     margin-top: 0;
     margin-bottom: 0;
@@ -56,7 +56,7 @@
   padding-left: 18px;
   position: relative;
   margin: 8px 0;
-  @media (--below-medium) {
+  @media (--below-l) {
     margin: 0 0 15px;
   }
   &::before {
@@ -101,14 +101,14 @@
   @media (max-width: 1400px) {
     margin-right: calc((((100vw - 1145px) / 2) + (1145px * 0.25) - 60px) * -1);
   }
-  @media (--below-large) {
+  @media (--below-xl) {
     margin-right: calc((((100vw - 24px) * 0.25) - 12px) * -1);
   }
-  @media (--below-medium) {
+  @media (--below-l) {
     margin-right: calc((((100vw - 24px) * 0.1) - 12px) * -1);
     padding: 30px;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     margin-right: 0;
     width: 100%;
     padding: 18px;
@@ -322,7 +322,7 @@
 .ecalendar-dates {
   display: flex;
   margin-bottom: 45px;
-  @media (--below-small) {
+  @media (--below-m) {
     margin-bottom: 18px;
   }
 }

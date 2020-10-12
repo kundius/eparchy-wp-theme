@@ -92,7 +92,7 @@
   flex-grow: 1;
   overflow: hidden;
   min-height: 495px; /* 11 рядов дней */
-  @media (--below-small) {
+  @media (--below-m) {
     min-height: 270px;  /* 6 рядов дней */
   }
 }
@@ -115,7 +115,7 @@
   &:hover {
     background: #f3e3de;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     width: 16.66%;
     min-width: 16.66%;
   }

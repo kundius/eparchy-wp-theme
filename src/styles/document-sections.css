@@ -1,7 +1,7 @@
 .document-sections {
   margin-top: 47px;
   margin-bottom: 80px;
-  @media (max-width: 479px) {
+  @media (--below-m) {
     margin: 0 -8px;
   }
 }
@@ -11,11 +11,14 @@
   flex-wrap: wrap;
   margin-left: -30px;
   margin-top: -30px;
-  @media (--below-medium) {
+  @media (--below-l) {
     margin-left: -15px;
     margin-top: -15px;
   }
-  @media (max-width: 479px) {
+  @media (--below-m) {
+    margin: 0;
+  }
+  @media (--below-s) {
     margin-left: 0;
     margin-top: 0;
   }
@@ -25,11 +28,15 @@
   padding-left: 30px;
   padding-top: 30px;
   width: 50%;
-  @media (--below-medium) {
+  @media (--below-l) {
     padding-left: 15px;
     padding-top: 15px;
   }
-  @media (max-width: 479px) {
+  @media (--below-m) {
+    padding-left: 0;
+    padding-top: 0;
+  }
+  @media (--below-s) {
     width: 100%;
     padding-left: 0;
     padding-top: 0;

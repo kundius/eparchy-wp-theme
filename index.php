@@ -1,30 +1,46 @@
+<?php
+the_post();
+
+$tags = wp_get_post_tags(get_post()->ID);
+$tag_ids = array_map(function ($tag) {
+  return $tag->term_id;
+}, $tags);
+$related = new wp_query([
+  'tag__in' => $tag_ids,
+  'post__not_in' => [get_post()->ID],
+  'posts_per_page' => 20,
+  'ignore_sticky_posts' => 1,
+  'paged' => get_query_var('paged') ?: 1,
+]);
+?>
 <!DOCTYPE html>
 <html lang="ru" itemscope itemtype="http://schema.org/WebSite">
-    <head>
-        <?php get_template_part('partials/head'); ?>
-    </head>
-    <body>
-        <div class="wrapper">
-            <?php get_template_part('partials/header'); ?>
+  <head>
+    <?php get_template_part('partials/head'); ?>
+  </head>
+  <body>
+    <?php get_template_part('partials/off-canvas'); ?>
 
-            <?php if (have_posts()) : while ( have_posts() ) : the_post(); ?>
-            
-            <?php get_template_part('partials/page-headline') ?>
+    <div class="off-canvas-page">
+      <div class="off-canvas-page__overlay" data-off-canvas-toggle></div>
 
-            <div class="services-content">
-                <div class="container container_tiny">
-                    <div class="content">
-                        <?php the_content() ?>
-                    </div>
-                </div>
+      <?php get_template_part('partials/header'); ?>
+
+      <div class="page-sheet">
+        <div class="container">
+          <?php get_template_part('partials/page-headline'); ?>
+
+          <div class="page-article-details">
+            <div class="page-article-details__content content">
+              <?php the_content() ?>
             </div>
-            <?php endwhile; else: ?>
-                <p>Извините, ничего не найдено.</p>
-            <?php endif; ?>
-
-            <?php if (get_field('show_scheme')): get_template_part('partials/scheme'); endif; ?>
-            <?php if (get_field('show_contacts')): get_template_part('partials/contacts', 'services'); endif; ?>
-            <?php get_template_part('partials/footer') ?>
+          </div>
         </div>
-    </body>
+
+        <?php get_template_part('partials/footer'); ?>
+      </div>
+    </div>
+
+    <?php wp_footer() ?>
+  </body>
 </html>

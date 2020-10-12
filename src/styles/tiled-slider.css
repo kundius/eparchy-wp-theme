@@ -14,7 +14,7 @@
   height: 100%;
   flex-grow: 1;
   margin-left: 68px;
-  @media (--below-medium) {
+  @media (--below-l) {
     margin-left: 40px;
   }
 }
@@ -27,7 +27,7 @@
   bottom: auto;
   left: auto;
   display: flex;
-  @media (--below-medium) {
+  @media (--below-l) {
     margin-top: 64%;
   }
 }
@@ -85,7 +85,7 @@
   background-color: #dadada;
   border-radius: 50%;
   margin: 0 4px;
-  @media (--below-medium) {
+  @media (--below-l) {
     bottom: 8px;
   }
 }
@@ -178,7 +178,7 @@
 .tiled-slider-item {
   position: relative;
   display: flex;
-  @media (--below-medium) {
+  @media (--below-l) {
     flex-direction: column;
   }
 }
@@ -190,7 +190,7 @@
   left: 0;
   top: 0;
   z-index: 2;
-  @media (--below-medium) {
+  @media (--below-l) {
     width: 40px;
   }
 }
@@ -207,7 +207,7 @@
   top: 50%;
   transform-origin: 50% 50%;
   transform: translate(-50%, -50%) rotate(-90deg);
-  @media (--below-medium) {
+  @media (--below-l) {
     font-size: 14px;
   }
 }
@@ -227,7 +227,7 @@
   left: 0;
   top: 8px;
   z-index: 2;
-  @media (--below-medium) {
+  @media (--below-l) {
     width: 40px;
   }
 }
@@ -236,12 +236,12 @@
   display: flex;
   flex-grow: 1;
   position: relative;
-  @media (--below-medium) {
+  @media (--below-l) {
     flex-direction: column;
   }
 }
 
-@media (--below-medium) {
+@media (--below-l) {
   .tiled-slider-item_has-nav .tiled-slider-item__body::after {
     content: '';
     display: block;
@@ -258,7 +258,7 @@
   padding-bottom: 42%;
   overflow: hidden;
   position: relative;
-  @media (--below-medium) {
+  @media (--below-l) {
     width: 100%;
     min-height: auto;
     padding-bottom: 64%;
@@ -294,7 +294,7 @@
   min-width: 36%;
   min-height: 100%;
   transition: background 1s ease;
-  @media (--below-medium) {
+  @media (--below-l) {
     flex-grow: 1;
     width: 100%;
     min-height: auto;
@@ -316,7 +316,7 @@ a.tiled-slider-item__title::before {
   position: relative;
   overflow: hidden;
   padding-bottom: 50%;
-  @media (--below-medium) {
+  @media (--below-l) {
     padding-bottom: 69%;
   }
 }

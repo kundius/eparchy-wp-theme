@@ -124,6 +124,8 @@ $query = new WP_Query($query_params);
                   </div>
                   <?php wp_pagenavi(['query' => $query]) ?>
                 </div>
+                <?php else: ?>
+                  Материалов по данному запросу не найдено.
                 <?php endif; ?>
               </div>
               <div class="page-articles-section__calendar">

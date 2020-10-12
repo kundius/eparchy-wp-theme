@@ -1,0 +1,79 @@
+
+.list-anthea {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 18px;
+}
+
+.list-anthea > li {
+  border-top: 1px solid #bd856f;
+}
+
+.list-anthea > li:first-child {
+  border-top: none;
+}
+
+.list-anthea > li > a {
+  color: #fefefe;
+  font-family: var(--font-family-alt);
+  line-height: 1;
+  padding: 9px 2px;
+  display: block;
+  position: relative;
+  font-style: italic;
+  text-decoration: none;
+  padding-right: 40px;
+}
+
+.list-anthea > li > a::before {
+  content: '';
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 23px;
+  height: 23px;
+  background-color: #f49176;
+  border-radius: 50%;
+}
+
+.list-anthea > li > a::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.list-anthea > li > a:hover {
+  background: #945e49;
+}
+
+.list-anthea > li > a:hover::before {
+  background: #f03325;
+}
+
+.list-chryses {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 18px;
+  line-height: 1.667;
+  font-family: var(--font-family-alt);
+  color: rgb(254, 254, 254);
+  font-style: italic;
+}
+
+.list-chryses > li {
+
+}
+
+.list-chryses > li > a {
+  text-decoration: none;
+  color: inherit;
+}

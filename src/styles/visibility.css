@@ -10,25 +10,25 @@
 }
 
 /* Phone landscape and bigger */
-@media (--above-small) {
+@media (--above-m) {
   .ui-hidden\@s {
     display: none !important;
   }
 }
 /* Tablet landscape and bigger */
-@media (--above-medium) {
+@media (--above-l) {
   .ui-hidden\@m {
     display: none !important;
   }
 }
 /* Desktop and bigger */
-@media (--above-large) {
+@media (--above-xl) {
   .ui-hidden\@l {
     display: none !important;
   }
 }
 /* Large screen and bigger */
-@media (--above-xlarge) {
+@media (--above-xxl) {
   .ui-hidden\@xl {
     display: none !important;
   }
@@ -36,7 +36,7 @@
 /* * Visible
  * */
 /* Phone portrait and smaller */
-@media (--below-small) {
+@media (--below-m) {
   .ui-visible\@s {
     display: none !important;
   }
@@ -48,13 +48,13 @@
   }
 }
 /* Tablet landscape and smaller */
-@media (--below-large) {
+@media (--below-xl) {
   .ui-visible\@l {
     display: none !important;
   }
 }
 /* Desktop and smaller */
-@media (--below-xlarge) {
+@media (--below-xxl) {
   .ui-visible\@xl {
     display: none !important;
   }

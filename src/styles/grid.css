@@ -70,7 +70,7 @@
 }
 
 /* Phone landscape and bigger */
-@media (--above-small) {
+@media (--above-m) {
   /* Whole */
   .ui-width-1-1\@s {
     width: 100%;
@@ -137,7 +137,7 @@
   }
 }
 /* Tablet landscape and bigger */
-@media (--above-medium) {
+@media (--above-l) {
   /* Whole */
   .ui-width-1-1\@m {
     width: 100%;
@@ -204,7 +204,7 @@
   }
 }
 /* Desktop and bigger */
-@media (--above-large) {
+@media (--above-xl) {
   /* Whole */
   .ui-width-1-1\@l {
     width: 100%;
@@ -271,7 +271,7 @@
   }
 }
 /* Large screen and bigger */
-@media (--above-xlarge) {
+@media (--above-xxl) {
   /* Whole */
   .ui-width-1-1\@xl {
     width: 100%;
@@ -408,7 +408,7 @@
 }
 
 /* Phone landscape and bigger */
-@media (--above-small) {
+@media (--above-m) {
   .ui-grid-collapse\@s {
     margin-left: 0;
     margin-top: 0;
@@ -450,7 +450,7 @@
   }
 }
 /* Tablet landscape and bigger */
-@media (--above-medium) {
+@media (--above-l) {
   .ui-grid-collapse\@m {
     margin-left: 0;
     margin-top: 0;
@@ -492,7 +492,7 @@
   }
 }
 /* Desktop and bigger */
-@media (--above-large) {
+@media (--above-xl) {
   .ui-grid-collapse\@l {
     margin-left: 0;
     margin-top: 0;
@@ -534,7 +534,7 @@
   }
 }
 /* Large screen and bigger */
-@media (--above-xlarge) {
+@media (--above-xxl) {
   .ui-grid-collapse\@xl {
     margin-left: 0;
     margin-top: 0;

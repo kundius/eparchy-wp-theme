@@ -37,19 +37,19 @@ $background = get_field('background');
 
         <div class="page-sheet">
           <div class="container">
-            <div class="page-temples-section">
+            <div class="grid-temples-section">
               <?php if ($query->have_posts()): ?>
-              <div class="page-temples-section__entries">
-                <div class="temples-entries-grid">
+              <div class="grid-temples-section__entries">
+                <div class="grid-temples-entries">
                   <?php foreach ($query->posts as $item): ?>
-                  <div class="temples-entries-grid__cell">
-                    <div class="temples-entries-item">
+                  <div class="grid-temples-entries__cell">
+                    <div class="card-kore">
                       <?php if ($thumbnail = get_the_post_thumbnail($item, ['600', '340'])): ?>
-                      <div class="temples-entries-item__figure">
+                      <div class="card-kore__figure">
                         <?php echo $thumbnail ?>
                       </div>
                       <?php endif; ?>
-                      <a href="<?php the_permalink($item) ?>" class="temples-entries-item__title">
+                      <a href="<?php the_permalink($item) ?>" class="card-kore__title">
                         <?php echo get_the_title($item) ?>
                       </a>
                     </div>
@@ -58,18 +58,18 @@ $background = get_field('background');
                 </div>
               </div>
 
-              <div class="page-temples-section__pagination">
+              <div class="grid-temples-section__pagination">
                 <?php wp_pagenavi(['query' => $query]) ?>
               </div>
               <?php endif; ?>
 
               <?php if ('' !== get_post()->post_content): ?>
-              <div class="page-temples-section__content content">
+              <div class="grid-temples-section__content content">
                 <?php the_content() ?>
               </div>
               <?php endif; ?>
 
-              <div class="page-temples-section__share">
+              <div class="grid-temples-section__share">
                 <script src="https://yastatic.net/share2/share.js"></script>
                 <div class="ya-share2" data-curtain data-size="s" data-services="collections,vkontakte,facebook,odnoklassniki,messenger,twitter,viber,pinterest" data-image:pinterest="<?php the_post_thumbnail_url('full') ?>"></div>
               </div>

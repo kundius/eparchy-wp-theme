@@ -29,15 +29,15 @@ $query = new WP_Query([
 
           <div class="document-sections">
             <div class="document-sections-grid">
-              <?php foreach ($query->posts as $key => $post): ?>
+              <?php foreach ($query->posts as $key => $item): ?>
               <div class="document-sections-grid__cell">
                 <div class="card-hestia card-hestia_<?php echo $key ?>">
                   <div class="card-hestia__body">
                     <div class="card-hestia__icon">
                       <?php icon('document', 2.5) ?>
                     </div>
-                    <a href="<?php the_permalink($post->ID) ?>" class="card-hestia__title">
-                      <?php echo $post->post_title ?>
+                    <a href="<?php the_permalink($item) ?>" class="card-hestia__title">
+                      <?php echo get_the_title($item) ?>
                     </a>
                   </div>
                 </div>

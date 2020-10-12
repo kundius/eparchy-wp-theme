@@ -42,7 +42,7 @@
   right: 0;
   bottom: 0;
   padding: 20px 28px;
-  @media (--below-medium) {
+  @media (--below-l) {
     font-size: 14px;
   }
 }
@@ -59,7 +59,7 @@
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
-  @media (--below-small) {
+  @media (--below-m) {
     margin-top: 8px;
   }
 }
@@ -88,7 +88,7 @@
   justify-content: space-between;
   width: 50%;
   min-width: 50%;
-  @media (--below-medium) {
+  @media (--below-l) {
     padding: 5px 10px;
   }
 }
@@ -98,10 +98,10 @@
   position: relative;
   z-index: 20;
   font-size: 10px;
-  @media (--below-medium) {
+  @media (--below-l) {
     font-size: 9px;
   }
-  @media (--below-medium) {
+  @media (--below-l) {
     font-size: 8px;
   }
 }
@@ -134,11 +134,11 @@
     right: 0;
     bottom: 0;
   }
-  @media (--below-medium) {
+  @media (--below-l) {
     font-size: 12px;
     margin-top: 18px;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     font-size: 11px;
     margin-top: 12px;
   }
@@ -152,11 +152,11 @@
   text-align: right;
   width: 100%;
   margin-top: 26px;
-  @media (--below-medium) {
+  @media (--below-l) {
     font-size: 9px;
     margin-top: 18px;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     font-size: 8px;
     margin-top: 12px;
   }

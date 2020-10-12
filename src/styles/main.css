@@ -1,14 +1,19 @@
-@custom-media --below-xsmall (max-width: 319px);
-@custom-media --below-small (max-width: 767px);
-@custom-media --below-medium (max-width: 1023px);
-@custom-media --below-large (max-width: 1279px);
-@custom-media --below-xlarge (max-width: 1599px);
+@custom-media --below-xs (max-width: 319px);
+@custom-media --below-s (max-width: 479px);
+@custom-media --below-m (max-width: 767px);
+@custom-media --below-l (max-width: 1023px);
+@custom-media --below-xl (max-width: 1279px);
+@custom-media --below-xxl (max-width: 1599px);
+
 @custom-media --below-container (max-width: 1168px);
-@custom-media --above-xsmall (min-width: 320px);
-@custom-media --above-small (min-width: 768px);
-@custom-media --above-medium (min-width: 1024px);
-@custom-media --above-large (min-width: 1280px);
-@custom-media --above-xlarge (min-width: 1600px);
+
+@custom-media --above-xs (min-width: 320px);
+@custom-media --above-s (min-width: 480px);
+@custom-media --above-m (min-width: 768px);
+@custom-media --above-l (min-width: 1024px);
+@custom-media --above-xl (min-width: 1280px);
+@custom-media --above-xxl (min-width: 1600px);
+
 @custom-media --above-container (min-width: 1169px);
 
 :root {
@@ -53,15 +58,14 @@
 @import 'archive-calendar.css';
 @import 'latest-publication.css';
 @import 'ecalendar.css';
-@import 'tabs-panel.css';
+@import 'tabs.css';
 @import 'analytics-grid.css';
 @import 'drawer.css';
-@import 'about-eparchy.css';
 @import 'document-sections.css';
 @import 'modal.css';
-@import 'temples.css';
 @import 'articles.css';
 @import 'video.css';
-@import 'pontiff.css';
 @import 'grids.css';
-@import 'dialogs.css';
+@import 'dialog.css';
+@import 'card.css';
+@import 'list.css';

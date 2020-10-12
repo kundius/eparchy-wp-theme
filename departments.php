@@ -32,7 +32,7 @@ $groups = array_chunk($query->posts, round(count($query->posts) / 2));
             <?php foreach ($groups as $group): ?>
             <div class="grid-departaments__cell">
               <div class="card-theia">
-                <ul class="card-theia__list">
+                <ul class="list-anthea">
                   <?php foreach ($group as $post): ?>
                     <li>
                       <a href="<?php the_permalink($post->ID) ?>" data-open-modal="departament-<?php echo $post->ID ?>">

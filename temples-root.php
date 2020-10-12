@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Храмы
+Template Name: Храмы - Корень
 */
 $query = new WP_Query([
   'post_type' => 'page',
@@ -26,19 +26,19 @@ $query = new WP_Query([
         <div class="container">
           <?php get_template_part('partials/page-headline'); ?>
 
-          <div class="page-temples">
-            <div class="page-temples__sections">
-              <div class="temples-sections-grid">
+          <div class="grid-temples-root">
+            <div class="grid-temples-root__sections">
+              <div class="grid-temples-sections">
                 <?php foreach ($query->posts as $item): ?>
-                <div class="temples-sections-grid__cell">
-                  <div class="temples-sections-item">
+                <div class="grid-temples-sections__cell">
+                  <div class="card-cynthia">
                     <?php if ($thumbnail = get_the_post_thumbnail($item, ['400', '260'])): ?>
-                    <div class="temples-sections-item__figure">
+                    <div class="card-cynthia__figure">
                       <?php echo $thumbnail ?>
                     </div>
                     <?php endif; ?>
-                    <div class="temples-sections-item__body">
-                      <a href="<?php the_permalink($item) ?>" class="temples-sections-item__title">
+                    <div class="card-cynthia__body">
+                      <a href="<?php the_permalink($item) ?>" class="card-cynthia__title">
                         <?php echo get_the_title($item) ?>
                       </a>
                     </div>
@@ -49,7 +49,7 @@ $query = new WP_Query([
             </div>
 
             <?php if ('' !== get_post()->post_content): ?>
-            <div class="page-temples__content content">
+            <div class="grid-temples-root__content content">
               <?php the_content() ?>
             </div>
             <?php endif; ?>

@@ -5,10 +5,10 @@
   padding-right: 40px;
   padding-bottom: 20px;
   position: relative;
-  @media (--below-medium) {
+  @media (--below-l) {
     padding-top: 20px;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     padding-left: 24px;
     padding-top: 20px;
     padding-right: 24px;
@@ -32,10 +32,10 @@
   transform: rotate(-90deg) translate(-48px, 24px);
   right: 100%;
   top: 0;
-  @media (--below-medium) {
+  @media (--below-l) {
     transform: rotate(-90deg) translate(-20px, 24px);
   }
-  @media (--below-small) {
+  @media (--below-m) {
     font-size: 14px;
     transform: rotate(-90deg) translate(-20px, 4px);
   }
@@ -96,7 +96,7 @@
   padding-left: 8px; /* половина от гуттера грида итемов */
   margin-left: 50%;
   margin-top: 20px;
-  @media (--below-small) {
+  @media (--below-m) {
     width: 100%;
     padding-left: 0;
     margin-left: 0;
@@ -112,7 +112,7 @@
 .intro-news-grid__secondary {
   padding-left: 16px;
   width: 50%;
-  @media (--below-small) {
+  @media (--below-m) {
     width: 100%;
     order: 1;
     border-top: 1px solid #ebebeb;
@@ -124,13 +124,13 @@
 .intro-news-grid__primary {
   padding-left: 16px;
   width: 50%;
-  @media (--below-small) {
+  @media (--below-m) {
     width: 100%;
   }
 }
 
 .intro-news-grid-secondary {
-  @media (--below-small) {
+  @media (--below-m) {
     margin-left: -8px;
     display: flex;
     flex-wrap: wrap;
@@ -141,10 +141,10 @@
   position: relative;
   overflow: hidden;
   margin-top: 37px;
-  @media (--below-medium) {
+  @media (--below-l) {
     margin-top: 20px;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     width: 33.33%;
     padding-left: 8px;
     margin-top: 0;
@@ -153,7 +153,7 @@
 
 .intro-news-item-s:first-child {
   margin-top: 8px;
-  @media (--below-medium) {
+  @media (--below-l) {
     margin-top: 0;
   }
 }
@@ -168,7 +168,7 @@
   margin-right: 15px;
   position: relative;
   background-color: #000000;
-  @media (--below-small) {
+  @media (--below-m) {
     float: none;
     margin-right: 0;
     width: 100%;
@@ -201,7 +201,7 @@
   font-family: var(--font-family-alt);
   line-height: 1.4;
   margin-top: 9px;
-  @media (--below-small) {
+  @media (--below-m) {
     font-size: 11px;
     margin-top: 5px;
   }
@@ -252,11 +252,11 @@
   font-family: var(--font-family-alt);
   margin-top: 19px;
   line-height: 1.15;
-  @media (--below-medium) {
+  @media (--below-l) {
     font-size: 16px;
     margin-top: 12px;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     margin-top: 8px;
   }
 }
@@ -279,10 +279,10 @@
   font-size: 10px;
   line-height: 1;
   margin-top: 17px;
-  @media (--below-medium) {
+  @media (--below-l) {
     margin-top: 12px;
   }
-  @media (--below-small) {
+  @media (--below-m) {
     margin-top: 8px;
   }
 }

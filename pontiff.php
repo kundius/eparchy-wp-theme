@@ -65,25 +65,25 @@ $latest_video_query = new WP_Query([
         <div class="container">
           <?php get_template_part('partials/page-headline'); ?>
 
-          <div class="page-pontiff">
-            <div class="page-pontiff__desc">
+          <div class="grid-pontiff-root">
+            <div class="grid-pontiff-root__desc">
               Управляющий Борисоглебской епархией Преосвященнейший Сергий, епископ Борисоглебский и Бутурлиновский
             </div>
-            <div class="page-pontiff__grid">
-              <div class="page-pontiff-grid">
-                <div class="page-pontiff-grid__biography">
-                  <div class="pontiff-card">
+            <div class="grid-pontiff-root__grid">
+              <div class="grid-pontiff-sections">
+                <div class="grid-pontiff-sections__biography">
+                  <div class="card-oenone">
                     <?php if ($thumb = get_the_post_thumbnail($biography_page_id)): ?>
-                    <div class="pontiff-card__image">
+                    <div class="card-oenone__image">
                       <?php echo $thumb ?>
                     </div>
                     <?php endif; ?>
-                    <a href="<?php the_permalink($biography_page_id) ?>" class="pontiff-card__title"><?php echo get_the_title($biography_page_id) ?></a>
+                    <a href="<?php the_permalink($biography_page_id) ?>" class="card-oenone__title"><?php echo get_the_title($biography_page_id) ?></a>
                   </div>
                 </div>
 
-                <div class="page-pontiff-grid__ministration-and-preaching">
-                  <div class="page-pontiff-grid__ministration">
+                <div class="grid-pontiff-sections__ministration-and-preaching">
+                  <div class="grid-pontiff-sections__ministration">
                     <?php if ($latest_ministration_query->posts): ?>
                     <div class="tiled-slider tiled-slider_orange" data-tiled-swiper>
                       <div class="swiper-container">
@@ -108,7 +108,7 @@ $latest_video_query = new WP_Query([
                     </div>
                     <?php endif; ?>
                   </div>
-                  <div class="page-pontiff-grid__preaching">
+                  <div class="grid-pontiff-sections__preaching">
                     <?php if ($latest_preaching_query->posts): ?>
                     <div class="tiled-slider tiled-slider_red" data-tiled-swiper>
                       <div class="swiper-container">
@@ -135,19 +135,19 @@ $latest_video_query = new WP_Query([
                   </div>
                 </div>
 
-                <div class="page-pontiff-grid__photo">
-                  <div class="pontiff-card">
+                <div class="grid-pontiff-sections__photo">
+                  <div class="card-oenone">
                     <?php if ($thumb = get_the_post_thumbnail($photogallery_page_id)): ?>
-                    <div class="pontiff-card__image">
+                    <div class="card-oenone__image">
                       <?php echo $thumb ?>
                     </div>
                     <?php endif; ?>
-                    <a href="<?php the_permalink($photogallery_page_id) ?>" class="pontiff-card__title"><?php echo get_the_title($photogallery_page_id) ?></a>
+                    <a href="<?php the_permalink($photogallery_page_id) ?>" class="card-oenone__title"><?php echo get_the_title($photogallery_page_id) ?></a>
                   </div>
                 </div>
 
-                <div class="page-pontiff-grid__news-and-video">
-                  <div class="page-pontiff-grid__news">
+                <div class="grid-pontiff-sections__news-and-video">
+                  <div class="grid-pontiff-sections__news">
                     <?php if ($latest_news_query->posts): ?>
                     <div class="tiled-slider tiled-slider_blue" data-tiled-swiper>
                       <div class="swiper-container">
@@ -172,7 +172,7 @@ $latest_video_query = new WP_Query([
                     </div>
                     <?php endif; ?>
                   </div>
-                  <div class="page-pontiff-grid__video">
+                  <div class="grid-pontiff-sections__video">
                     <?php if ($latest_video_query->posts): ?>
                     <div class="tiled-slider tiled-slider_green" data-tiled-swiper>
                       <div class="swiper-container">
@@ -200,7 +200,7 @@ $latest_video_query = new WP_Query([
                 </div>
               </div>
             </div>
-            <div class="page-pontiff__content content">
+            <div class="grid-pontiff-root__content content">
               <?php the_content() ?>
             </div>
           </div>

@@ -42,11 +42,46 @@ $diocese_query = new WP_Query([
           <?php get_template_part('partials/page-headline'); ?>
 
           <div class="grid-deaneries">
+            <div class="grid-deaneries__mobile">
+              <div class="tabs-alecto" data-tabs>
+                <div class="tabs-alecto__head">
+                  <div class="tabs-alecto__head-item active" data-tabs-switch="first">
+                    Благочиния
+                    <span></span>
+                  </div>
+                  <div class="tabs-alecto__head-item" data-tabs-switch="second">
+                    Духовенство
+                    <span></span>
+                  </div>
+                </div>
+                <div class="tabs-alecto__body">
+                  <div class="tabs-alecto__body-item active" data-tabs-body="first">
+                    <ul class="list-anthea">
+                      <?php foreach ($deaneries_query->posts as $item): ?>
+                        <li>
+                          <a href="<?php the_permalink($item) ?>" data-open-modal="deaneries-<?php echo $item->ID ?>"><?php echo get_the_title($item) ?></a>
+                        </li>
+                      <?php endforeach; ?>
+                    </ul>
+                  </div>
+                  <div class="tabs-alecto__body-item" data-tabs-body="second">
+                    <ul class="list-chryses">
+                      <?php foreach ($diocese_query->posts as $item): ?>
+                        <li>
+                          <a href="<?php the_permalink($item) ?>"><?php echo get_the_title($item) ?></a>
+                        </li>
+                      <?php endforeach; ?>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             <div class="grid-deaneries__deaneries-and-districts">
               <div class="grid-deaneries__deaneries">
                 <div class="card-theia">
                   <div class="card-theia__title">Список благочиний</div>
-                  <ul class="card-theia__list">
+                  <ul class="list-anthea">
                     <?php foreach ($deaneries_query->posts as $item): ?>
                       <li>
                         <a href="<?php the_permalink($item) ?>" data-open-modal="deaneries-<?php echo $item->ID ?>"><?php echo get_the_title($item) ?></a>
@@ -72,7 +107,7 @@ $diocese_query = new WP_Query([
             <div class="grid-deaneries__diocese">
               <div class="card-ariadne card-ariadne_diocese">
                 <div class="card-ariadne__title">Духовенство епархии</div>
-                <ul class="card-ariadne__list">
+                <ul class="list-chryses">
                   <?php foreach ($diocese_query->posts as $item): ?>
                     <li>
                       <a href="<?php the_permalink($item) ?>"><?php echo get_the_title($item) ?></a>
@@ -85,7 +120,7 @@ $diocese_query = new WP_Query([
             <?php if ($sites_of_departments = get_field('sites_of_departments')): ?>
             <div class="grid-deaneries__sites">
               <div class="card-tisiphone">
-                <div class="card-tisiphone__title">Сайты отделов благочиния</div>
+                <div class="card-tisiphone__title">Сайты отделов благочиний</div>
                 <ul class="card-tisiphone__list">
                   <?php foreach ($sites_of_departments as $item): ?>
                   <li>

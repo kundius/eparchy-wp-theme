@@ -89,30 +89,30 @@ $categories = new WP_Term_Query([
             <div class="ui-hr"></div>
           </div>
 
-          <div class="video-root-main">
-            <div class="video-root-main__pontiff-title">
+          <div class="grid-video-root">
+            <div class="grid-video-root__pontiff-title">
               <div class="section-headline section-headline_blue">
                 <div class="section-headline__title">Епархиальный архиерей</div>
               </div>
             </div>
-            <div class="video-root-main__pontiff-body">
-              <div class="video-pontiff-grid">
-                <div class="video-pontiff-grid__interview">
+            <div class="grid-video-root__pontiff-body">
+              <div class="grid-video-pontiff">
+                <div class="grid-video-pontiff__interview">
                   <?php if ($latest_interview): ?>
-                  <div class="interview-card">
-                    <div class="interview-card__video">
+                  <div class="card-melissa">
+                    <div class="card-melissa__video">
                       <?php print_oembed(get_field('video_source', $latest_interview)) ?>
                     </div>
-                    <div class="interview-card__info">
-                      <div class="interview-card__header">
-                        <div class="interview-card__title"><?php echo $latest_interview->post_title ?></div>
-                        <div class="interview-card__date"><?php echo get_the_date('d.m.Y', $latest_interview) ?></div>
+                    <div class="card-melissa__info">
+                      <div class="card-melissa__header">
+                        <div class="card-melissa__title"><?php echo $latest_interview->post_title ?></div>
+                        <div class="card-melissa__date"><?php echo get_the_date('d.m.Y', $latest_interview) ?></div>
                       </div>
-                      <div class="interview-card__footer">
+                      <div class="card-melissa__footer">
                         <?php if ($section = get_term(17)): ?>
-                        <a href="<?php echo get_term_link($section->term_id, $section->taxonomy) ?>" class="interview-card__section"><?php echo $section->name ?></a>
+                        <a href="<?php echo get_term_link($section->term_id, $section->taxonomy) ?>" class="card-melissa__section"><?php echo $section->name ?></a>
                         <?php if ($parent = get_term($section->parent)): ?>
-                        <a href="<?php echo get_term_link($parent->term_id, $parent->taxonomy) ?>" class="interview-card__parent"><?php echo $parent->name ?></a>
+                        <a href="<?php echo get_term_link($parent->term_id, $parent->taxonomy) ?>" class="card-melissa__parent"><?php echo $parent->name ?></a>
                         <?php endif; ?>
                         <?php endif; ?>
                       </div>
@@ -120,8 +120,8 @@ $categories = new WP_Term_Query([
                   </div>
                   <?php endif; ?>
                 </div>
-                <div class="video-pontiff-grid__speech-and-preaching">
-                  <div class="video-pontiff-grid__speech">
+                <div class="grid-video-pontiff__speech-and-preaching">
+                  <div class="grid-video-pontiff__speech">
                     <?php if ($latest_speech_query->posts): ?>
                     <div class="tiled-slider tiled-slider_orange" data-tiled-swiper>
                       <div class="swiper-container">
@@ -148,7 +148,7 @@ $categories = new WP_Term_Query([
                     </div>
                     <?php endif; ?>
                   </div>
-                  <div class="video-pontiff-grid__preaching">
+                  <div class="grid-video-pontiff__preaching">
                     <?php if ($latest_preaching_query->posts): ?>
                     <div class="tiled-slider tiled-slider_red" data-tiled-swiper>
                       <div class="swiper-container">
@@ -178,12 +178,12 @@ $categories = new WP_Term_Query([
                 </div>
               </div>
             </div>
-            <div class="video-root-main__latest-title">
+            <div class="grid-video-root__latest-title">
               <div class="section-headline section-headline_green">
                 <div class="section-headline__title">Богослужения и события епархиальной жизни</div>
               </div>
             </div>
-            <div class="video-root-main__latest-body">
+            <div class="grid-video-root__latest-body">
               <?php if ($latest_events_query->posts): ?>
               <div class="video-events">
                 <?php foreach ($latest_events_query->posts as $key => $item): ?>
@@ -280,27 +280,27 @@ $categories = new WP_Term_Query([
 
         <div class="video-sections-wrapper">
           <div class="container">
-            <div class="video-sections-list">
+            <div class="grid-video-sections">
               <?php foreach ($categories->terms as $key => $category): ?>
-              <div class="video-sections-list__cell">
-                <div class="video-sections-item video-sections-item_<?php echo $key ?>">
+              <div class="grid-video-sections__cell">
+                <div class="card-oedipus card-oedipus_<?php echo $key ?>">
                   <?php if ($image = get_field('thumb', $category)): ?>
-                  <div class="video-sections-item__image">
+                  <div class="card-oedipus__image">
                     <img src="<?php echo $image['url'] ?>" alt="" />
                   </div>
                   <?php endif; ?>
-                  <div class="video-sections-item__info">
-                    <a href="<?php echo get_term_link($category->term_id, $category->taxonomy) ?>" class="video-sections-item__title"><?php echo $category->name ?></a>
-                    <div class="video-sections-item__footer">
+                  <div class="card-oedipus__info">
+                    <a href="<?php echo get_term_link($category->term_id, $category->taxonomy) ?>" class="card-oedipus__title"><?php echo $category->name ?></a>
+                    <div class="card-oedipus__footer">
                       <?php if ($tags = get_field('tags', $category)): ?>
-                      <div class="video-sections-item__tags">
+                      <div class="card-oedipus__tags">
                         <?php foreach ($tags as $tag): ?>
                         <a href="<?php echo get_term_link($tag->term_id, $tag->taxonomy) ?>"><?php echo $tag->name ?></a>
                         <?php endforeach; ?>
                       </div>
                       <?php endif; ?>
                       <?php if ($date = get_field('date', $category)): ?>
-                      <div class="video-sections-item__date">
+                      <div class="card-oedipus__date">
                         <?php echo $date ?>
                       </div>
                       <?php endif; ?>
