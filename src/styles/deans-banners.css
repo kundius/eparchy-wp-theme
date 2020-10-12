@@ -28,6 +28,10 @@
 
 .deans-banners-swiper-item__image {
   display: block;
+}
+
+.deans-banners-swiper-item__image img {
+  display: block;
   width: 100%;
   height: auto;
 }

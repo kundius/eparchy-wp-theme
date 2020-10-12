@@ -176,7 +176,7 @@
   }
 }
 
-.intro-news-item-s__figure-image {
+.intro-news-item-s__figure img {
   display: block;
   width: 100%;
   height: auto;
@@ -235,7 +235,7 @@
   background-color: #000000;
 }
 
-.intro-news-item-m__figure-image {
+.intro-news-item-m__figure img {
   display: block;
   width: 100%;
   height: auto;

@@ -5,13 +5,13 @@ $tags = wp_get_post_tags(get_post()->ID);
 $tag_ids = array_map(function ($tag) {
   return $tag->term_id;
 }, $tags);
-$related = new wp_query([
+$related = !empty($tag_ids) ? new wp_query([
   'tag__in' => $tag_ids,
   'post__not_in' => [get_post()->ID],
   'posts_per_page' => 20,
   'ignore_sticky_posts' => 1,
   'paged' => get_query_var('paged') ?: 1,
-]);
+]) : null;
 ?>
 <!DOCTYPE html>
 <html lang="ru" itemscope itemtype="http://schema.org/WebSite">
@@ -66,6 +66,7 @@ $related = new wp_query([
             </div>
           </div>
 
+          <?php if ($related): ?>
           <div class="page-article-materials">
             <div class="container">
               <div class="page-article-materials__title">
@@ -92,6 +93,7 @@ $related = new wp_query([
               </div>
             </div>
           </div>
+          <?php endif; ?>
 
           <?php get_template_part('partials/footer'); ?>
         </div>

@@ -5,24 +5,26 @@
 .eparchy-news-item-l {
   position: relative;
   margin: 15px 0;
-  &:first-child {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+}
+
+.eparchy-news-item-l:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .eparchy-news-item-l__figure {
   background-color: #000000;
 }
 
-.eparchy-news-item-l__figure-image {
+.eparchy-news-item-l__figure img {
   display: block;
   width: 100%;
   height: auto;
   transition: opacity .5s ease;
-  .eparchy-news-item-l:hover & {
-    opacity: 0.8;
-  }
+}
+
+.eparchy-news-item-l:hover .eparchy-news-item-l__figure img {
+  opacity: 0.8;
 }
 
 .eparchy-news-item-l__title {
@@ -52,16 +54,18 @@
   display: flex;
   position: relative;
   transition: box-shadow .3s ease;
-  &:first-child {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
   @media (--below-m) {
     margin-top: 8px;
   }
+}
+
+.eparchy-news-item-m:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.eparchy-news-item-m:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .eparchy-news-item-m__figure {
@@ -71,7 +75,7 @@
   overflow: hidden;
 }
 
-.eparchy-news-item-m__figure-image {
+.eparchy-news-item-m__figure img {
   position: absolute;
   left: 0;
   top: 0;
@@ -110,9 +114,19 @@
   color: #999999;
   text-transform: uppercase;
   text-decoration: none;
-  &:hover {
-    color: #000000;
-  }
+}
+
+.eparchy-news-item-m__rubrics a:hover {
+  color: #000000;
+}
+
+.eparchy-news-item-m__rubrics a::after {
+  content: ', ';
+  display: inline;
+}
+
+.eparchy-news-item-m__rubrics a:last-child::after {
+  display: none;
 }
 
 .eparchy-news-item-m__title {
@@ -123,17 +137,6 @@
   text-decoration: none;
   margin-top: 26px;
   display: block;
-  &:hover {
-    color: #f03325;
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-  }
   @media (--below-l) {
     font-size: 12px;
     margin-top: 18px;
@@ -142,6 +145,19 @@
     font-size: 11px;
     margin-top: 12px;
   }
+}
+
+.eparchy-news-item-m__title:hover {
+  color: #f03325;
+}
+
+.eparchy-news-item-m__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .eparchy-news-item-m__date {

@@ -1,7 +1,94 @@
 <?php
-/*
-Template Name: Главная
-*/
+$latest_news_count = get_field('latest_news_count', 'options');
+$primary_news = get_field('primary_news', 'options');
+$primary_news_groups = array_chunk($primary_news, 4);
+$eparchy_news_term_id = 40;
+$deaneries_news_term_id = 41;
+$publications_term_id = 26;
+$talks_term_id = 42;
+$news_term_id = 23;
+$analytics_term_id = 35;
+$temples_page_id = 228;
+$calendar_params = [
+  'url' =>  get_term_link($publications_term_id, 'category') . '?date=%year%-%month%-%day%'
+];
+
+$latest_news = new WP_Query([
+  'post_type' => 'post',
+  'posts_per_page' => $latest_news_count,
+  'order' => 'DESC',
+  'orderby' => 'date',
+  'cat' => $news_term_id
+]);
+$latest_news_groups = array_chunk($latest_news->posts, 4);
+
+$eparchy_news = new WP_Query([
+  'post_type' => 'post',
+  'posts_per_page' => 5,
+  'order' => 'DESC',
+  'orderby' => 'date',
+  'cat' => $eparchy_news_term_id
+]);
+
+$latest_analytics = new WP_Query([
+  'post_type' => 'post',
+  'posts_per_page' => 11,
+  'order' => 'DESC',
+  'orderby' => 'date',
+  'cat' => $analytics_term_id
+]);
+
+$deaneries_news = new WP_Query([
+  'post_type' => 'post',
+  'posts_per_page' => 8,
+  'order' => 'DESC',
+  'orderby' => 'date',
+  'cat' => $deaneries_news_term_id
+]);
+$deaneries_news_primary = array_shift($deaneries_news->posts);
+
+$temples_sections = new WP_Query([
+  'post_type' => 'page',
+  'post_parent' => $temples_page_id,
+  'posts_per_page' => -1,
+  'orderby' => ['menu_order' => 'ASC']
+]);
+
+$latest_talks = new WP_Query([
+  'post_type' => 'post',
+  'posts_per_page' => 5,
+  'order' => 'DESC',
+  'orderby' => 'date',
+  'cat' => $talks_term_id
+]);
+
+$latest_publications_not_in = array_map(function ($item) {
+  return $item->ID;
+}, $latest_talks->posts);
+$latest_publications = new WP_Query([
+  'post_type' => 'post',
+  'posts_per_page' => 6,
+  'order' => 'DESC',
+  'orderby' => 'date',
+  'post__not_in' => $latest_publications_not_in,
+  'cat' => $publications_term_id
+]);
+$latest_publications_primary = array_shift($latest_publications->posts);
+
+$video_category = get_term(17);
+$latest_video_query = new WP_Query([
+  'post_type' => 'video',
+  'posts_per_page' => 5,
+  'order' => 'DESC',
+  'orderby' => 'date',
+  'tax_query' => [
+    [
+			'taxonomy' => $video_category->taxonomy,
+			'field' => 'id',
+			'terms' => $video_category->term_id
+    ]
+  ]
+]);
 ?>
 <!DOCTYPE html>
 <html lang="ru" itemscope itemtype="http://schema.org/WebSite">
@@ -9,31 +96,7 @@ Template Name: Главная
     <?php get_template_part('partials/head'); ?>
   </head>
   <body>
-    <div class="off-canvas-bar">
-      <button class="off-canvas-bar__close" data-off-canvas-toggle></button>
-
-      <div class="off-canvas-bar__body">
-        <div class="drawer">
-          <a href="/" class="drawer-logo">
-            <span class="drawer-logo__first">Русская Православная Церковь</span>
-            <span class="drawer-logo__second">Борисоглебская&nbsp;&nbsp;Епархия</span>
-            <span class="drawer-logo__third">Московский Патриархат Воронежская Митрополия</span>
-          </a>
-
-          <?php wp_nav_menu([
-            'theme_location' => 'main_menu',
-            'container' => false,
-            'menu_class' => 'drawer-mainmenu'
-          ]) ?>
-
-          <?php wp_nav_menu([
-            'theme_location' => 'header_menu',
-            'container' => false,
-            'menu_class' => 'drawer-secondmenu'
-          ]) ?>
-        </div>
-      </div>
-    </div>
+    <?php get_template_part('partials/off-canvas'); ?>
 
     <div class="off-canvas-page">
       <div class="off-canvas-page__overlay" data-off-canvas-toggle></div>
@@ -47,88 +110,65 @@ Template Name: Главная
               <div class="intro-news__title">Новости</div>
               <div class="intro-news-swiper swiper-container js-intro-news-swiper">
                 <div class="swiper-wrapper">
+                  <?php foreach ($primary_news_groups as $group): ?>
                   <div class="swiper-slide">
                     <div class="intro-news-grid">
                       <div class="intro-news-grid__secondary">
                         <div class="intro-news-grid-secondary">
+                          <?php if (!empty($group[0])): ?>
                           <div class="intro-news-item-s">
+                            <?php if ($thumbnail = get_the_post_thumbnail($group[0], 'w80h80')): ?>
                             <div class="intro-news-item-s__figure">
-                              <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="intro-news-item-s__figure-image" />
+                              <?php echo $thumbnail ?>
                             </div>
-                            <div class="intro-news-item-s__date">24.05.2018</div>
-                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                            <?php endif; ?>
+                            <div class="intro-news-item-s__date"><?php echo get_the_date('d.m.Y', $group[0]) ?></div>
+                            <a class="intro-news-item-s__title" href="<?php the_permalink($group[0]) ?>"><?php echo get_the_title($group[0]) ?></a>
                           </div>
+                          <?php endif; ?>
+                          <?php if (!empty($group[1])): ?>
                           <div class="intro-news-item-s">
+                            <?php if ($thumbnail = get_the_post_thumbnail($group[1], 'w80h80')): ?>
                             <div class="intro-news-item-s__figure">
-                              <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="intro-news-item-s__figure-image" />
+                              <?php echo $thumbnail ?>
                             </div>
-                            <div class="intro-news-item-s__date">24.05.2018</div>
-                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                            <?php endif; ?>
+                            <div class="intro-news-item-s__date"><?php echo get_the_date('d.m.Y', $group[1]) ?></div>
+                            <a class="intro-news-item-s__title" href="<?php the_permalink($group[1]) ?>"><?php echo get_the_title($group[1]) ?></a>
                           </div>
+                          <?php endif; ?>
+                          <?php if (!empty($group[2])): ?>
                           <div class="intro-news-item-s">
+                            <?php if ($thumbnail = get_the_post_thumbnail($group[2], 'w80h80')): ?>
                             <div class="intro-news-item-s__figure">
-                              <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="intro-news-item-s__figure-image" />
+                              <?php echo $thumbnail ?>
                             </div>
-                            <div class="intro-news-item-s__date">24.05.2018</div>
-                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                            <?php endif; ?>
+                            <div class="intro-news-item-s__date"><?php echo get_the_date('d.m.Y', $group[2]) ?></div>
+                            <a class="intro-news-item-s__title" href="<?php the_permalink($group[2]) ?>"><?php echo get_the_title($group[2]) ?></a>
                           </div>
+                          <?php endif; ?>
                         </div>
                       </div>
                       <div class="intro-news-grid__primary">
+                        <?php if (!empty($group[3])): ?>
                         <div class="intro-news-item-m">
+                          <?php if ($thumbnail = get_the_post_thumbnail($group[3], 'w360h360')): ?>
                           <div class="intro-news-item-m__figure">
-                            <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="intro-news-item-m__figure-image" />
+                            <?php echo $thumbnail ?>
                           </div>
-                          <a class="intro-news-item-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                          <?php endif; ?>
+                          <a class="intro-news-item-m__title" href="<?php the_permalink($group[3]) ?>"><?php echo get_the_title($group[3]) ?></a>
                           <div class="intro-news-item-m__footer">
-                            <div class="intro-news-item-m__date">24.05.2018</div>
-                            <div class="intro-news-item-m__ago">1 час назад</div>
+                            <div class="intro-news-item-m__date"><?php echo get_the_date('d.m.Y', $group[3]) ?></div>
+                            <div class="intro-news-item-m__ago"><?php print_time_ago($group[3]) ?></div>
                           </div>
                         </div>
+                        <?php endif; ?>
                       </div>
                     </div>
                   </div>
-                  <div class="swiper-slide">
-                    <div class="intro-news-grid">
-                      <div class="intro-news-grid__secondary">
-                        <div class="intro-news-grid-secondary">
-                          <div class="intro-news-item-s">
-                            <div class="intro-news-item-s__figure">
-                              <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="intro-news-item-s__figure-image" />
-                            </div>
-                            <div class="intro-news-item-s__date">24.05.2018</div>
-                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                          </div>
-                          <div class="intro-news-item-s">
-                            <div class="intro-news-item-s__figure">
-                              <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="intro-news-item-s__figure-image" />
-                            </div>
-                            <div class="intro-news-item-s__date">24.05.2018</div>
-                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                          </div>
-                          <div class="intro-news-item-s">
-                            <div class="intro-news-item-s__figure">
-                              <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="intro-news-item-s__figure-image" />
-                            </div>
-                            <div class="intro-news-item-s__date">24.05.2018</div>
-                            <a class="intro-news-item-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="intro-news-grid__primary">
-                        <div class="intro-news-item-m">
-                          <div class="intro-news-item-m__figure">
-                            <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="intro-news-item-m__figure-image" />
-                          </div>
-                          <a class="intro-news-item-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                          <div class="intro-news-item-m__footer">
-                            <div class="intro-news-item-m__date">24.05.2018</div>
-                            <div class="intro-news-item-m__ago">1 час назад</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <?php endforeach; ?>
                 </div>
                 <div class="intro-news-swiper__pagination">
                   <div class="swiper-pagination"></div>
@@ -145,7 +185,7 @@ Template Name: Главная
             <div class="home-news__relevant-title">
                 <div class="section-headline section-headline_gray">
                   <div class="section-headline__title">Актуальные новости</div>
-                  <a href="#" class="section-headline__link">смотреть все</a>
+                  <a href="<?php echo get_term_link($news_term_id) ?>" class="section-headline__link">смотреть все</a>
                   <div class="ui-visible@s"></div>
                 </div>
             </div>
@@ -154,110 +194,76 @@ Template Name: Главная
               <div class="latest-news">
                 <div class="swiper-container js-latest-news-swiper">
                   <div class="swiper-wrapper">
+                    <?php foreach ($latest_news_groups as $group): ?>
                     <div class="swiper-slide">
                       <div class="ui-grid ui-grid-small ui-grid-medium@s ui-grid-large@m">
                         <div class="ui-width-1-1 ui-width-1-3@s">
+                          <?php if (!empty($group[0])): ?>
                           <div class="latest-news-m">
                             <div class="latest-news-m__head">
-                              <div class="latest-news-m__head-date">24.05.2018</div>
-                              <div class="latest-news-m__head-ago">1 час назад</div>
+                              <div class="latest-news-m__head-date"><?php echo get_the_date('d.m.Y', $group[0]) ?></div>
+                              <div class="latest-news-m__head-ago"><?php print_time_ago($group[0]) ?></div>
                             </div>
+                            <?php if ($thumbnail = get_the_post_thumbnail($group[0], 'w360h240')): ?>
                             <div class="latest-news-m__figure">
-                              <img src="https://i.picsum.photos/id/416/362/265.jpg?hmac=mpbuoOQzNYv6tuHR2HK18v1IpkcBdkru_ft3X-mgpXE" alt="" class="latest-news-m__figure-image" />
+                              <?php echo $thumbnail ?>
                             </div>
-                            <a class="latest-news-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                            <?php endif; ?>
+                            <a class="latest-news-m__title" href="<?php the_permalink($group[0]) ?>"><?php echo get_the_title($group[0]) ?></a>
                           </div>
+                          <?php endif; ?>
                         </div>
                         <div class="ui-width-1-1 ui-width-1-3@s">
+                          <?php if (!empty($group[1])): ?>
                           <div class="latest-news-l">
                             <div class="latest-news-l__head">
-                              <div class="latest-news-l__head-date">24.05.2018</div>
-                              <div class="latest-news-l__head-ago">1 час назад</div>
+                              <div class="latest-news-l__head-date"><?php echo get_the_date('d.m.Y', $group[1]) ?></div>
+                              <div class="latest-news-l__head-ago"><?php print_time_ago($group[1]) ?></div>
                             </div>
+                            <?php if ($thumbnail = get_the_post_thumbnail($group[1], 'w360h360')): ?>
                             <div class="latest-news-l__figure">
-                              <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="latest-news-l__figure-image" />
+                              <?php echo $thumbnail ?>
                             </div>
+                            <?php endif; ?>
                             <div class="latest-news-l__info">
-                              <div class="latest-news-l__info-day">12</div>
+                              <div class="latest-news-l__info-day"><?php echo get_the_date('d', $group[1]) ?></div>
                               <div>
-                                <div class="latest-news-l__info-date">мая ‘18</div>
-                                <a class="latest-news-l__info-title" href="#">Паломническая поездка в Тамбов</a>
+                                <div class="latest-news-l__info-date"><?php echo get_the_date('F ‘y', $group[1]) ?></div>
+                                <a class="latest-news-l__info-title" href="<?php the_permalink($group[1]) ?>"><?php echo get_the_title($group[1]) ?></a>
                               </div>
                             </div>
                           </div>
+                          <?php endif; ?>
                         </div>
                         <div class="ui-width-1-2 ui-width-1-6@s">
+                          <?php if (!empty($group[2])): ?>
                           <div class="latest-news-s">
-                            <div class="latest-news-s__date">24.05.2018</div>
+                            <div class="latest-news-s__date"><?php echo get_the_date('d.m.Y', $group[2]) ?></div>
+                            <?php if ($thumbnail = get_the_post_thumbnail($group[2], 'w360h360')): ?>
                             <div class="latest-news-s__figure">
-                              <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="latest-news-s__figure-image" />
+                              <?php echo $thumbnail ?>
                             </div>
-                            <a class="latest-news-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                            <?php endif; ?>
+                            <a class="latest-news-s__title" href="<?php the_permalink($group[2]) ?>"><?php echo get_the_title($group[2]) ?></a>
                           </div>
+                          <?php endif; ?>
                         </div>
                         <div class="ui-width-1-2 ui-width-1-6@s">
+                          <?php if (!empty($group[3])): ?>
                           <div class="latest-news-s">
-                            <div class="latest-news-s__date">24.05.2018</div>
+                            <div class="latest-news-s__date"><?php echo get_the_date('d.m.Y', $group[3]) ?></div>
+                            <?php if ($thumbnail = get_the_post_thumbnail($group[3], 'w360h360')): ?>
                             <div class="latest-news-s__figure">
-                              <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="latest-news-s__figure-image" />
+                              <?php echo $thumbnail ?>
                             </div>
-                            <a class="latest-news-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                            <?php endif; ?>
+                            <a class="latest-news-s__title" href="<?php the_permalink($group[3]) ?>"><?php echo get_the_title($group[3]) ?></a>
                           </div>
+                          <?php endif; ?>
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
-                      <div class="ui-grid ui-grid-small ui-grid-medium@s ui-grid-large@m">
-                        <div class="ui-width-1-1 ui-width-1-3@s">
-                          <div class="latest-news-m">
-                            <div class="latest-news-m__head">
-                              <div class="latest-news-m__head-date">24.05.2018</div>
-                              <div class="latest-news-m__head-ago">1 час назад</div>
-                            </div>
-                            <div class="latest-news-m__figure">
-                              <img src="https://i.picsum.photos/id/416/362/265.jpg?hmac=mpbuoOQzNYv6tuHR2HK18v1IpkcBdkru_ft3X-mgpXE" alt="" class="latest-news-m__figure-image" />
-                            </div>
-                            <a class="latest-news-m__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                          </div>
-                        </div>
-                        <div class="ui-width-1-1 ui-width-1-3@s">
-                          <div class="latest-news-l">
-                            <div class="latest-news-l__head">
-                              <div class="latest-news-l__head-date">24.05.2018</div>
-                              <div class="latest-news-l__head-ago">1 час назад</div>
-                            </div>
-                            <div class="latest-news-l__figure">
-                              <img src="https://i.picsum.photos/id/1031/512/512.jpg?hmac=HbcP_RUC994jfQpkEm6tNJ83M5EAebzvs-8LYeuoYjg" alt="" class="latest-news-l__figure-image" />
-                            </div>
-                            <div class="latest-news-l__info">
-                              <div class="latest-news-l__info-day">12</div>
-                              <div>
-                                <div class="latest-news-l__info-date">мая ‘18</div>
-                                <a class="latest-news-l__info-title" href="#">Паломническая поездка в Тамбов</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ui-width-1-2 ui-width-1-6@s">
-                          <div class="latest-news-s">
-                            <div class="latest-news-s__date">24.05.2018</div>
-                            <div class="latest-news-s__figure">
-                              <img src="https://i.picsum.photos/id/614/512/512.jpg?hmac=141tn-P1ynSKGJhRXnLf1uGDRKZGEfnQyysBVquCKqw" alt="" class="latest-news-s__figure-image" />
-                            </div>
-                            <a class="latest-news-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                          </div>
-                        </div>
-                        <div class="ui-width-1-2 ui-width-1-6@s">
-                          <div class="latest-news-s">
-                            <div class="latest-news-s__date">24.05.2018</div>
-                            <div class="latest-news-s__figure">
-                              <img src="https://i.picsum.photos/id/506/512/512.jpg?hmac=5t02sDUYYZJ43ysBnXVl51riM2w0Pce3D4HpwcybQBs" alt="" class="latest-news-s__figure-image" />
-                            </div>
-                            <a class="latest-news-s__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <?php endforeach; ?>
                   </div>
                   <div class="latest-news__nav">
                     <div class="swiper-button-prev"></div>
@@ -271,207 +277,104 @@ Template Name: Главная
             <div class="home-news__eparchy-title">
               <div class="section-headline section-headline_blue">
                 <div class="section-headline__title">Новости епархии</div>
-                <a href="#" class="section-headline__link">смотреть все</a>
+                <a href="<?php echo get_term_link($eparchy_news_term_id) ?>" class="section-headline__link">смотреть все</a>
               </div>
             </div>
 
             <div class="home-news__eparchy-body">
               <div class="eparchy-news">
+                <?php foreach ($eparchy_news->posts as $key => $item): ?>
+                <?php if ($key == 0): ?>
                 <div class="eparchy-news-item-l">
+                  <?php if ($thumbnail = get_the_post_thumbnail($item, 'w800h800')): ?>
                   <div class="eparchy-news-item-l__figure">
-                    <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="eparchy-news-item-l__figure-image" />
+                    <?php echo $thumbnail ?>
                   </div>
-                  <a href="#" class="eparchy-news-item-l__title">Заголовок-название актуальной новости месяца/ недели, может быть в 1, 2, 3 строки, название выводится от нижней строки вверх</a>
+                  <?php endif; ?>
+                  <a href="<?php the_permalink($item) ?>" class="eparchy-news-item-l__title"><?php echo get_the_title($item) ?></a>
                 </div>
+                <?php else: ?>
                 <div class="eparchy-news-item-m">
+                  <?php if ($thumbnail = get_the_post_thumbnail($item, 'w300h300')): ?>
                   <div class="eparchy-news-item-m__figure">
-                    <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="eparchy-news-item-m__figure-image" />
+                    <?php echo $thumbnail ?>
                   </div>
+                  <?php endif; ?>
                   <div class="eparchy-news-item-m__info">
+                    <?php $tags = get_the_terms($item, 'post_tag') ?>
+                    <?php if (is_array($tags)): ?>
                     <div class="eparchy-news-item-m__rubrics">
-                      <a href="#">Епархиальное управление</a>
+                      <?php foreach($tags as $ag): ?>
+                      <a href="<?php echo get_term_link($ag->term_id, $ag->taxonomy) ?>"><?php echo $ag->name ?></a>
+                      <?php endforeach; ?>
                     </div>
-                    <a href="#" class="eparchy-news-item-m__title">Заголовок-название актуальной новости месяца/ недели, может быть в 1, 2, 3 строки, название выводится от нижней строки вверх</a>
-                    <div class="eparchy-news-item-m__date">30 марта 2018</div>
+                    <?php endif; ?>
+                    <a href="<?php the_permalink($item) ?>" class="eparchy-news-item-m__title"><?php echo get_the_title($item) ?></a>
+                    <div class="eparchy-news-item-m__date"><?php echo get_the_date('d F Y', $item) ?></div>
                   </div>
                 </div>
-                <div class="eparchy-news-item-m">
-                  <div class="eparchy-news-item-m__figure">
-                    <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="eparchy-news-item-m__figure-image" />
-                  </div>
-                  <div class="eparchy-news-item-m__info">
-                    <div class="eparchy-news-item-m__rubrics">
-                      <a href="#">Епархиальное управление</a>
-                    </div>
-                    <a href="#" class="eparchy-news-item-m__title">Заголовок-название актуальной новости месяца/ недели, может быть в 1, 2, 3 строки, название выводится от нижней строки вверх</a>
-                    <div class="eparchy-news-item-m__date">30 марта 2018</div>
-                  </div>
-                </div>
-                <div class="eparchy-news-item-m">
-                  <div class="eparchy-news-item-m__figure">
-                    <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="eparchy-news-item-m__figure-image" />
-                  </div>
-                  <div class="eparchy-news-item-m__info">
-                    <div class="eparchy-news-item-m__rubrics">
-                      <a href="#">Епархиальное управление</a>
-                    </div>
-                    <a href="#" class="eparchy-news-item-m__title">Заголовок-название актуальной новости месяца/ недели, может быть в 1, 2, 3 строки, название выводится от нижней строки вверх</a>
-                    <div class="eparchy-news-item-m__date">30 марта 2018</div>
-                  </div>
-                </div>
-                <div class="eparchy-news-item-m">
-                  <div class="eparchy-news-item-m__figure">
-                    <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="eparchy-news-item-m__figure-image" />
-                  </div>
-                  <div class="eparchy-news-item-m__info">
-                    <div class="eparchy-news-item-m__rubrics">
-                      <a href="#">Епархиальное управление</a>
-                    </div>
-                    <a href="#" class="eparchy-news-item-m__title">Заголовок-название актуальной новости месяца/ недели, может быть в 1, 2, 3 строки, название выводится от нижней строки вверх</a>
-                    <div class="eparchy-news-item-m__date">30 марта 2018</div>
-                  </div>
-                </div>
+                <?php endif; ?>
+                <?php endforeach; ?>
               </div>
-
-              <nav class="navigation pagination" role="navigation">
-                <div class="nav-links">
-                  <a class="prev page-numbers" href="#"></a>
-                  <span class="page-numbers current">1</span>
-                  <a class="page-numbers" href="#">2</a>
-                  <span class="page-numbers dots">…</span>
-                  <a class="page-numbers" href="#">86</a>
-                  <a class="page-numbers" href="#">87</a>
-                  <a class="next page-numbers" href="#"></a>
-                </div>
-              </nav>
-              <div class="ui-hr ui-hr_small"></div>
             </div>
 
             <div class="home-news__deans-title">
               <div class="section-headline section-headline_green">
                 <div class="section-headline__title">Новости благочиний</div>
-                <a href="#" class="section-headline__link">смотреть все</a>
+                <a href="<?php echo get_term_link($deaneries_news_term_id) ?>" class="section-headline__link">смотреть все</a>
               </div>
             </div>
 
             <div class="home-news__deans-body">
-              <div class="deans-news-primary">
-                <div class="deans-news-primary__date">
-                  <div>24.05.2018</div>
-                  <div>1 час назад</div>
+              <?php if ($deaneries_news_primary): ?>
+              <div class="card-aegle">
+                <div class="card-aegle__date">
+                  <div><?php echo get_the_date('d.m.Y', $deaneries_news_primary) ?></div>
+                  <div><?php print_time_ago($deaneries_news_primary) ?></div>
                 </div>
-                <div class="deans-news-primary__figure">
-                  <img src="https://i.picsum.photos/id/974/560/305.jpg?hmac=9sEVsg87ibcyf3oqY3ITHG8PMB1oagXwHFsVLDsrujY" alt="" class="deans-news-primary__figure-image" />
+                <?php if ($thumbnail = get_the_post_thumbnail($deaneries_news_primary, ['600', '340'])): ?>
+                <div class="card-aegle__figure">
+                  <?php echo $thumbnail ?>
                 </div>
-                <a href="#" class="deans-news-primary__title">Божественная литургия в день празднования иконы Божией Матери именуемой «Достойно есть»</a>
-                <div class="deans-news-primary__desc">24 июня 2018 года, в неделю 4-ю по Пятидесятнице, в день празднования иконы Божией Матери, именуемой «Достойно есть», Глава Борисоглебской епархии, епископ Сергий, возглавил служение Божественной литургии в Знаменском кафедральном соборе и Крестный ход с иконой Божией Матери... «Достойно Есть» до Старособорной площади города Борисоглебска.</div>
+                <?php endif; ?>
+                <a href="<?php the_permalink($deaneries_news_primary) ?>" class="card-aegle__title">
+                  <?php echo get_the_title($deaneries_news_primary) ?>
+                </a>
+                <?php if ($excerpt = get_the_excerpt($deaneries_news_primary)): ?>
+                <div class="card-aegle__desc"><?php echo $excerpt ?></div>
+                <?php endif; ?>
               </div>
 
               <div class="home-news__deans-hr">
                 <div class="ui-hr"></div>
               </div>
+              <?php endif; ?>
 
               <div class="home-news__deans-news-and-banners">
                 <div class="home-news__deans-news">
                   <div class="deans-news-list">
+                    <?php foreach ($deaneries_news->posts as $item): ?>
                     <div class="deans-news-item">
+                      <?php if ($thumbnail = get_the_post_thumbnail($item, 'w80h80')): ?>
                       <div class="deans-news-item__figure">
-                        <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="deans-news-item__figure-image" />
+                        <?php echo $thumbnail ?>
                       </div>
+                      <?php endif; ?>
                       <div class="deans-news-item__info">
                         <div class="deans-news-item__headline">
-                          <div class="deans-news-item__date">24.05.2018</div>
+                          <div class="deans-news-item__date"><?php echo get_the_date('d.m.Y', $item) ?></div>
+                          <?php if (is_array($tags)): ?>
                           <div class="deans-news-item__rubrics">
-                            <a href="#">Служения</a>
+                            <?php foreach($tags as $ag): ?>
+                            <a href="<?php echo get_term_link($ag->term_id, $ag->taxonomy) ?>"><?php echo $ag->name ?></a>
+                            <?php endforeach; ?>
                           </div>
+                          <?php endif; ?>
                         </div>
-                        <a class="deans-news-item__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
+                        <a href="<?php the_permalink($item) ?>" class="deans-news-item__title"><?php echo get_the_title($item) ?></a>
                       </div>
                     </div>
-                    <div class="deans-news-item">
-                      <div class="deans-news-item__figure">
-                        <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="deans-news-item__figure-image" />
-                      </div>
-                      <div class="deans-news-item__info">
-                        <div class="deans-news-item__headline">
-                          <div class="deans-news-item__date">24.05.2018</div>
-                          <div class="deans-news-item__rubrics">
-                            <a href="#">Служения</a>
-                          </div>
-                        </div>
-                        <a class="deans-news-item__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                      </div>
-                    </div>
-                    <div class="deans-news-item">
-                      <div class="deans-news-item__figure">
-                        <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="deans-news-item__figure-image" />
-                      </div>
-                      <div class="deans-news-item__info">
-                        <div class="deans-news-item__headline">
-                          <div class="deans-news-item__date">24.05.2018</div>
-                          <div class="deans-news-item__rubrics">
-                            <a href="#">Служения</a>
-                          </div>
-                        </div>
-                        <a class="deans-news-item__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                      </div>
-                    </div>
-                    <div class="deans-news-item">
-                      <div class="deans-news-item__figure">
-                        <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="deans-news-item__figure-image" />
-                      </div>
-                      <div class="deans-news-item__info">
-                        <div class="deans-news-item__headline">
-                          <div class="deans-news-item__date">24.05.2018</div>
-                          <div class="deans-news-item__rubrics">
-                            <a href="#">Служения</a>
-                          </div>
-                        </div>
-                        <a class="deans-news-item__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                      </div>
-                    </div>
-                    <div class="deans-news-item">
-                      <div class="deans-news-item__figure">
-                        <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="deans-news-item__figure-image" />
-                      </div>
-                      <div class="deans-news-item__info">
-                        <div class="deans-news-item__headline">
-                          <div class="deans-news-item__date">24.05.2018</div>
-                          <div class="deans-news-item__rubrics">
-                            <a href="#">Служения</a>
-                          </div>
-                        </div>
-                        <a class="deans-news-item__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                      </div>
-                    </div>
-                    <div class="deans-news-item">
-                      <div class="deans-news-item__figure">
-                        <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="deans-news-item__figure-image" />
-                      </div>
-                      <div class="deans-news-item__info">
-                        <div class="deans-news-item__headline">
-                          <div class="deans-news-item__date">24.05.2018</div>
-                          <div class="deans-news-item__rubrics">
-                            <a href="#">Служения</a>
-                          </div>
-                        </div>
-                        <a class="deans-news-item__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                      </div>
-                    </div>
-                    <div class="deans-news-item">
-                      <div class="deans-news-item__figure">
-                        <img src="https://i.picsum.photos/id/785/512/512.jpg?hmac=gm6zCOH9mTUmObXpLyhxplD-B1Lc-Xg_ZZPKOUaDXYQ" alt="" class="deans-news-item__figure-image" />
-                      </div>
-                      <div class="deans-news-item__info">
-                        <div class="deans-news-item__headline">
-                          <div class="deans-news-item__date">24.05.2018</div>
-                          <div class="deans-news-item__rubrics">
-                            <a href="#">Служения</a>
-                          </div>
-                        </div>
-                        <a class="deans-news-item__title" href="#">29 апреля — Божественная литургия в Знаменском кафедральном соборе, г. Борисоглебск</a>
-                      </div>
-                    </div>
+                    <?php endforeach; ?>
                   </div>
                 </div>
                 <div class="home-news__deans-banners">
@@ -479,22 +382,20 @@ Template Name: Главная
                     <div class="deans-banners-swiper">
                       <div class="swiper-container js-deans-banners-swiper">
                         <div class="swiper-wrapper">
+                          <?php foreach ($temples_sections->posts as $item): ?>
                           <div class="swiper-slide">
-                            <a href="#" class="deans-banners-swiper-item">
-                              <img src="https://i.picsum.photos/id/478/166/406.jpg?hmac=q-asZBGWaJGrQ0Wpjaco1a32780UvOBxmyzEV8YOC68" alt="" class="deans-banners-swiper-item__image" />
+                            <a href="<?php the_permalink($item) ?>" class="deans-banners-swiper-item">
+                              <?php if ($thumbnail = get_the_post_thumbnail($item, 'w200h500')): ?>
+                              <span class="deans-banners-swiper-item__image">
+                                <?php echo $thumbnail ?>
+                              </span>
+                              <?php endif; ?>
                               <span class="deans-banners-swiper-item__title">
-                                Храмы Борисоглебской епархии
+                                <?php echo get_the_title($item) ?>
                               </span>
                             </a>
                           </div>
-                          <div class="swiper-slide">
-                            <a href="#" class="deans-banners-swiper-item">
-                              <img src="https://i.picsum.photos/id/576/166/406.jpg?hmac=t4L6lVfAqsCsnjG0Ba6MqitZITVUHhIUQwxJ0cP04L4" alt="" class="deans-banners-swiper-item__image" />
-                              <span class="deans-banners-swiper-item__title">
-                                Храмы Борисоглебской епархии
-                              </span>
-                            </a>
-                          </div>
+                          <?php endforeach; ?>
                         </div>
                       </div>
                       <div class="deans-banners-swiper__nav">
@@ -503,8 +404,8 @@ Template Name: Главная
                       </div>
                     </div>
                     <div class="deans-banners-group">
-                      <a href="#" class="deans-banners-union">Православный телеканал «Союз»</a>
-                      <a href="#" class="deans-banners-ways">Маршруты<br />паломничества</a>
+                      <a href="http://tv-soyuz.ru/" class="deans-banners-union">Православный телеканал «Союз»</a>
+                      <a href="<?php the_permalink(542) ?>" class="deans-banners-ways">Маршруты<br />паломничества</a>
                     </div>
                   </div>
                 </div>
@@ -516,165 +417,99 @@ Template Name: Главная
             <div class="home-publications__articles-title">
               <div class="section-headline section-headline_gray">
                 <div class="section-headline__title">Беседы, публикации</div>
-                <a href="#" class="section-headline__link">смотреть все</a>
+                <a href="<?php echo get_term_link($publications_term_id) ?>" class="section-headline__link">смотреть все</a>
               </div>
             </div>
 
             <div class="home-publications__articles-latest">
               <div class="latest-publication">
+                <?php if ($thumbnail = get_the_post_thumbnail($latest_publications_primary, 'w360h240')): ?>
                 <div class="latest-publication__figure">
-                  <img src="https://i.picsum.photos/id/416/362/265.jpg?hmac=mpbuoOQzNYv6tuHR2HK18v1IpkcBdkru_ft3X-mgpXE" alt="" class="latest-publication__figure-image" />
+                  <?php echo $thumbnail ?>
                 </div>
-                <div class="latest-publication__date">24.05.2018</div>
-                <a class="latest-publication__title" href="#">Название статьи, интервью</a>
-                <div class="latest-publication__desc">24 июня 2018 года, в неделю 4-ю по Пятидесятнице, в день празднования иконы Божией Матери, именуемой «Достойно есть», Глава Борисоглебской епархии, епископ Сергий, возглавил служение Божественной литургии в Знаменском кафедральном соборе и Крестный ход с иконой Божией Матери... «Достойно Есть» до Старособорной площади города Борисоглебска.</div>
+                <?php endif; ?>
+                <div class="latest-publication__date"><?php echo get_the_date('d.m.Y', $latest_publications_primary) ?></div>
+                <a class="latest-publication__title" href="<?php the_permalink($latest_publications_primary) ?>"><?php echo get_the_title($latest_publications_primary) ?></a>
+                <?php if ($excerpt = get_the_excerpt($latest_publications_primary)): ?>
+                <div class="latest-publication__desc"><?php echo $excerpt ?></div>
+                <?php endif; ?>
               </div>
 
               <div class="home-publications__articles-more">
-                <a href="#" class="more-button"><span></span>Больше</a>
+                <a href="<?php echo get_term_link($publications_term_id) ?>" class="more-button"><span></span>Больше</a>
               </div>
             </div>
 
             <div class="home-publications__sliders">
               <div class="home-publications__talks">
-                <div class="tiled-slider tiled-slider_orange">
-                  <div class="swiper-container js-tiled-swiper-talks">
+                <div class="tiled-slider tiled-slider_orange" data-tiled-swiper>
+                  <div class="swiper-container">
                     <div class="swiper-wrapper">
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">Беседы</div>
-                        </div>
+                      <?php foreach ($latest_talks->posts as $item): ?>
+                      <div class="swiper-slide tiled-slider-item" data-tiled-swiper-date="<?php echo get_the_date('d.m.', $item) . '<wbr />' . get_the_date('Y', $item) ?>">
                         <div class="tiled-slider-item__body">
                           <div class="tiled-slider-item__figure">
-                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                            <?php echo get_the_post_thumbnail($item) ?>
                           </div>
-                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                          <a href="<?php the_permalink($item) ?>" class="tiled-slider-item__title"><?php echo get_the_title($item) ?></a>
                         </div>
                       </div>
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">Беседы</div>
-                        </div>
-                        <div class="tiled-slider-item__body">
-                          <div class="tiled-slider-item__figure">
-                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
-                          </div>
-                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
-                        </div>
-                      </div>
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">Беседы</div>
-                        </div>
-                        <div class="tiled-slider-item__body">
-                          <div class="tiled-slider-item__figure">
-                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
-                          </div>
-                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
-                        </div>
-                      </div>
+                      <?php endforeach; ?>
                     </div>
                     <div class="swiper-pagination"></div>
                   </div>
+                  <a href="<?php echo get_term_link($talks_term_id, 'category') ?>" class="tiled-slider__category">
+                    <span><?php echo get_term($talks_term_id)->name ?></span>
+                  </a>
+                  <span class="tiled-slider__date"></span>
                 </div>
               </div>
 
               <div class="home-publications__articles">
-                <div class="tiled-slider tiled-slider_red">
-                  <div class="swiper-container js-tiled-swiper-articles">
+                <div class="tiled-slider tiled-slider_red" data-tiled-swiper>
+                  <div class="swiper-container">
                     <div class="swiper-wrapper">
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">ПУБЛИКАЦИИ</div>
-                        </div>
+                      <?php foreach ($latest_publications->posts as $item): ?>
+                      <div class="swiper-slide tiled-slider-item" data-tiled-swiper-date="<?php echo get_the_date('d.m.', $item) . '<wbr />' . get_the_date('Y', $item) ?>">
                         <div class="tiled-slider-item__body">
                           <div class="tiled-slider-item__figure">
-                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
+                            <?php echo get_the_post_thumbnail($item) ?>
                           </div>
-                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                          <a href="<?php the_permalink($item) ?>" class="tiled-slider-item__title"><?php echo get_the_title($item) ?></a>
                         </div>
                       </div>
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">ПУБЛИКАЦИИ</div>
-                        </div>
-                        <div class="tiled-slider-item__body">
-                          <div class="tiled-slider-item__figure">
-                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
-                          </div>
-                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
-                        </div>
-                      </div>
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">ПУБЛИКАЦИИ</div>
-                        </div>
-                        <div class="tiled-slider-item__body">
-                          <div class="tiled-slider-item__figure">
-                            <img src="https://i.picsum.photos/id/335/384/208.jpg?hmac=FsVokg5294uls6MdLL8zVNM6ySDJKCAenY8iqk6OFnc" alt="" class="tiled-slider-item__figure-image" />
-                          </div>
-                          <a href="#" class="tiled-slider-item__title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
-                        </div>
-                      </div>
+                      <?php endforeach; ?>
                     </div>
                     <div class="swiper-pagination"></div>
                   </div>
+                  <a href="<?php echo get_term_link($publications_term_id, 'category') ?>" class="tiled-slider__category">
+                    <span><?php echo get_term($publications_term_id)->name ?></span>
+                  </a>
+                  <span class="tiled-slider__date"></span>
                 </div>
               </div>
 
               <div class="home-publications__interviews">
-                <div class="tiled-slider tiled-slider_green tiled-slider_has-nav">
-                  <div class="swiper-container js-tiled-swiper-interviews">
+                <div class="tiled-slider tiled-slider_green" data-tiled-swiper>
+                  <div class="swiper-container">
                     <div class="swiper-wrapper">
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">Интервью</div>
-                        </div>
+                      <?php foreach ($latest_video_query->posts as $item): ?>
+                      <div class="swiper-slide tiled-slider-item tiled-slider-item_has-nav" data-tiled-swiper-date="<?php echo get_the_date('d.m.', $item) . '<wbr />' . get_the_date('Y', $item) ?>">
                         <div class="tiled-slider-item__body">
-                          <div class="tiled-slider-item__video">
-                            <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <button class="tiled-slider-item__video-play"></button>
-                            <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
+                          <div class="tiled-slider-item__figure">
+                            <?php print_oembed(get_field('video_source', $item)) ?>
                           </div>
                         </div>
                       </div>
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">Интервью</div>
-                        </div>
-                        <div class="tiled-slider-item__body">
-                          <div class="tiled-slider-item__video">
-                            <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <button class="tiled-slider-item__video-play"></button>
-                            <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="swiper-slide tiled-slider-item">
-                        <div class="tiled-slider-item__head">
-                          <div class="tiled-slider-item__head-date">30.03.<wbr />2018</div>
-                          <div class="tiled-slider-item__head-label">Интервью</div>
-                        </div>
-                        <div class="tiled-slider-item__body">
-                          <div class="tiled-slider-item__video">
-                            <iframe class="tiled-slider-item__video-iframe" src="https://www.youtube.com/embed/yfsfDP0svf8?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <button class="tiled-slider-item__video-play"></button>
-                            <a href="#" class="tiled-slider-item__video-title">Беседа на тему «Воскресение Христово, как смысл нашей жизни»</a>
-                          </div>
-                        </div>
-                      </div>
+                      <?php endforeach; ?>
                     </div>
                   </div>
-                  <div class="tiled-slider__prev swiper-button-prev js-tiled-swiper-interviews-prev"></div>
-                  <div class="tiled-slider__next swiper-button-next js-tiled-swiper-interviews-next"></div>
+                  <a href="<?php echo get_term_link($video_category->term_id, $video_category->taxonomy) ?>" class="tiled-slider__category">
+                    <span><?php echo $video_category->name ?></span>
+                  </a>
+                  <span class="tiled-slider__date"></span>
+                  <div class="tiled-slider__prev swiper-button-prev" data-tiled-swiper-prev></div>
+                  <div class="tiled-slider__next swiper-button-next" data-tiled-swiper-next></div>
                 </div>
               </div>
             </div>
@@ -686,7 +521,7 @@ Template Name: Главная
             </div>
 
             <div class="home-publications__calendar-body">
-              <div class="archive-calendar" data-archive-calendar>
+              <div class="archive-calendar" data-archive-calendar='<?php echo json_encode($calendar_params) ?>'>
                 <div class="archive-calendar__headline">
                   <button class="archive-calendar__headline-prev" data-archive-calendar-prev-year></button>
                   <div class="archive-calendar__headline-year" data-archive-calendar-year></div>
@@ -763,68 +598,71 @@ Template Name: Главная
                     </div>
                   </div>
                   <div class="tabs-panel__body-item" data-tabs-body="second">
-                    second
+                    <div class="ecalendar" data-ecalendar>
+                      <div class="ecalendar__legend-and-control">
+                        <div class="ecalendar-legend">
+                          <div class="ecalendar-legend__row ecalendar-legend__row_current">Текущая дата</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_primary">Главные праздники</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_weeks">Сплошные седмицы</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_post">Дни поста</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_memorial">Дни особого<br />поминовения<br />усопших</div>
+                        </div>
+
+                        <div class="ecalendar-control">
+                          <div class="ecalendar-control__headline">
+                            <button class="ecalendar-control__headline-prev" data-ecalendar-backward></button>
+                            <div class="ecalendar-control__headline-year" data-ecalendar-date></div>
+                            <button class="ecalendar-control__headline-next" data-ecalendar-forward></button>
+                          </div>
+                          <div class="ecalendar-control__body" data-ecalendar-body>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="ecalendar-content" data-ecalendar-content></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
+          <?php if ($latest_analytics->have_posts()): ?>
           <div class="home-analytics">
             <div class="home-analytics__title">
               <div class="section-headline section-headline_yellow">
                 <div class="section-headline__title">Актуальная аналитика</div>
-                <a href="#" class="section-headline__link">смотреть все</a>
+                <a href="<?php echo get_term_link($analytics_term_id) ?>" class="section-headline__link">смотреть все</a>
                 <div class="ui-visible@s"></div>
               </div>
             </div>
 
             <div class="home-analytics__body">
-              <div class="analytics-grid">
-                <div class="analytics-grid-item">
-                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
-                  <a href="#" class="analytics-grid-item__title">Чтобы люди нашли Церковь, Церковь должна искать Христа</a>
+              <div class="grid-articles">
+                <?php foreach ($latest_analytics->posts as $key => $item): ?>
+                <div class="grid-articles__cell">
+                  <div class="card-demeter card-demeter_<?php echo $key + 1 ?>">
+                    <?php if ($thumbnail = get_the_post_thumbnail($item, ['600', '340'])): ?>
+                    <div class="card-demeter__figure">
+                      <?php echo $thumbnail ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="card-demeter__info">
+                      <a href="<?php the_permalink($item) ?>" class="card-demeter__title">
+                        <?php echo get_the_title($item) ?>
+                      </a>
+                    </div>
+                    <div class="card-demeter__date">
+                      <?php echo get_the_date('d.m.Y', $item) ?>
+                    </div>
+                  </div>
                 </div>
-                <div class="analytics-grid-item">
-                  <a href="#" class="analytics-grid-item__title">Церковь занимается не прогнозами, а людьми</a>
-                </div>
-                <div class="analytics-grid-item">
-                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
-                  <a href="#" class="analytics-grid-item__title">Владимир Легойда: Верую, ибо достойно. Рождественское</a>
-                </div>
-                <div class="analytics-grid-item">
-                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
-                  <a href="#" class="analytics-grid-item__title">Монастырь во имя преподобного Серафима Саровского <br /><br />с. Новомакарово</a>
-                </div>
-                <div class="analytics-grid-item">
-                  <a href="#" class="analytics-grid-item__title">«Екатеринбургские останки»: об истине и сенсациях</a>
-                </div>
-                <div class="analytics-grid-item">
-                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
-                  <a href="#" class="analytics-grid-item__title">Святейший Патриарх Кирилл призвал паству к участию в выборах</a>
-                </div>
-                <div class="analytics-grid-item">
-                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
-                  <a href="#" class="analytics-grid-item__title">Рождество: почему и зачем Бог стал Человеком?</a>
-                </div>
-                <div class="analytics-grid-item">
-                  <img src="https://i.picsum.photos/id/33/800/800.jpg?hmac=lfMKDRbFpYvLoMTnr1nACUg88A_YgMgEzdoWK1BMRX4" alt="" class="analytics-grid-item__image" />
-                  <a href="#" class="analytics-grid-item__title">О церковном браке и «церковном разводе»</a>
-                </div>
-                <div class="analytics-grid-item">
-                  <a href="#" class="analytics-grid-item__title">Название статьи, может быть не в одну строку, а в две, три, четыре или больше строк, если длина названия блока превышает данный, его высота увеличивается</a>
-                </div>
-                <div class="analytics-banners">
-                  <a href="#" class="analytics-banners__union">
-                    Православный телеканал<br> «Союз»
-                  </a>
-                  <a href="#" class="analytics-banners__routes">
-                    Маршруты<br> паломничества
-                  </a>
-                </div>
+                <?php endforeach; ?>
               </div>
             </div>
           </div>
+          <?php endif; ?>
         </div>
 
         <?php get_template_part('partials/footer'); ?>

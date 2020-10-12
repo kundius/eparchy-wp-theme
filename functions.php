@@ -13,20 +13,23 @@ add_post_type_support('page', 'excerpt');
 add_action('after_setup_theme', function() {
 	register_nav_menus([
 		'header_menu' => 'Меню в шапке',
-		'main_menu' => 'Основное меню'
+		'main_menu' => 'Основное меню',
+		'footer_first_menu' => 'Первое меню в подвале',
+		'footer_second_menu' => 'Второе меню в подвале',
+		'footer_third_menu' => 'Третье меню в подвале',
+		'footer_fourth_menu' => 'Четвертое меню в подвале'
 	]);
 });
 
 add_theme_support('post-thumbnails', array('post', 'page', 'project'));
+add_image_size('w80h80', 80, 80, true);
+add_image_size('w360h240', 360, 240, true);
+add_image_size('w360h360', 360, 360, true);
 add_image_size('w400h260', 400, 260, true);
 add_image_size('w600h340', 600, 340, true);
 add_image_size('w800h460', 800, 460, true);
-// add_image_size('w468h364', 468, 364, true);
-// add_image_size('w468h500', 468, 500, true);
-// add_image_size('w800h600', 800, 600, true);
-// add_image_size('w800h480', 800, 480, true);
-// add_image_size('w560h308', 560, 308, false);
-// add_image_size('w400h400', 400, 400, true);
+add_image_size('w800h800', 800, 800, true);
+add_image_size('w200h500', 200, 500, true);
 
 function srcset($image, $wh) {
 	$wh = !empty($wh) ? $wh : ['thumbnail', 'medium', 'large', 'w150h100', 'w560h308', 'w468h364', 'w560h308', 'w468h500', 'w800h600', 'w800h480'];

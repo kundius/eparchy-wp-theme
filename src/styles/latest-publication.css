@@ -6,7 +6,7 @@
 
 }
 
-.latest-publication__figure-image {
+.latest-publication__figure img {
   display: block;
   width: 100%;
   height: auto;
@@ -29,17 +29,19 @@
   color: #373737;
   text-decoration: none;
   display: inline-block;
-  &:hover {
-    color: #f03325;
-  }
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-  }
+}
+
+.latest-publication__title:hover {
+  color: #f03325;
+}
+
+.latest-publication__title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .latest-publication__desc {

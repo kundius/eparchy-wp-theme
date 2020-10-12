@@ -10,35 +10,22 @@
         Епархиального управления:
       </div>
       <div class="footer-address__content">
-        Воронежская Область,<br />
-        г. Борисоглебск 397160, ул. 40 лет Октября, 35, а
+        <?php the_field('address', 'options') ?>
       </div>
+      <?php if ($contacts = get_field('contacts', 'options')): ?>
       <div class="footer-contacts">
+        <?php foreach ($contacts as $item): ?>
         <div class="footer-contacts__row">
           <div class="footer-contacts__value">
-          +7 (47354) 9-29-44
+          <?php echo $item['value'] ?>
           </div>
           <div class="footer-contacts__label">
-          канцелярия
+          <?php echo $item['name'] ?>
           </div>
         </div>
-        <div class="footer-contacts__row">
-          <div class="footer-contacts__value">
-          +7 (47354) 9-29-44
-          </div>
-          <div class="footer-contacts__label">
-          факс
-          </div>
-        </div>
-        <div class="footer-contacts__row">
-          <div class="footer-contacts__value">
-          <a href="mailto:beu92944@mail.ru">beu92944@mail.ru</a>
-          </div>
-          <div class="footer-contacts__label">
-          e-mail
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
+      <?php endif; ?>
     </div>
 
     <div class="footer-share">
@@ -52,90 +39,50 @@
 
     <div class="footer-vk">
       <div class="footer-vk__title">Группа <strong>ВКонтакте</strong></div>
-      <a href="#" class="footer-vk__link"><img src="<?php echo get_bloginfo('template_url') ?>/dist/images/vk-group.png" alt="" /></a>
+      <div class="footer-vk__link">
+        <a href="https://vk.com/public107884988" target="_blank"><img src="<?php echo get_bloginfo('template_url') ?>/dist/images/vk-group.png" alt="" /></a>
+      </div>
     </div>
 
     <div class="footer__first-menu">
-      <ul class="footer-menu">
-        <li>
-          <a href="#">Главная</a>
-        </li>
-        <li>
-          <a href="#">О епархии</a>
-        </li>
-        <li>
-          <a href="#">Архиерей</a>
-        </li>
-        <li>
-          <a href="#">Епархиальное управление</a>
-        </li>
-        <li>
-          <a href="#">Епархиальное духовенство</a>
-        </li>
-        <li>
-          <a href="#">Благочиния</a>
-        </li>
-        <li>
-          <a href="#">Документы</a>
-        </li>
-      </ul>
+      <?php wp_nav_menu([
+        'theme_location' => 'footer_first_menu',
+        'container' => false,
+        'menu_class' => 'footer-menu'
+      ]) ?>
     </div>
 
     <div class="footer__seconf-menu">
-      <ul class="footer-menu">
-        <li>
-          <a href="#">Новости Епархии</a>
-        </li>
-        <li>
-          <a href="#">Новости Епархиальных отделов</a>
-        </li>
-        <li>
-          <a href="#">Архиерейский Собор</a>
-        </li>
-        <li>
-          <a href="#">Храмы</a>
-        </li>
-        <li>
-          <a href="#">Публикации</a>
-        </li>
-        <li>
-          <a href="#">Видеоархив</a>
-        </li>
-      </ul>
+      <?php wp_nav_menu([
+        'theme_location' => 'footer_second_menu',
+        'container' => false,
+        'menu_class' => 'footer-menu'
+      ]) ?>
     </div>
 
     <div class="footer__third-menu">
-      <ul class="footer-menu">
-        <li>
-          <a href="#">RSS</a>
-        </li>
-        <li>
-          <a href="#">Обратная связь с редакцией портала</a>
-        </li>
-        <li>
-          <a href="#">Обратная связь с технической поддержкой</a>
-        </li>
-      </ul>
+      <?php wp_nav_menu([
+        'theme_location' => 'footer_third_menu',
+        'container' => false,
+        'menu_class' => 'footer-menu'
+      ]) ?>
     </div>
 
-    <ul class="footer-links">
-      <li>
-        <a href="#">Политика конфиденциальности и обработки персональных данных</a>
-      </li>
-      <li>
-        <a href="#">Пользовательское соглашение</a>
-      </li>
-    </ul>
+    <?php wp_nav_menu([
+      'theme_location' => 'footer_fourth_menu',
+      'container' => false,
+      'menu_class' => 'footer-links'
+    ]) ?>
   </div>
 </div>
 
 <div class="footline">
   <div class="container footline__container">
     <div class="footline__copyright">
-      © 2006-2019, Борисоглебск православный
+      <?php the_field('copyright', 'options') ?>
     </div>
     <div class="footline__counters">
-      COUNTERS
+      <?php the_field('counters', 'options') ?>
     </div>
     <a class="footline__sitemap" href="<?php the_permalink(442) ?>"><?php echo get_the_title(442) ?></a>
     <a class="footline__creator" href="http://domenart-studio.ru">
