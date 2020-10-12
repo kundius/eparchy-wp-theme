@@ -26,7 +26,7 @@ module.exports = {
 
   output: {
     path: PATHS.build,
-    publicPath: '/wp-content/themes/eparchy/dist/',
+    publicPath: '/wp-content/themes/eparchia-wp-theme/dist/',
     filename: '[name].js',
     chunkFilename: '[name].js',
   },

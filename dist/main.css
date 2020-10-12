@@ -1684,7 +1684,7 @@ img {
   height: 37px;
   position: relative;
   width: 100%;
-  background: url(/wp-content/themes/eparchy/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchy/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%, url(/wp-content/themes/eparchy/dist/images/hr-center.png?86734da790b3df8c8465cd1c7a634660) no-repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%, url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-center.png?86734da790b3df8c8465cd1c7a634660) no-repeat 50% 50%;
   border: none;
   margin: 0;
 }
@@ -1701,7 +1701,7 @@ img {
 
 .ui-hr_small {
   height: 5px;
-  background: url(/wp-content/themes/eparchy/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchy/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%;
   margin-top: -2px;
   margin-bottom: -2px;
 }
@@ -2239,7 +2239,7 @@ img {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  background: url(/wp-content/themes/eparchy/dist/images/hr-small.png?0707ecf82adff701e55c0d5f95366b15) no-repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-small.png?0707ecf82adff701e55c0d5f95366b15) no-repeat 50% 50%;
   background-size: 100% 100%;
   width: 559px;
   height: 5px;
@@ -2401,7 +2401,7 @@ img {
   height: 37px;
   position: relative;
   width: 100%;
-  background: url(/wp-content/themes/eparchy/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchy/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%, url(/wp-content/themes/eparchy/dist/images/hr-center.png?86734da790b3df8c8465cd1c7a634660) no-repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%, url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-center.png?86734da790b3df8c8465cd1c7a634660) no-repeat 50% 50%;
   border: none;
   margin: 0;
 }
@@ -2424,7 +2424,7 @@ img {
 
 .content .wp-block-separator.is-style-wide {
   height: 5px;
-  background: url(/wp-content/themes/eparchy/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchy/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-left.png?5eccc612f4e15572902e34ad33aaa77e) no-repeat 0 50%, url(/wp-content/themes/eparchia-wp-theme/dist/images/hr-right.png?d631afc0fdb957c44ae9188d743f0a93) no-repeat 100% 50%;
 }
 
 .content .wp-block-separator.is-style-wide::after {
@@ -2509,7 +2509,7 @@ img {
 
 .portray-section__bg {
   display: block;
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
   position: absolute;
   left: 0;
   top: 0;
@@ -2822,7 +2822,7 @@ img {
 }
 
 .header {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-white.jpg?a91e6d824e19ec99e7e8f4b8734c3838) repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-white.jpg?a91e6d824e19ec99e7e8f4b8734c3838) repeat 50% 50%;
   padding-top: 16px;
   padding-bottom: 16px;
   position: -webkit-sticky;
@@ -3186,7 +3186,7 @@ img {
 }
 
 .mainmenu {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-brown.jpg?2508033b8f5d2be495e83a42af2ae19b) repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-brown.jpg?2508033b8f5d2be495e83a42af2ae19b) repeat 50% 50%;
   box-shadow: inset 0 -1px 0 #b88775;
   z-index: 200;
   position: -webkit-sticky;
@@ -4014,7 +4014,7 @@ img {
 
 .home-intro {
   padding: 120px 0 140px;
-  background: #9fc5e5 url(/wp-content/themes/eparchy/dist/images/bg-intro.jpg?9ca25a1c63989e020856549ad73989d0) no-repeat 100% 100%;
+  background: #9fc5e5 url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-intro.jpg?9ca25a1c63989e020856549ad73989d0) no-repeat 100% 100%;
   background-size: auto 100%
 }
 
@@ -5986,7 +5986,7 @@ img {
     width: 3.75em;
     height: 3.5625em;
     display: inline-block;
-    background: url(/wp-content/themes/eparchy/dist/images/banner-union.png?f540b3d657da5d29cd9f0eed35d22ace) no-repeat 50% 50%;
+    background: url(/wp-content/themes/eparchia-wp-theme/dist/images/banner-union.png?f540b3d657da5d29cd9f0eed35d22ace) no-repeat 50% 50%;
     background-size: cover;
     margin-bottom: 1.125em;
   }
@@ -6018,7 +6018,7 @@ img {
   font-size: 1em;
   line-height: 1.15;
   text-align: center;
-  background: #9c9ca4 url(/wp-content/themes/eparchy/dist/images/banner-ways.png?d650b09f1d53a2d8af3675f4dd8181bd) no-repeat 50% 50%;
+  background: #9c9ca4 url(/wp-content/themes/eparchia-wp-theme/dist/images/banner-ways.png?d650b09f1d53a2d8af3675f4dd8181bd) no-repeat 50% 50%;
   background-size: cover
 }
 
@@ -6177,7 +6177,7 @@ img {
 }
 
 .tiled-slider_orange .tiled-slider__category {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-orange.jpg?d2afef9444b4b823f6246d050c141b5a) repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-orange.jpg?d2afef9444b4b823f6246d050c141b5a) repeat 50% 50%;
 }
 
 .tiled-slider_blue {
@@ -6193,7 +6193,7 @@ img {
 }
 
 .tiled-slider_blue .tiled-slider__category {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-blue.jpg?aa746bbf9ae461d3f1b26b215b107971) repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-blue.jpg?aa746bbf9ae461d3f1b26b215b107971) repeat 50% 50%;
 }
 
 .tiled-slider_red {
@@ -6209,7 +6209,7 @@ img {
 }
 
 .tiled-slider_red .tiled-slider__category {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-red.jpg?025ae601f7f248b15141416fc961cd87) repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-red.jpg?025ae601f7f248b15141416fc961cd87) repeat 50% 50%;
 }
 
 .tiled-slider_green {
@@ -6225,7 +6225,7 @@ img {
 }
 
 .tiled-slider_green .tiled-slider__category {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-green.jpg?83120f9beeb22a054040dc1398e4d3d6) repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-green.jpg?83120f9beeb22a054040dc1398e4d3d6) repeat 50% 50%;
 }
 
 .tiled-slider-item {
@@ -7168,7 +7168,7 @@ a.tiled-slider-item__title::before {
 
 .tabs-panel__body-item {
   color: #999999;
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
   padding-top: 46px;
   padding-bottom: 60px;
   padding-left: 25px;
@@ -7360,7 +7360,7 @@ a.tiled-slider-item__title::before {
   width: 4.625em;
   height: 4.4375em;
   display: inline-block;
-  background: url(/wp-content/themes/eparchy/dist/images/banner-union.png?f540b3d657da5d29cd9f0eed35d22ace) no-repeat 50% 50%;
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/banner-union.png?f540b3d657da5d29cd9f0eed35d22ace) no-repeat 50% 50%;
   background-size: cover;
   margin-bottom: 1.125em;
 }
@@ -7397,7 +7397,7 @@ a.tiled-slider-item__title::before {
     top: 0;
     right: 0;
     bottom: 0;
-    background: url(/wp-content/themes/eparchy/dist/images/banner-ways.png?d650b09f1d53a2d8af3675f4dd8181bd) no-repeat 50% 50%;
+    background: url(/wp-content/themes/eparchia-wp-theme/dist/images/banner-ways.png?d650b09f1d53a2d8af3675f4dd8181bd) no-repeat 50% 50%;
     background-size: cover;
     opacity: 0.4;
     z-index: -1;
@@ -10218,7 +10218,7 @@ a.articles-wide-item__title::after {
 
 .card-hestia_districts {
   background-color: #8ea073;
-  background-image: url(/wp-content/themes/eparchy/dist/images/bg-card-hestia-districts.jpg?c063f4dd4975947a8e5ab3da6377655e);
+  background-image: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-card-hestia-districts.jpg?c063f4dd4975947a8e5ab3da6377655e);
   background-position: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10230,7 +10230,7 @@ a.articles-wide-item__title::after {
 
 .card-hestia_history {
   background-color: #a46b55;
-  background-image: url(/wp-content/themes/eparchy/dist/images/about-eparchy-history.jpg?d893d76fb28a184a899eaa6bb301fbc2);
+  background-image: url(/wp-content/themes/eparchia-wp-theme/dist/images/about-eparchy-history.jpg?d893d76fb28a184a899eaa6bb301fbc2);
   background-position: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -10393,7 +10393,7 @@ a.articles-wide-item__title::after {
 }
 
 .card-ariadne_diocese {
-  background: #64c1e7 url(/wp-content/themes/eparchy/dist/images/bg-card-ariadne-diocese.jpg?df2a9557ba801c31211b57a3b2cd0892) no-repeat 50% 100%;
+  background: #64c1e7 url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-card-ariadne-diocese.jpg?df2a9557ba801c31211b57a3b2cd0892) no-repeat 50% 100%;
 }
 
 .card-ariadne__title {
@@ -10431,7 +10431,7 @@ a.articles-wide-item__title::after {
   }
 
 .card-tisiphone {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
   padding: 56px 30px;
   display: flex
 }
@@ -11021,7 +11021,7 @@ a.articles-wide-item__title::after {
 }
 
 .card-melissa__info {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
   padding: 12px 30px 50px;
   flex-grow: 1;
   display: flex;
@@ -11204,7 +11204,7 @@ a.articles-wide-item__title::after {
 }
 
 .card-oedipus__info {
-  background: url(/wp-content/themes/eparchy/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
+  background: url(/wp-content/themes/eparchia-wp-theme/dist/images/bg-pattern-gray.jpg?c4026f02b5ec561814957ffe1df0b556);
   flex-grow: 1;
   padding: 50px 15px 25px;
   transition: all .3s ease;
