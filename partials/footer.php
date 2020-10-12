@@ -85,7 +85,7 @@
       <?php the_field('counters', 'options') ?>
     </div>
     <a class="footline__sitemap" href="<?php the_permalink(442) ?>"><?php echo get_the_title(442) ?></a>
-    <a class="footline__creator" href="http://domenart-studio.ru">
+    <a class="footline__creator" href="http://domenart-studio.ru" target="_blank">
       <img src="<?php echo get_bloginfo('template_url') ?>/dist/images/creator.png" alt="" />
     </a>
   </div>
