@@ -4,7 +4,8 @@ import './archive-calendar'
 import './off-canvas'
 import './mainmenu'
 import './drawermenu'
-import ECalendar from './ecalendar'
+import HolidaysCalendar from './holidays-calendar'
+import PublicationsCalendar from './publications-calendar'
 import Tabs from './Tabs'
 import MicroModal from 'micromodal'
 
@@ -17,8 +18,6 @@ if (openModalButtons.length > 0) {
     MicroModal.show(el.dataset.openModal)
   }))
 }
-
-
 
 Swiper.use([Navigation, Pagination, Thumbs])
 
@@ -97,7 +96,6 @@ if (tiledSwipers.length > 0) {
         prevEl: el.querySelector('[data-tiled-swiper-prev]')
       }
     })
-    console.log(slider.slides[0])
     date.innerHTML = slider.slides[0].dataset.tiledSwiperDate
     slider.on('slideChange', function () {
       date.innerHTML = slider.slides[slider.activeIndex].dataset.tiledSwiperDate
@@ -105,9 +103,14 @@ if (tiledSwipers.length > 0) {
   })
 }
 
-const ecalendars = document.querySelectorAll('[data-ecalendar]')
-if (ecalendars.length > 0) {
-  ecalendars.forEach(el => new ECalendar(el).init())
+const holidaysCalendars = document.querySelectorAll('[data-holidays-calendar]')
+if (holidaysCalendars.length > 0) {
+  holidaysCalendars.forEach(el => new HolidaysCalendar(el).init())
+}
+
+const publicationsCalendars = document.querySelectorAll('[data-publications-calendar]')
+if (publicationsCalendars.length > 0) {
+  publicationsCalendars.forEach(el => new PublicationsCalendar(el).init())
 }
 
 const tabs = document.querySelectorAll('[data-tabs]')
@@ -162,6 +165,7 @@ if (swiperGalleryElements.length > 0) {
     if (mainSlides.length > 0) {
       mainSlides.forEach(el => el.addEventListener('click', () => {
         html.style.overflow = 'hidden'
+        parentElement.style.height = `${swiperGalleryElement.offsetHeight}px`
         body.appendChild(swiperGalleryElement)
         swiperGalleryElement.classList.add('is-lightbox');
         galleryTop.update();
@@ -175,6 +179,7 @@ if (swiperGalleryElements.length > 0) {
       closeElements.forEach(el => el.addEventListener('click', () => {
         html.style.overflow = null
         parentElement.appendChild(swiperGalleryElement)
+        parentElement.style.height = null
         swiperGalleryElement.classList.remove('is-lightbox');
         galleryTop.update();
         galleryThumbs.update();

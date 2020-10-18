@@ -1,16 +1,15 @@
-require('regenerator-runtime/runtime')
 require('es6-promise').polyfill()
 require('isomorphic-fetch')
 
-class ECalendar {
+class HolidaysCalendar {
   constructor (wrapper) {
     this.elements = {
       wrapper,
-      date: wrapper.querySelector('[data-ecalendar-date]'),
-      forward: wrapper.querySelector('[data-ecalendar-forward]'),
-      backward: wrapper.querySelector('[data-ecalendar-backward]'),
-      body: wrapper.querySelector('[data-ecalendar-body]'),
-      content: wrapper.querySelector('[data-ecalendar-content]')
+      date: wrapper.querySelector('[data-holidays-calendar-date]'),
+      forward: wrapper.querySelector('[data-holidays-calendar-forward]'),
+      backward: wrapper.querySelector('[data-holidays-calendar-backward]'),
+      body: wrapper.querySelector('[data-holidays-calendar-body]'),
+      content: wrapper.querySelector('[data-holidays-calendar-content]')
     }
 
     this.data = {}
@@ -42,7 +41,7 @@ class ECalendar {
     for (let i = 0; i < this.getDay(d); i++) {
       const prevDate = new Date(d.getTime())
       prevDate.setDate(prevDate.getDate() - (this.getDay(prevDate) - i))
-      table += '<td><button data-ecalendar-day="' + this.formatDateKey(prevDate) + '" class="ecalendar-control__day ecalendar-control__day_past">' + prevDate.getDate() + '<span class="ecalendar-control__markers"></span></button></td>'
+      table += '<td><button data-holidays-calendar-day="' + this.formatDateKey(prevDate) + '" class="ecalendar-control__day ecalendar-control__day_past">' + prevDate.getDate() + '<span class="ecalendar-control__markers"></span></button></td>'
       dates.push(this.formatDateKey(prevDate))
     }
 
@@ -50,7 +49,7 @@ class ECalendar {
       const is_current = d.getDate() === new Date().getDate() && d.getMonth() === new Date().getMonth()
 
       table += '<td>'
-      table += '<button data-ecalendar-day="' + this.formatDateKey(d) + '" class="ecalendar-control__day'
+      table += '<button data-holidays-calendar-day="' + this.formatDateKey(d) + '" class="ecalendar-control__day'
       if (is_current) {
         table += ' ecalendar-control__day_current'
       }
@@ -77,7 +76,7 @@ class ECalendar {
       for (let i = this.getDay(d); i < 7; i++) {
         const futureDate = new Date(d.getTime())
         futureDate.setDate(futureDate.getDate() + (i - this.getDay(d)))
-        table += '<td><button data-ecalendar-day="' + this.formatDateKey(futureDate) + '" class="ecalendar-control__day ecalendar-control__day_future">' + futureDate.getDate() + '<span class="ecalendar-control__markers"></span></button></td>'
+        table += '<td><button data-holidays-calendar-day="' + this.formatDateKey(futureDate) + '" class="ecalendar-control__day ecalendar-control__day_future">' + futureDate.getDate() + '<span class="ecalendar-control__markers"></span></button></td>'
         dates.push(this.formatDateKey(futureDate))
       }
     }
@@ -85,8 +84,8 @@ class ECalendar {
     table += '</tr></tbody></table>'
 
     this.elements.body.innerHTML = table
-    this.elements.body.querySelectorAll('[data-ecalendar-day]').forEach(el => {
-      el.addEventListener('click', () => this.showDay(el.dataset.ecalendarDay))
+    this.elements.body.querySelectorAll('[data-holidays-calendar-day]').forEach(el => {
+      el.addEventListener('click', () => this.showDay(el.dataset.holidaysCalendarDay))
     })
 
     this.loadCalendarData(dates)
@@ -109,7 +108,7 @@ class ECalendar {
     }
     const formData = new FormData()
     formData.append('dates', dates)
-    formData.append('action', 'get_calendar_data')
+    formData.append('action', 'get_holidays_data')
     fetch(myajax.url, {
       method: 'POST',
       body: formData
@@ -118,19 +117,19 @@ class ECalendar {
       .then(json => {
         this.data = {...this.data, ...json}
 
-        this.elements.body.querySelectorAll('[data-ecalendar-day]').forEach(el => {
+        this.elements.body.querySelectorAll('[data-holidays-calendar-day]').forEach(el => {
           const markers = el.querySelector('.ecalendar-control__markers')
 
-          if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_holidays && !markers.querySelector('.ecalendar-control__marker-primary')) {
+          if (this.data[el.dataset.holidaysCalendarDay] && this.data[el.dataset.holidaysCalendarDay].is_holidays && !markers.querySelector('.ecalendar-control__marker-primary')) {
             markers.innerHTML += '<span class="ecalendar-control__marker-primary"></span>'
           }
-          if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_fasting && !markers.querySelector('.ecalendar-control__marker-post')) {
+          if (this.data[el.dataset.holidaysCalendarDay] && this.data[el.dataset.holidaysCalendarDay].is_fasting && !markers.querySelector('.ecalendar-control__marker-post')) {
             markers.innerHTML += '<span class="ecalendar-control__marker-post"></span>'
           }
-          if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_weeks && !markers.querySelector('.ecalendar-control__marker-weeks')) {
+          if (this.data[el.dataset.holidaysCalendarDay] && this.data[el.dataset.holidaysCalendarDay].is_weeks && !markers.querySelector('.ecalendar-control__marker-weeks')) {
             markers.innerHTML += '<span class="ecalendar-control__marker-weeks"></span>'
           }
-          if (this.data[el.dataset.ecalendarDay] && this.data[el.dataset.ecalendarDay].is_commemoration && !markers.querySelector('.ecalendar-control__marker-memorial')) {
+          if (this.data[el.dataset.holidaysCalendarDay] && this.data[el.dataset.holidaysCalendarDay].is_commemoration && !markers.querySelector('.ecalendar-control__marker-memorial')) {
             markers.innerHTML += '<span class="ecalendar-control__marker-memorial"></span>'
           }
         })
@@ -207,4 +206,4 @@ class ECalendar {
   }
 }
 
-export default ECalendar
+export default HolidaysCalendar

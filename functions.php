@@ -260,9 +260,9 @@ function is_fasting($datetime, $data) {
 	return false;
 }
 
-add_action('wp_ajax_get_calendar_data', 'ajax_get_calendar_data', 10, 2);
-add_action('wp_ajax_nopriv_get_calendar_data', 'ajax_get_calendar_data', 10, 2);
-function ajax_get_calendar_data() {
+add_action('wp_ajax_get_holidays_data', 'ajax_get_holidays_data', 10, 2);
+add_action('wp_ajax_nopriv_get_holidays_data', 'ajax_get_holidays_data', 10, 2);
+function ajax_get_holidays_data() {
 	$dates = $_POST['dates'];
 
 	if (!$dates) {
@@ -274,7 +274,7 @@ function ajax_get_calendar_data() {
 
 	foreach ($dates_array as $date) {
 		$datetime = DateTime::createFromFormat('Y-m-d', $date);
-		$cache_key = 'ecalendar-' . $datetime->format('Y-m-d');
+		$cache_key = 'holidays-' . $datetime->format('Y-m-d');
 
 		$data = get_transient($cache_key);
 		if (empty($data)) {
@@ -303,6 +303,56 @@ function ajax_get_calendar_data() {
 			];
 
 			set_transient($cache_key, $data, MONTH_IN_SECONDS);
+		}
+
+		$output[$date] = $data;
+	}
+
+	echo json_encode($output);
+
+	wp_die();
+}
+
+add_action('wp_ajax_get_publications_data', 'ajax_get_publications_data', 10, 2);
+add_action('wp_ajax_nopriv_get_publications_data', 'ajax_get_publications_data', 10, 2);
+function ajax_get_publications_data() {
+	$dates = $_POST['dates'];
+
+	if (!$dates) {
+		wp_die();
+	}
+
+	$dates_array = explode(',', $dates);
+	$output = [];
+
+	foreach ($dates_array as $date) {
+		$datetime = DateTime::createFromFormat('Y-m-d', $date);
+		$cache_key = 'publications-' . $datetime->format('Y-m-d');
+
+		$data = get_transient($cache_key);
+		if (empty($data)) {
+			$data = [];
+			$publications = new WP_Query([
+				'year' => $datetime->format('Y'),
+				'monthnum' => $datetime->format('m'),
+				'day' => $datetime->format('d'),
+				'post_type' => 'post',
+				'order' => 'DESC',
+				'orderby' => 'date',
+				'meta_query' => [
+					[
+						'key' => 'show_in_calendar',
+						'value' => true
+					]
+				]
+			]);
+			foreach ($publications->posts as $item) {
+				$data[] = [
+					'title' => get_the_title($item),
+					'url' => get_the_permalink($item)
+				];
+			}
+			set_transient($cache_key, $data, DAY_IN_SECONDS);
 		}
 
 		$output[$date] = $data;
@@ -400,4 +450,28 @@ function register_video_tag_taxonomy() {
     'rewrite' => ['hierarchical' => true],
     'show_admin_column' => true,
   ]);
+}
+
+add_action('acf/init', 'acf_slideshow_init');
+function acf_slideshow_init() {
+	if (function_exists('acf_register_block')) {
+		acf_register_block([
+			'name' => 'slideshow',
+			'mode' => 'edit',
+			'title' => 'Слайдшоу',
+			'render_callback' => 'acf_slideshow_render_callback',
+			'category' => 'widgets',
+			'icon' => 'images-alt2',
+			'keywords' => ['slideshow'],
+			'supports' => [
+				'mode' => false
+			]
+		]);
+	}
+}
+function acf_slideshow_render_callback($block) {
+	$slug = str_replace('acf/', '', $block['name']);
+	if (file_exists(get_theme_file_path("/partials/block/content-{$slug}.php"))) {
+		include(get_theme_file_path("/partials/block/content-{$slug}.php"));
+	}
 }

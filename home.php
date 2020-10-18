@@ -572,7 +572,7 @@ $latest_video_query = new WP_Query([
                 </div>
                 <div class="tabs-panel__body">
                   <div class="tabs-panel__body-item active" data-tabs-body="first">
-                    <div class="ecalendar" data-ecalendar>
+                    <div class="ecalendar" data-holidays-calendar>
                       <div class="ecalendar__legend-and-control">
                         <div class="ecalendar-legend">
                           <div class="ecalendar-legend__row ecalendar-legend__row_current">Текущая дата</div>
@@ -584,43 +584,40 @@ $latest_video_query = new WP_Query([
 
                         <div class="ecalendar-control">
                           <div class="ecalendar-control__headline">
-                            <button class="ecalendar-control__headline-prev" data-ecalendar-backward></button>
-                            <div class="ecalendar-control__headline-year" data-ecalendar-date></div>
-                            <button class="ecalendar-control__headline-next" data-ecalendar-forward></button>
+                            <button class="ecalendar-control__headline-prev" data-holidays-calendar-backward></button>
+                            <div class="ecalendar-control__headline-year" data-holidays-calendar-date></div>
+                            <button class="ecalendar-control__headline-next" data-holidays-calendar-forward></button>
                           </div>
-                          <div class="ecalendar-control__body" data-ecalendar-body>
+                          <div class="ecalendar-control__body" data-holidays-calendar-body>
 
                           </div>
                         </div>
                       </div>
 
-                      <div class="ecalendar-content" data-ecalendar-content></div>
+                      <div class="ecalendar-content" data-holidays-calendar-content></div>
                     </div>
                   </div>
                   <div class="tabs-panel__body-item" data-tabs-body="second">
-                    <div class="ecalendar" data-ecalendar>
+                    <div class="ecalendar" data-publications-calendar>
                       <div class="ecalendar__legend-and-control">
                         <div class="ecalendar-legend">
                           <div class="ecalendar-legend__row ecalendar-legend__row_current">Текущая дата</div>
-                          <div class="ecalendar-legend__row ecalendar-legend__row_primary">Главные праздники</div>
-                          <div class="ecalendar-legend__row ecalendar-legend__row_weeks">Сплошные седмицы</div>
-                          <div class="ecalendar-legend__row ecalendar-legend__row_post">Дни поста</div>
-                          <div class="ecalendar-legend__row ecalendar-legend__row_memorial">Дни особого<br />поминовения<br />усопших</div>
+                          <div class="ecalendar-legend__row ecalendar-legend__row_primary">Есть публикации</div>
                         </div>
 
                         <div class="ecalendar-control">
                           <div class="ecalendar-control__headline">
-                            <button class="ecalendar-control__headline-prev" data-ecalendar-backward></button>
-                            <div class="ecalendar-control__headline-year" data-ecalendar-date></div>
-                            <button class="ecalendar-control__headline-next" data-ecalendar-forward></button>
+                            <button class="ecalendar-control__headline-prev" data-publications-calendar-backward></button>
+                            <div class="ecalendar-control__headline-year" data-publications-calendar-date></div>
+                            <button class="ecalendar-control__headline-next" data-publications-calendar-forward></button>
                           </div>
-                          <div class="ecalendar-control__body" data-ecalendar-body>
+                          <div class="ecalendar-control__body" data-publications-calendar-body>
 
                           </div>
                         </div>
                       </div>
 
-                      <div class="ecalendar-content" data-ecalendar-content></div>
+                      <div class="ecalendar-content" data-publications-calendar-content></div>
                     </div>
                   </div>
                 </div>

@@ -761,6 +761,10 @@ img {
   display: block;
 }
 
+.content * + .wp-block-slider-gallery {
+  margin-top: em(30px, 18px);
+}
+
 .content * + p {
   margin-top: em(30px, 18px);
 }
