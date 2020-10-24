@@ -1,7 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const PATHS = {
   source: path.join(__dirname, 'src/'),
@@ -75,7 +74,8 @@ module.exports = {
                       }
                     }
                   }),
-                  'postcss-em'
+                  'postcss-em',
+                  'cssnano'
                 ]
               }
             }
@@ -110,10 +110,9 @@ module.exports = {
   },
 
   optimization: {
-    minimize: process.env.NODE_ENV === 'production',
+    minimize: true,
     minimizer: [
-      new TerserPlugin(),
-      new OptimizeCSSAssetsPlugin()
+      new TerserPlugin()
     ]
   },
 
