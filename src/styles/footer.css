@@ -456,7 +456,10 @@
 
 .footline__creator {
   display: inline-block;
-  opacity: 0.8;
+  opacity: .8;
+  color: #aaa;
+  font-size: 12px;
+  line-height: 1.25;
 }
 
 .footline__creator:hover {
